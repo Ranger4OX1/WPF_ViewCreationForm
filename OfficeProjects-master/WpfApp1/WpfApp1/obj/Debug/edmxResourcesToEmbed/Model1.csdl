@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dv">
+    <Key>
+      <PropertyRef Name="n100" />
+    </Key>
+    <Property Name="n100" Type="Decimal" Precision="12" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="n101" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n102" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n103" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n104" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n105" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n106" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n107" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n108" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n109" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="s100" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s101" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s102" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s103" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s104" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s105" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s106" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s107" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s108" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s109" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="d100" Type="DateTime" Precision="3" />
+    <Property Name="d101" Type="DateTime" Precision="3" />
+    <Property Name="d102" Type="DateTime" Precision="3" />
+    <Property Name="d103" Type="DateTime" Precision="3" />
+    <Property Name="d104" Type="DateTime" Precision="3" />
+    <Property Name="s1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="s5" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s6" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s7" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s8" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s9" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s10" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s11" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s12" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s13" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s14" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s15" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s16" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s17" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s18" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s19" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s20" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s21" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s22" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s23" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s24" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s25" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s26" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s27" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s28" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s29" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s30" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s31" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s32" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s33" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s34" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s35" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s36" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s37" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s38" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s39" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s40" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="n1" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n2" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n3" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n4" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n5" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n6" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n7" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n8" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n9" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n10" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n11" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n12" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n13" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n14" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n15" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n16" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n17" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n18" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n19" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n20" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="d1" Type="DateTime" Precision="3" />
+    <Property Name="d2" Type="DateTime" Precision="3" />
+    <Property Name="d3" Type="DateTime" Precision="3" />
+    <Property Name="d4" Type="DateTime" Precision="3" />
+    <Property Name="d5" Type="DateTime" Precision="3" />
+    <Property Name="d6" Type="DateTime" Precision="3" />
+    <Property Name="d7" Type="DateTime" Precision="3" />
+    <Property Name="d8" Type="DateTime" Precision="3" />
+    <Property Name="d9" Type="DateTime" Precision="3" />
+    <Property Name="d10" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="dvtran">
+    <Key>
+      <PropertyRef Name="n100" />
+    </Key>
+    <Property Name="n100" Type="Decimal" Precision="12" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="n101" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="s100" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="s101" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="s1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="s11" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="modtree">
+    <Key>
+      <PropertyRef Name="n100" />
+    </Key>
+    <Property Name="n100" Type="Decimal" Precision="12" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="n101" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n102" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n103" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n104" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n105" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n106" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n107" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n108" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="n109" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="s100" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s101" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s102" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s103" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s104" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s105" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s106" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s107" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s108" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s109" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="d100" Type="DateTime" Precision="3" />
+    <Property Name="d101" Type="DateTime" Precision="3" />
+    <Property Name="d102" Type="DateTime" Precision="3" />
+    <Property Name="d103" Type="DateTime" Precision="3" />
+    <Property Name="d104" Type="DateTime" Precision="3" />
+    <Property Name="s1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s5" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s6" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s7" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s8" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s9" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s10" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s11" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s12" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s13" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s14" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s15" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s16" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s17" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s18" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s19" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s20" Type="String" MaxLength="900" FixedLength="false" Unicode="false" />
+    <Property Name="s21" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s22" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s23" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s24" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s25" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s26" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s27" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s28" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s29" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s30" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s31" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s32" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s33" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s34" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s35" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s36" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s37" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s38" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s39" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="s40" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="n1" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n2" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n3" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n4" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n5" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n6" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n7" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n8" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n9" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n10" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n11" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n12" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n13" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n14" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n15" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n16" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n17" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n18" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n19" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="n20" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="d1" Type="DateTime" Precision="3" />
+    <Property Name="d2" Type="DateTime" Precision="3" />
+    <Property Name="d3" Type="DateTime" Precision="3" />
+    <Property Name="d4" Type="DateTime" Precision="3" />
+    <Property Name="d5" Type="DateTime" Precision="3" />
+    <Property Name="d6" Type="DateTime" Precision="3" />
+    <Property Name="d7" Type="DateTime" Precision="3" />
+    <Property Name="d8" Type="DateTime" Precision="3" />
+    <Property Name="d9" Type="DateTime" Precision="3" />
+    <Property Name="d10" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="modtreetran">
+    <Key>
+      <PropertyRef Name="n100" />
+    </Key>
+    <Property Name="n100" Type="Decimal" Precision="12" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="n101" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="s100" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="s101" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="s1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="s11" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="s12" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="dvcombo">
+    <Key>
+      <PropertyRef Name="n100" />
+      <PropertyRef Name="s1" />
+    </Key>
+    <Property Name="n100" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="n101" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="s100" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="s101" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="s102" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="s108" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="s1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="s2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="d1" Type="DateTime" Precision="3" />
+    <Property Name="s3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dvs" EntityType="Self.dv" />
+    <EntitySet Name="dvtrans" EntityType="Self.dvtran" />
+    <EntitySet Name="modtrees" EntityType="Self.modtree" />
+    <EntitySet Name="modtreetrans" EntityType="Self.modtreetran" />
+    <EntitySet Name="dvcomboes" EntityType="Self.dvcombo" />
+  </EntityContainer>
+</Schema>

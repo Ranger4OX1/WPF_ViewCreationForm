@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+    <EntitySetMapping Name="dvs">
+      <EntityTypeMapping TypeName="DBModel.dv">
+        <MappingFragment StoreEntitySet="dv">
+          <ScalarProperty Name="n100" ColumnName="n100" />
+          <ScalarProperty Name="n101" ColumnName="n101" />
+          <ScalarProperty Name="n102" ColumnName="n102" />
+          <ScalarProperty Name="n103" ColumnName="n103" />
+          <ScalarProperty Name="n104" ColumnName="n104" />
+          <ScalarProperty Name="n105" ColumnName="n105" />
+          <ScalarProperty Name="n106" ColumnName="n106" />
+          <ScalarProperty Name="n107" ColumnName="n107" />
+          <ScalarProperty Name="n108" ColumnName="n108" />
+          <ScalarProperty Name="n109" ColumnName="n109" />
+          <ScalarProperty Name="s100" ColumnName="s100" />
+          <ScalarProperty Name="s101" ColumnName="s101" />
+          <ScalarProperty Name="s102" ColumnName="s102" />
+          <ScalarProperty Name="s103" ColumnName="s103" />
+          <ScalarProperty Name="s104" ColumnName="s104" />
+          <ScalarProperty Name="s105" ColumnName="s105" />
+          <ScalarProperty Name="s106" ColumnName="s106" />
+          <ScalarProperty Name="s107" ColumnName="s107" />
+          <ScalarProperty Name="s108" ColumnName="s108" />
+          <ScalarProperty Name="s109" ColumnName="s109" />
+          <ScalarProperty Name="d100" ColumnName="d100" />
+          <ScalarProperty Name="d101" ColumnName="d101" />
+          <ScalarProperty Name="d102" ColumnName="d102" />
+          <ScalarProperty Name="d103" ColumnName="d103" />
+          <ScalarProperty Name="d104" ColumnName="d104" />
+          <ScalarProperty Name="s1" ColumnName="s1" />
+          <ScalarProperty Name="s2" ColumnName="s2" />
+          <ScalarProperty Name="s3" ColumnName="s3" />
+          <ScalarProperty Name="s4" ColumnName="s4" />
+          <ScalarProperty Name="s5" ColumnName="s5" />
+          <ScalarProperty Name="s6" ColumnName="s6" />
+          <ScalarProperty Name="s7" ColumnName="s7" />
+          <ScalarProperty Name="s8" ColumnName="s8" />
+          <ScalarProperty Name="s9" ColumnName="s9" />
+          <ScalarProperty Name="s10" ColumnName="s10" />
+          <ScalarProperty Name="s11" ColumnName="s11" />
+          <ScalarProperty Name="s12" ColumnName="s12" />
+          <ScalarProperty Name="s13" ColumnName="s13" />
+          <ScalarProperty Name="s14" ColumnName="s14" />
+          <ScalarProperty Name="s15" ColumnName="s15" />
+          <ScalarProperty Name="s16" ColumnName="s16" />
+          <ScalarProperty Name="s17" ColumnName="s17" />
+          <ScalarProperty Name="s18" ColumnName="s18" />
+          <ScalarProperty Name="s19" ColumnName="s19" />
+          <ScalarProperty Name="s20" ColumnName="s20" />
+          <ScalarProperty Name="s21" ColumnName="s21" />
+          <ScalarProperty Name="s22" ColumnName="s22" />
+          <ScalarProperty Name="s23" ColumnName="s23" />
+          <ScalarProperty Name="s24" ColumnName="s24" />
+          <ScalarProperty Name="s25" ColumnName="s25" />
+          <ScalarProperty Name="s26" ColumnName="s26" />
+          <ScalarProperty Name="s27" ColumnName="s27" />
+          <ScalarProperty Name="s28" ColumnName="s28" />
+          <ScalarProperty Name="s29" ColumnName="s29" />
+          <ScalarProperty Name="s30" ColumnName="s30" />
+          <ScalarProperty Name="s31" ColumnName="s31" />
+          <ScalarProperty Name="s32" ColumnName="s32" />
+          <ScalarProperty Name="s33" ColumnName="s33" />
+          <ScalarProperty Name="s34" ColumnName="s34" />
+          <ScalarProperty Name="s35" ColumnName="s35" />
+          <ScalarProperty Name="s36" ColumnName="s36" />
+          <ScalarProperty Name="s37" ColumnName="s37" />
+          <ScalarProperty Name="s38" ColumnName="s38" />
+          <ScalarProperty Name="s39" ColumnName="s39" />
+          <ScalarProperty Name="s40" ColumnName="s40" />
+          <ScalarProperty Name="n1" ColumnName="n1" />
+          <ScalarProperty Name="n2" ColumnName="n2" />
+          <ScalarProperty Name="n3" ColumnName="n3" />
+          <ScalarProperty Name="n4" ColumnName="n4" />
+          <ScalarProperty Name="n5" ColumnName="n5" />
+          <ScalarProperty Name="n6" ColumnName="n6" />
+          <ScalarProperty Name="n7" ColumnName="n7" />
+          <ScalarProperty Name="n8" ColumnName="n8" />
+          <ScalarProperty Name="n9" ColumnName="n9" />
+          <ScalarProperty Name="n10" ColumnName="n10" />
+          <ScalarProperty Name="n11" ColumnName="n11" />
+          <ScalarProperty Name="n12" ColumnName="n12" />
+          <ScalarProperty Name="n13" ColumnName="n13" />
+          <ScalarProperty Name="n14" ColumnName="n14" />
+          <ScalarProperty Name="n15" ColumnName="n15" />
+          <ScalarProperty Name="n16" ColumnName="n16" />
+          <ScalarProperty Name="n17" ColumnName="n17" />
+          <ScalarProperty Name="n18" ColumnName="n18" />
+          <ScalarProperty Name="n19" ColumnName="n19" />
+          <ScalarProperty Name="n20" ColumnName="n20" />
+          <ScalarProperty Name="d1" ColumnName="d1" />
+          <ScalarProperty Name="d2" ColumnName="d2" />
+          <ScalarProperty Name="d3" ColumnName="d3" />
+          <ScalarProperty Name="d4" ColumnName="d4" />
+          <ScalarProperty Name="d5" ColumnName="d5" />
+          <ScalarProperty Name="d6" ColumnName="d6" />
+          <ScalarProperty Name="d7" ColumnName="d7" />
+          <ScalarProperty Name="d8" ColumnName="d8" />
+          <ScalarProperty Name="d9" ColumnName="d9" />
+          <ScalarProperty Name="d10" ColumnName="d10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dvtrans">
+      <EntityTypeMapping TypeName="DBModel.dvtran">
+        <MappingFragment StoreEntitySet="dvtrans">
+          <ScalarProperty Name="n100" ColumnName="n100" />
+          <ScalarProperty Name="n101" ColumnName="n101" />
+          <ScalarProperty Name="s100" ColumnName="s100" />
+          <ScalarProperty Name="s101" ColumnName="s101" />
+          <ScalarProperty Name="s1" ColumnName="s1" />
+          <ScalarProperty Name="s11" ColumnName="s11" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modtrees">
+      <EntityTypeMapping TypeName="DBModel.modtree">
+        <MappingFragment StoreEntitySet="modtree">
+          <ScalarProperty Name="n100" ColumnName="n100" />
+          <ScalarProperty Name="n101" ColumnName="n101" />
+          <ScalarProperty Name="n102" ColumnName="n102" />
+          <ScalarProperty Name="n103" ColumnName="n103" />
+          <ScalarProperty Name="n104" ColumnName="n104" />
+          <ScalarProperty Name="n105" ColumnName="n105" />
+          <ScalarProperty Name="n106" ColumnName="n106" />
+          <ScalarProperty Name="n107" ColumnName="n107" />
+          <ScalarProperty Name="n108" ColumnName="n108" />
+          <ScalarProperty Name="n109" ColumnName="n109" />
+          <ScalarProperty Name="s100" ColumnName="s100" />
+          <ScalarProperty Name="s101" ColumnName="s101" />
+          <ScalarProperty Name="s102" ColumnName="s102" />
+          <ScalarProperty Name="s103" ColumnName="s103" />
+          <ScalarProperty Name="s104" ColumnName="s104" />
+          <ScalarProperty Name="s105" ColumnName="s105" />
+          <ScalarProperty Name="s106" ColumnName="s106" />
+          <ScalarProperty Name="s107" ColumnName="s107" />
+          <ScalarProperty Name="s108" ColumnName="s108" />
+          <ScalarProperty Name="s109" ColumnName="s109" />
+          <ScalarProperty Name="d100" ColumnName="d100" />
+          <ScalarProperty Name="d101" ColumnName="d101" />
+          <ScalarProperty Name="d102" ColumnName="d102" />
+          <ScalarProperty Name="d103" ColumnName="d103" />
+          <ScalarProperty Name="d104" ColumnName="d104" />
+          <ScalarProperty Name="s1" ColumnName="s1" />
+          <ScalarProperty Name="s2" ColumnName="s2" />
+          <ScalarProperty Name="s3" ColumnName="s3" />
+          <ScalarProperty Name="s4" ColumnName="s4" />
+          <ScalarProperty Name="s5" ColumnName="s5" />
+          <ScalarProperty Name="s6" ColumnName="s6" />
+          <ScalarProperty Name="s7" ColumnName="s7" />
+          <ScalarProperty Name="s8" ColumnName="s8" />
+          <ScalarProperty Name="s9" ColumnName="s9" />
+          <ScalarProperty Name="s10" ColumnName="s10" />
+          <ScalarProperty Name="s11" ColumnName="s11" />
+          <ScalarProperty Name="s12" ColumnName="s12" />
+          <ScalarProperty Name="s13" ColumnName="s13" />
+          <ScalarProperty Name="s14" ColumnName="s14" />
+          <ScalarProperty Name="s15" ColumnName="s15" />
+          <ScalarProperty Name="s16" ColumnName="s16" />
+          <ScalarProperty Name="s17" ColumnName="s17" />
+          <ScalarProperty Name="s18" ColumnName="s18" />
+          <ScalarProperty Name="s19" ColumnName="s19" />
+          <ScalarProperty Name="s20" ColumnName="s20" />
+          <ScalarProperty Name="s21" ColumnName="s21" />
+          <ScalarProperty Name="s22" ColumnName="s22" />
+          <ScalarProperty Name="s23" ColumnName="s23" />
+          <ScalarProperty Name="s24" ColumnName="s24" />
+          <ScalarProperty Name="s25" ColumnName="s25" />
+          <ScalarProperty Name="s26" ColumnName="s26" />
+          <ScalarProperty Name="s27" ColumnName="s27" />
+          <ScalarProperty Name="s28" ColumnName="s28" />
+          <ScalarProperty Name="s29" ColumnName="s29" />
+          <ScalarProperty Name="s30" ColumnName="s30" />
+          <ScalarProperty Name="s31" ColumnName="s31" />
+          <ScalarProperty Name="s32" ColumnName="s32" />
+          <ScalarProperty Name="s33" ColumnName="s33" />
+          <ScalarProperty Name="s34" ColumnName="s34" />
+          <ScalarProperty Name="s35" ColumnName="s35" />
+          <ScalarProperty Name="s36" ColumnName="s36" />
+          <ScalarProperty Name="s37" ColumnName="s37" />
+          <ScalarProperty Name="s38" ColumnName="s38" />
+          <ScalarProperty Name="s39" ColumnName="s39" />
+          <ScalarProperty Name="s40" ColumnName="s40" />
+          <ScalarProperty Name="n1" ColumnName="n1" />
+          <ScalarProperty Name="n2" ColumnName="n2" />
+          <ScalarProperty Name="n3" ColumnName="n3" />
+          <ScalarProperty Name="n4" ColumnName="n4" />
+          <ScalarProperty Name="n5" ColumnName="n5" />
+          <ScalarProperty Name="n6" ColumnName="n6" />
+          <ScalarProperty Name="n7" ColumnName="n7" />
+          <ScalarProperty Name="n8" ColumnName="n8" />
+          <ScalarProperty Name="n9" ColumnName="n9" />
+          <ScalarProperty Name="n10" ColumnName="n10" />
+          <ScalarProperty Name="n11" ColumnName="n11" />
+          <ScalarProperty Name="n12" ColumnName="n12" />
+          <ScalarProperty Name="n13" ColumnName="n13" />
+          <ScalarProperty Name="n14" ColumnName="n14" />
+          <ScalarProperty Name="n15" ColumnName="n15" />
+          <ScalarProperty Name="n16" ColumnName="n16" />
+          <ScalarProperty Name="n17" ColumnName="n17" />
+          <ScalarProperty Name="n18" ColumnName="n18" />
+          <ScalarProperty Name="n19" ColumnName="n19" />
+          <ScalarProperty Name="n20" ColumnName="n20" />
+          <ScalarProperty Name="d1" ColumnName="d1" />
+          <ScalarProperty Name="d2" ColumnName="d2" />
+          <ScalarProperty Name="d3" ColumnName="d3" />
+          <ScalarProperty Name="d4" ColumnName="d4" />
+          <ScalarProperty Name="d5" ColumnName="d5" />
+          <ScalarProperty Name="d6" ColumnName="d6" />
+          <ScalarProperty Name="d7" ColumnName="d7" />
+          <ScalarProperty Name="d8" ColumnName="d8" />
+          <ScalarProperty Name="d9" ColumnName="d9" />
+          <ScalarProperty Name="d10" ColumnName="d10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modtreetrans">
+      <EntityTypeMapping TypeName="DBModel.modtreetran">
+        <MappingFragment StoreEntitySet="modtreetrans">
+          <ScalarProperty Name="n100" ColumnName="n100" />
+          <ScalarProperty Name="n101" ColumnName="n101" />
+          <ScalarProperty Name="s100" ColumnName="s100" />
+          <ScalarProperty Name="s101" ColumnName="s101" />
+          <ScalarProperty Name="s1" ColumnName="s1" />
+          <ScalarProperty Name="s11" ColumnName="s11" />
+          <ScalarProperty Name="s12" ColumnName="s12" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dvcomboes">
+      <EntityTypeMapping TypeName="DBModel.dvcombo">
+        <MappingFragment StoreEntitySet="dvcombo">
+          <ScalarProperty Name="n100" ColumnName="n100" />
+          <ScalarProperty Name="n101" ColumnName="n101" />
+          <ScalarProperty Name="s100" ColumnName="s100" />
+          <ScalarProperty Name="s101" ColumnName="s101" />
+          <ScalarProperty Name="s102" ColumnName="s102" />
+          <ScalarProperty Name="s108" ColumnName="s108" />
+          <ScalarProperty Name="s1" ColumnName="s1" />
+          <ScalarProperty Name="s2" ColumnName="s2" />
+          <ScalarProperty Name="d1" ColumnName="d1" />
+          <ScalarProperty Name="s3" ColumnName="s3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

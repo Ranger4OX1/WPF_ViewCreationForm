@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dv">
+    <Key>
+      <PropertyRef Name="n100" />
+    </Key>
+    <Property Name="n100" Type="numeric" Precision="12" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="n101" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n102" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n103" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n104" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n105" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n106" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n107" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n108" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n109" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="s100" Type="varchar" MaxLength="250" />
+    <Property Name="s101" Type="varchar" MaxLength="250" />
+    <Property Name="s102" Type="varchar" MaxLength="250" />
+    <Property Name="s103" Type="varchar" MaxLength="250" />
+    <Property Name="s104" Type="varchar" MaxLength="250" />
+    <Property Name="s105" Type="varchar" MaxLength="250" />
+    <Property Name="s106" Type="varchar" MaxLength="250" />
+    <Property Name="s107" Type="varchar" MaxLength="250" />
+    <Property Name="s108" Type="varchar" MaxLength="250" />
+    <Property Name="s109" Type="varchar" MaxLength="250" />
+    <Property Name="d100" Type="datetime" />
+    <Property Name="d101" Type="datetime" />
+    <Property Name="d102" Type="datetime" />
+    <Property Name="d103" Type="datetime" />
+    <Property Name="d104" Type="datetime" />
+    <Property Name="s1" Type="varchar" MaxLength="250" />
+    <Property Name="s2" Type="varchar" MaxLength="250" />
+    <Property Name="s3" Type="varchar" MaxLength="250" />
+    <Property Name="s4" Type="varchar" MaxLength="500" />
+    <Property Name="s5" Type="varchar" MaxLength="250" />
+    <Property Name="s6" Type="varchar" MaxLength="250" />
+    <Property Name="s7" Type="varchar" MaxLength="250" />
+    <Property Name="s8" Type="varchar" MaxLength="250" />
+    <Property Name="s9" Type="varchar" MaxLength="250" />
+    <Property Name="s10" Type="varchar" MaxLength="250" />
+    <Property Name="s11" Type="varchar" MaxLength="250" />
+    <Property Name="s12" Type="varchar" MaxLength="250" />
+    <Property Name="s13" Type="varchar" MaxLength="250" />
+    <Property Name="s14" Type="varchar" MaxLength="250" />
+    <Property Name="s15" Type="varchar" MaxLength="250" />
+    <Property Name="s16" Type="varchar" MaxLength="250" />
+    <Property Name="s17" Type="varchar" MaxLength="250" />
+    <Property Name="s18" Type="varchar" MaxLength="250" />
+    <Property Name="s19" Type="varchar" MaxLength="250" />
+    <Property Name="s20" Type="varchar" MaxLength="250" />
+    <Property Name="s21" Type="varchar" MaxLength="250" />
+    <Property Name="s22" Type="varchar" MaxLength="250" />
+    <Property Name="s23" Type="varchar" MaxLength="250" />
+    <Property Name="s24" Type="varchar" MaxLength="250" />
+    <Property Name="s25" Type="varchar" MaxLength="250" />
+    <Property Name="s26" Type="varchar" MaxLength="250" />
+    <Property Name="s27" Type="varchar" MaxLength="250" />
+    <Property Name="s28" Type="varchar" MaxLength="250" />
+    <Property Name="s29" Type="varchar" MaxLength="250" />
+    <Property Name="s30" Type="varchar" MaxLength="250" />
+    <Property Name="s31" Type="varchar" MaxLength="250" />
+    <Property Name="s32" Type="varchar" MaxLength="250" />
+    <Property Name="s33" Type="varchar" MaxLength="250" />
+    <Property Name="s34" Type="varchar" MaxLength="250" />
+    <Property Name="s35" Type="varchar" MaxLength="250" />
+    <Property Name="s36" Type="varchar" MaxLength="250" />
+    <Property Name="s37" Type="varchar" MaxLength="250" />
+    <Property Name="s38" Type="varchar" MaxLength="250" />
+    <Property Name="s39" Type="varchar" MaxLength="250" />
+    <Property Name="s40" Type="varchar" MaxLength="250" />
+    <Property Name="n1" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n2" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n3" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n4" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n5" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n6" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n7" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n8" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n9" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n10" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n11" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n12" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n13" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n14" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n15" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n16" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n17" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n18" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n19" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n20" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="d1" Type="datetime" />
+    <Property Name="d2" Type="datetime" />
+    <Property Name="d3" Type="datetime" />
+    <Property Name="d4" Type="datetime" />
+    <Property Name="d5" Type="datetime" />
+    <Property Name="d6" Type="datetime" />
+    <Property Name="d7" Type="datetime" />
+    <Property Name="d8" Type="datetime" />
+    <Property Name="d9" Type="datetime" />
+    <Property Name="d10" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LocalMaster.dbo.dvcombo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="dvcombo">
+    <Key>
+      <PropertyRef Name="n100" />
+      <PropertyRef Name="s1" />
+    </Key>
+    <Property Name="n100" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="n101" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="s100" Type="varchar" MaxLength="10" />
+    <Property Name="s101" Type="varchar" MaxLength="10" />
+    <Property Name="s102" Type="varchar" MaxLength="10" />
+    <Property Name="s108" Type="varchar" MaxLength="10" />
+    <Property Name="s1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="s2" Type="varchar" MaxLength="250" />
+    <Property Name="d1" Type="datetime" />
+    <Property Name="s3" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="dvtrans">
+    <Key>
+      <PropertyRef Name="n100" />
+    </Key>
+    <Property Name="n100" Type="numeric" Precision="12" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="n101" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="s100" Type="varchar" MaxLength="10" />
+    <Property Name="s101" Type="char" MaxLength="1" />
+    <Property Name="s1" Type="varchar" MaxLength="150" />
+    <Property Name="s11" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="modtree">
+    <Key>
+      <PropertyRef Name="n100" />
+    </Key>
+    <Property Name="n100" Type="numeric" Precision="12" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="n101" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n102" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n103" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n104" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n105" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n106" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n107" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n108" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="n109" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="s100" Type="varchar" MaxLength="250" />
+    <Property Name="s101" Type="varchar" MaxLength="250" />
+    <Property Name="s102" Type="varchar" MaxLength="250" />
+    <Property Name="s103" Type="varchar" MaxLength="250" />
+    <Property Name="s104" Type="varchar" MaxLength="250" />
+    <Property Name="s105" Type="varchar" MaxLength="250" />
+    <Property Name="s106" Type="varchar" MaxLength="250" />
+    <Property Name="s107" Type="varchar" MaxLength="250" />
+    <Property Name="s108" Type="varchar" MaxLength="250" />
+    <Property Name="s109" Type="varchar" MaxLength="250" />
+    <Property Name="d100" Type="datetime" />
+    <Property Name="d101" Type="datetime" />
+    <Property Name="d102" Type="datetime" />
+    <Property Name="d103" Type="datetime" />
+    <Property Name="d104" Type="datetime" />
+    <Property Name="s1" Type="varchar" MaxLength="250" />
+    <Property Name="s2" Type="varchar" MaxLength="250" />
+    <Property Name="s3" Type="varchar" MaxLength="250" />
+    <Property Name="s4" Type="varchar" MaxLength="250" />
+    <Property Name="s5" Type="varchar" MaxLength="250" />
+    <Property Name="s6" Type="varchar" MaxLength="250" />
+    <Property Name="s7" Type="varchar" MaxLength="250" />
+    <Property Name="s8" Type="varchar" MaxLength="250" />
+    <Property Name="s9" Type="varchar" MaxLength="250" />
+    <Property Name="s10" Type="varchar" MaxLength="250" />
+    <Property Name="s11" Type="varchar" MaxLength="250" />
+    <Property Name="s12" Type="varchar" MaxLength="250" />
+    <Property Name="s13" Type="varchar" MaxLength="250" />
+    <Property Name="s14" Type="varchar" MaxLength="250" />
+    <Property Name="s15" Type="varchar" MaxLength="250" />
+    <Property Name="s16" Type="varchar" MaxLength="250" />
+    <Property Name="s17" Type="varchar" MaxLength="250" />
+    <Property Name="s18" Type="varchar" MaxLength="250" />
+    <Property Name="s19" Type="varchar" MaxLength="250" />
+    <Property Name="s20" Type="varchar" MaxLength="900" />
+    <Property Name="s21" Type="varchar" MaxLength="250" />
+    <Property Name="s22" Type="varchar" MaxLength="250" />
+    <Property Name="s23" Type="varchar" MaxLength="250" />
+    <Property Name="s24" Type="varchar" MaxLength="250" />
+    <Property Name="s25" Type="varchar" MaxLength="250" />
+    <Property Name="s26" Type="varchar" MaxLength="250" />
+    <Property Name="s27" Type="varchar" MaxLength="250" />
+    <Property Name="s28" Type="varchar" MaxLength="250" />
+    <Property Name="s29" Type="varchar" MaxLength="250" />
+    <Property Name="s30" Type="varchar" MaxLength="250" />
+    <Property Name="s31" Type="varchar" MaxLength="250" />
+    <Property Name="s32" Type="varchar" MaxLength="250" />
+    <Property Name="s33" Type="varchar" MaxLength="250" />
+    <Property Name="s34" Type="varchar" MaxLength="250" />
+    <Property Name="s35" Type="varchar" MaxLength="250" />
+    <Property Name="s36" Type="varchar" MaxLength="250" />
+    <Property Name="s37" Type="varchar" MaxLength="250" />
+    <Property Name="s38" Type="varchar" MaxLength="250" />
+    <Property Name="s39" Type="varchar" MaxLength="250" />
+    <Property Name="s40" Type="varchar" MaxLength="250" />
+    <Property Name="n1" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n2" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n3" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n4" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n5" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n6" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n7" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n8" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n9" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n10" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n11" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n12" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n13" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n14" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n15" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n16" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n17" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n18" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n19" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="n20" Type="numeric" Precision="14" Scale="2" />
+    <Property Name="d1" Type="datetime" />
+    <Property Name="d2" Type="datetime" />
+    <Property Name="d3" Type="datetime" />
+    <Property Name="d4" Type="datetime" />
+    <Property Name="d5" Type="datetime" />
+    <Property Name="d6" Type="datetime" />
+    <Property Name="d7" Type="datetime" />
+    <Property Name="d8" Type="datetime" />
+    <Property Name="d9" Type="datetime" />
+    <Property Name="d10" Type="datetime" />
+  </EntityType>
+  <EntityType Name="modtreetrans">
+    <Key>
+      <PropertyRef Name="n100" />
+    </Key>
+    <Property Name="n100" Type="numeric" Precision="12" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="n101" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="s100" Type="varchar" MaxLength="10" />
+    <Property Name="s101" Type="char" MaxLength="1" />
+    <Property Name="s1" Type="varchar" MaxLength="150" />
+    <Property Name="s11" Type="varchar" MaxLength="150" />
+    <Property Name="s12" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="dv" EntityType="Self.dv" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dvtrans" EntityType="Self.dvtrans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="modtree" EntityType="Self.modtree" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="modtreetrans" EntityType="Self.modtreetrans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dvcombo" EntityType="Self.dvcombo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [dvcombo].[n100] AS [n100], 
+    [dvcombo].[n101] AS [n101], 
+    [dvcombo].[s100] AS [s100], 
+    [dvcombo].[s101] AS [s101], 
+    [dvcombo].[s102] AS [s102], 
+    [dvcombo].[s108] AS [s108], 
+    [dvcombo].[s1] AS [s1], 
+    [dvcombo].[s2] AS [s2], 
+    [dvcombo].[d1] AS [d1], 
+    [dvcombo].[s3] AS [s3]
+    FROM [dbo].[dvcombo] AS [dvcombo]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
