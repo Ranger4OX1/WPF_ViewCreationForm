@@ -121,7 +121,6 @@
             <!--<Button Name="btnNewOrder" Content="New Section" FontSize="11" Width="80" Style="{StaticResource NavButton}" Click="NewOrder_click"/>-->
             <StackPanel Width="125"/>
         </StackPanel>
-
         <Grid x:Name="ModuleInfoGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,12,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Grid.RowSpan="2" Width="1126" IsEnabled="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -206,7 +205,6 @@
 
 
         </Grid>
-
         <Grid x:Name="newSectionLvl1Grid" Grid.Row="1"  HorizontalAlignment="Left" Margin="5,60,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Width="1126" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -261,7 +259,7 @@
             </Button>
 
         </Grid>
-        <Grid x:Name="selSecCntlBtnGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,91,0,0"  Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" Width="1121" Grid.RowSpan="2" >
+        <Grid x:Name="selSecCntlBtnGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,91,0,0"  Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" Width="1121" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -273,7 +271,7 @@
             </Grid.RowDefinitions>
 
             <Button x:Name="selSecCntrl_ssL1Btn" Content="Select Section" Grid.Column="1" Style="{StaticResource cmdButton}" Click="selSecCntrl_ssL1Btn_Click" />
-            <Button x:Name="selSecCntrl_ssL2Btn" Content="Select Sub Section" Grid.Column="2" Style="{StaticResource cmdButton}"  />
+            <Button x:Name="selSecCntrl_ssL2Btn" Content="Select Sub Section" Grid.Column="2" Style="{StaticResource cmdButton}" Click="selSecCntrl_ssL2Btn_Click"  />
         </Grid>
         <Grid x:Name="scrnCntlBtnGrid" Grid.Row="2" HorizontalAlignment="Center"  Visibility="Collapsed" Background="WhiteSmoke" Width="1126" Margin="0,331,0,150" >
             <Grid.ColumnDefinitions>
@@ -320,7 +318,6 @@
             <Label Content="SELECT A SECTION FROM THE GRID BELOW:" Grid.Column="2" Grid.Row="2" Style="{StaticResource Label}" Height="23" Width="258" HorizontalAlignment="Center"/>
 
         </Grid>-->
-
         <Grid x:Name="creationModtreeGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,12,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Width="1121">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MinWidth="300"/>
@@ -533,4 +530,12 @@
 
 
     </Grid>
+    <!--///    <AUTHOR>///
+/// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
+/// FOR ::-:Pearl-Solutions:-::                 ///
+/// PROJECT DESCRIPTION::-:This is th first     ///
+///     draft of a View creation system to      ///
+///     ease the process of creation of modules ///
+///     and screens:-::                         ///
+///</AUTHOR> ///-->
 </Window>

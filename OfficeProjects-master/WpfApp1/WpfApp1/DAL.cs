@@ -8,6 +8,14 @@ using System.Data.SqlClient;
 using System.Windows;
 using System.Data;
 
+/// <AUTHOR>                                    ///
+/// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
+/// FOR ::-:Pearl-Solutions:-::                 ///
+/// PROJECT DESCRIPTION::-:This is th first     ///
+///     draft of a View creation system to      ///
+///     ease the process of creation of modules ///
+///     and screens:-::                         ///
+/// </AUTHOR>                                   ///
 namespace WpfApp1
 {
     internal class DAL
@@ -238,4 +246,13 @@ namespace WpfApp1
             
         }
     }
+
+    /// <AUTHOR>                                    ///
+    /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
+    /// FOR ::-:Pearl-Solutions:-::                 ///
+    /// PROJECT DESCRIPTION::-:This is th first     ///
+    ///     draft of a View creation system to      ///
+    ///     ease the process of creation of modules ///
+    ///     and screens:-::                         ///
+    /// </AUTHOR>                                   ///
 }
