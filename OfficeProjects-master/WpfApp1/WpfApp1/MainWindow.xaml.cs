@@ -45,6 +45,7 @@ namespace WpfApp1
         private modtree selectedModule = new modtree();
         private modtree selectedSecLvl1 = new modtree();
         private modtree selectedSecLvl2 = new modtree();
+        private modtree selectedScreen = new modtree();
 
         public MainWindow()
         {
@@ -59,15 +60,11 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //context.modtrees.Load();
-            //modtreeViewSource.Source = context.modtrees.Local;
-
-            //context.modtrees.Load();
-            //modViewSource.Source = context.modtrees.Local;
-
             PopulateModTreGrid();
         }
 
+        //////
+        ///GRID DATA GET METHODS
         private void PopulateModTreGrid()
         {
             modtreeViewSource.Source = dal.Exec("select n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 from modtree where s100 = 'MOD'");
@@ -86,12 +83,15 @@ namespace WpfApp1
         {
             string secCode = selectedSecLvl1.s1.ToString();
 
-            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SCR' AND LEFT(s1,4)= '"+ secCode + "'";
+            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE (s100 = 'SCR' OR s100 = 'RPT') AND LEFT(s1,4)= '" + secCode + "'";
             secL2ViewSource.Source = dal.Exec(sql);
             //modtreeViewSource.View.Refresh();         
             //
         }
 
+        //////
+        /// STCAK PANEL COMMAND HANDLERS
+        /// </summary>
         private void LastCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             modtreeViewSource.View.MoveCurrentToLast();
@@ -112,37 +112,13 @@ namespace WpfApp1
             modtreeViewSource.View.MoveCurrentToFirst();
         }
 
-        /// chk section 
-        /// 
-        private void DeleteModuleCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            
-        }
-
-        //private void UpdateCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        //{            
-        //    modtree mt = new modtree()
-        //    {
-        //        n100 = Convert.ToInt32(idTextBox.Text),
-        //        s100 = childTypeComboBox.Text,
-        //        s101 = statusComboBox.Text,
-        //        s102 = docTypeTextBox.Text,
-        //        s105 = productCodeTextBox.Text,
-        //        s1 = moduleCodeTextBox.Text,
-        //        s2 = moduleNameTextBox.Text,
-        //        s3 = parentComboBox.Text,
-        //        s8 = moduleImgTextBox.Text,
-        //        s39 = treeLvlTextBox.Text,
-        //        s40 = prevLvlTextBox.Text,
-        //        n1 = Convert.ToInt32(displayOrderTextBox.Text)
-        //    };
-        //    dal.UpdateStudent(mt);
-        //}
-
         private void RefreshCommandCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             PopulateModTreGrid();
+
+            sysStatLbl.Content = "Data Refreshed";
         }
+        
         private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             Collapse();
@@ -152,8 +128,27 @@ namespace WpfApp1
             existingModtreeGrid.Visibility = visible;
             modtreeDataGrid.Visibility = visible;           
         }
+        
+        private void CancelCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            Collapse();
+            ResetControls();
+            sysStatLbl.Content = "System Ready";
+        }
 
-        private void ResetControls()
+        private void SelectModuleCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            Collapse();
+
+            existingModtreeGrid.Visibility = Visibility.Collapsed;
+            creationModtreeGrid.Visibility = visible;    
+            modtreeDataGrid.Visibility = visible;
+
+        }
+
+        //////
+        ///PRIVATE METHODS
+        private void ResetControls()//// Cancels any input into the new customer form  
         {           
             childTypeComboBox.Text = string.Empty;
             statusComboBox.Text = string.Empty;
@@ -181,19 +176,10 @@ namespace WpfApp1
 
         }
 
-        //// Cancels any input into the new customer form  
-        private void CancelCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            Collapse();
-            ResetControls();
-            sysStatLbl.Content = "System Ready";
-        }
-
-        ///Collapse Evrything HAHAH!!
-        private void Collapse()
+        private void Collapse()//// Collapse Evrything HAHAH!!
         {
 
-            existingModtreeGrid.Visibility = Visibility.Collapsed;            
+            existingModtreeGrid.Visibility = Visibility.Collapsed;
             creationModtreeGrid.Visibility = Visibility.Collapsed;
 
             ModuleInfoGrid.Visibility = Visibility.Collapsed;
@@ -205,52 +191,20 @@ namespace WpfApp1
             selctSecL2Grid.Visibility = Visibility.Collapsed;
             selSecCntlBtnGrid.Visibility = Visibility.Collapsed;
             scrnCntlBtnGrid.Visibility = Visibility.Collapsed;
-            
+
             modtreeDataGrid.Visibility = Visibility.Collapsed;
             secLvl2DataGrid.Visibility = Visibility.Collapsed;
             moduleDataGrid.Visibility = Visibility.Collapsed;
         }
-        private void SelectModuleCommandHandler(object sender, ExecutedRoutedEventArgs e)
+
+        private void LoadScreenForm(string state)
         {
-            Collapse();
-
-            existingModtreeGrid.Visibility = Visibility.Collapsed;
-            creationModtreeGrid.Visibility = visible;    
-            modtreeDataGrid.Visibility = visible;
-
+            Window1 window = new Window1(selectedModule, selectedSecLvl1, selectedSecLvl2 ,state);
+            window.Show();
         }
 
-        private void Delete_Order(modtree mod)
-        {
-            dal.RemoveMod(mod.n100);
-            PopulateModTreGrid();
-        }
-
-        private void DeleteOrderCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            
-        }
-
-        private void childTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { 
-
-        }
-
-        //private void moduleDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    var cust = modViewSource.View.CurrentItem as modtree;
-        //    if (cust == null)
-        //    {
-        //        MessageBox.Show("No customer selected.");
-        //        return;
-        //    }
-
-        //    //section_sectionCodeTextBox.Text  = cust.s1.ToString();
-        //    //
-        //    //section_sectionNameTextBox.Text = cust.s2.ToString();
-
-        //}
-
+        //////
+        /// SECTION BUTTON CLICK COMMANDS
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
             
@@ -275,11 +229,13 @@ namespace WpfApp1
             
         }
 
+        //Dose not yet delete the whole Module YET
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("All parts of the Module will be deleted\n", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 dal.RemoveMod(Convert.ToDecimal(create_idTextBox.Text));
+                sysStatLbl.Content = "Module " + create_moduleNameTextBox.Text + " Deleted";
             }            
         }
 
@@ -308,7 +264,7 @@ namespace WpfApp1
 
             if (!string.IsNullOrEmpty(create_childTypeTextBox.Text) && !string.IsNullOrEmpty(create_statusTextBox.Text) && !string.IsNullOrEmpty(create_docTypeTextBox.Text) && !string.IsNullOrEmpty(create_productCodeTextBox.Text) && !string.IsNullOrEmpty(create_moduleCodeTextBox.Text) && !string.IsNullOrEmpty(create_displayOrderTextBox.Text)  && !string.IsNullOrEmpty(create_moduleNameTextBox.Text) && !string.IsNullOrEmpty(create_parentTextBox.Text) && !string.IsNullOrEmpty(create_moduleImgTextBox.Text) && !string.IsNullOrEmpty(create_treeLvlTextBox.Text) && !string.IsNullOrEmpty(create_prevLvlTextBox.Text))
             {
-                //selectedModule.n100 = Convert.ToInt32(create_idTextBox.Text);
+                selectedModule.n100 = Convert.ToDecimal(create_idTextBox.Text);
                 selectedModule.s100 = create_childTypeTextBox.Text;
                 selectedModule.s101 = create_statusTextBox.Text;
                 selectedModule.s102 = create_docTypeTextBox.Text;
@@ -344,8 +300,8 @@ namespace WpfApp1
         
         private void addScreenButton_Click(object sender, RoutedEventArgs e)
         {
-
             StkPnlNavButtons_IsEnabled(true);
+            LoadScreenForm("C");
         }
         
         private void editScreenButton_Click(object sender, RoutedEventArgs e)
@@ -517,11 +473,12 @@ namespace WpfApp1
             secLvl2DataGrid.Visibility = visible;
             PopulatesecLvl2ViewSource();
 
+            scrnCntlBtnGrid.IsEnabled = true;
+            selSecCntrl_ssL2Btn.IsEnabled = true;
         }
 
         private void selSecCntrl_ssL2Btn_Click(object sender, RoutedEventArgs e)
         {
-
             selectedSecLvl2.s1 = sec_l2secCodeTextBox.Text;
             selectedSecLvl2.s2 = sec_l2secNameTextBox.Text;
             selectedSecLvl2.s101 = selectedModule.s101;
@@ -529,8 +486,16 @@ namespace WpfApp1
             selectedSecLvl2.s40 = selectedSecLvl1.s1.ToString().Substring(0, 4);
 
             sysStatLbl.Content = "Section Lvl_2 Selected";
+        }
 
+        private void screenNav_AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            LoadScreenForm("C");
+        }
 
+        private void screenNav_editScrnBtn_Click(object sender, RoutedEventArgs e)
+        {
+            LoadScreenForm("S");
         }
         ///// ednds heree
     }
