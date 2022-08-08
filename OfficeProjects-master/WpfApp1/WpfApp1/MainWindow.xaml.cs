@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 // NEW
+using System.Data;
 using System.Data.Entity;
 
 /// <AUTHOR>                                    ///
@@ -83,7 +84,7 @@ namespace WpfApp1
         {
             string secCode = selectedSecLvl1.s1.ToString();
 
-            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE (s100 = 'SCR' OR s100 = 'RPT') AND LEFT(s1,4)= '" + secCode + "'";
+            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,4)= '" + secCode + "' AND LEN(s1)=6";
             secL2ViewSource.Source = dal.Exec(sql);
             //modtreeViewSource.View.Refresh();         
             //
@@ -451,10 +452,12 @@ namespace WpfApp1
 
             moduleDataGrid.Visibility = visible;
 
-            string modCode = selectedModule.s1.ToString().Substring(0, 2);
-            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,2)= '" + modCode + "' AND LEN(s1)= 4 ORDER BY s1 DESC";
-            modViewSource.Source = dal.Exec(sql);
-            modViewSource.View.Refresh();
+
+            PopulateModuleGrid();
+            //string modCode = selectedModule.s1.ToString().Substring(0, 2);
+            //string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,2)= '" + modCode + "' AND LEN(s1)= 4 ORDER BY s1 DESC";
+            //modViewSource.Source = dal.Exec(sql);
+            //modViewSource.View.Refresh();
 
         }
 
@@ -466,15 +469,21 @@ namespace WpfApp1
             selectedSecLvl1.s105 = selectedModule.s105;
             selectedSecLvl1.s40 = selectedModule.s1.ToString().Substring(0, 2);
 
-            sysStatLbl.Content = "Section Selected";
+            sysStatLbl.Content = "Section  Selected";
 
-            selctSecL2Grid.IsEnabled = true;
-            moduleDataGrid.Visibility = Visibility.Collapsed;
-            secLvl2DataGrid.Visibility = visible;
-            PopulatesecLvl2ViewSource();
-
-            scrnCntlBtnGrid.IsEnabled = true;
-            selSecCntrl_ssL2Btn.IsEnabled = true;
+            DataTable temp = dal.Exec("SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,4)= '" + sec_secCodeTextBox.Text + "'");
+            if (temp.Rows.Count > 0)
+            {
+                selctSecL2Grid.IsEnabled = true;
+                moduleDataGrid.Visibility = Visibility.Collapsed;
+                secLvl2DataGrid.Visibility = visible;
+                PopulatesecLvl2ViewSource();
+                selSecCntrl_ssL2Btn.IsEnabled = true;
+            }else
+            {
+                sysStatLbl.Content = "No Sub-Section Available";
+            }
+            scrnCntlBtnGrid.IsEnabled = true;            
         }
 
         private void selSecCntrl_ssL2Btn_Click(object sender, RoutedEventArgs e)
@@ -485,7 +494,7 @@ namespace WpfApp1
             selectedSecLvl2.s105 = selectedModule.s105;
             selectedSecLvl2.s40 = selectedSecLvl1.s1.ToString().Substring(0, 4);
 
-            sysStatLbl.Content = "Section Lvl_2 Selected";
+            sysStatLbl.Content = "Sub-Section Selected";
         }
 
         private void screenNav_AddBtn_Click(object sender, RoutedEventArgs e)
@@ -497,6 +506,7 @@ namespace WpfApp1
         {
             LoadScreenForm("S");
         }
+
         ///// ednds heree
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Window1" Height="auto" Width="1137" MinHeight="480" MinWidth="600"
+        Title="Window1" Height="578" Width="1137" MinHeight="480" MinWidth="600"
         SizeToContent="WidthAndHeight" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
     <Window.Resources>
         <Style x:Key="Label" TargetType="{x:Type Label}" BasedOn="{x:Null}">
@@ -109,7 +109,7 @@
     <Grid Height="auto" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="450"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Height="116" VerticalAlignment="Top">
@@ -119,6 +119,8 @@
                 <RowDefinition Height="35*"/>
             </Grid.RowDefinitions>
 
+
+            <Button x:Name="refrehBtn" Content="Refresh Data" Style="{StaticResource cmdButton}" HorizontalAlignment="Center" Margin="5,5,150,5" Click="refrehBtn_Click"/>
             <Label x:Name="sysStatLbl" Content="System Status" Width="542" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" Margin="565,0,0,0" Height="26" />
             <Grid x:Name="ModuleInfoGrid" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible" VerticalAlignment="Center" Background="WhiteSmoke" Width="1126" IsEnabled="False" Height="34">
                 <Grid.ColumnDefinitions>
@@ -194,7 +196,7 @@
 
                 <Label Content="Doc Type:" Grid.Row="0"  Style="{StaticResource Label}" />
                 <TextBox x:Name="screen_docTypeTextBox" Style="{StaticResource TextBox}" 
-                Text="{Binding s100, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                Text="{Binding s102, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
                 <Label Content="Status:" Grid.Column="1"  Style="{StaticResource Label}" />
                 <ComboBox x:Name="screen_statusComboBox" Grid.Column="1" Style="{StaticResource ComboBox}" Text="{Binding s101}" HorizontalAlignment="Right" >
@@ -202,12 +204,9 @@
                     <ComboBoxItem Content="I"/>
                     <ComboBoxItem Content="S"/>
                 </ComboBox>
-                <Label Content="Tab:" Grid.Column="2" Grid.Row="0" Style="{StaticResource Label}"/>
-                <ComboBox x:Name="screen_tabComboBox" Grid.Column="2" Grid.Row="0" Style="{StaticResource ComboBox}" Text="{Binding s101}" HorizontalAlignment="Right" >
-                    <ComboBoxItem Content="M"/>
-                    <ComboBoxItem Content="D"/>
-                    <ComboBoxItem Content="RPT"/>
-                </ComboBox>
+                <Label Content="URL:" Grid.Column="2" Style="{StaticResource Label}" Margin="2,0,0,0" />
+                <TextBox x:Name="screen_urlTextBox" Style="{StaticResource TextBox}" Grid.Column="2"
+                Text="{Binding s4, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="128,0,0,0"  />
 
                 <Label Content="Tree Level:" Grid.Column="3"  Style="{StaticResource Label}"  />
                 <TextBox x:Name="screen_treelvlTextBox" Style="{StaticResource TextBox}" Grid.Column="3"
@@ -215,11 +214,18 @@
 
                 <Label Content="Screen Name:" Grid.Column="0" Grid.Row="1"  Style="{StaticResource Label}" />
                 <TextBox x:Name="screen_screenNameTextBox" Style="{StaticResource TextBox}" Grid.Column="0" Grid.Row="1"
-                Text="{Binding s39, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />
+                Text="{Binding s2, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />
 
-                <Label Content="Screen Code:" Grid.Column="1" Grid.Row="1"  Style="{StaticResource Label}" />
+                <Label Content="Screen Code:" Grid.Column="1" Grid.Row="1"  Style="{StaticResource Label}" Margin="2,0,0,0" />
                 <TextBox x:Name="screen_screenCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="1"
-                Text="{Binding s39, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />
+                Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="128,0,0,0"  />
+                <Label Content="View Type:" Grid.Column="2" Grid.Row="1"  Style="{StaticResource Label}" Margin="2,0,0,0" />
+                <TextBox x:Name="screen_viewTypeTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="1"
+                Text="{Binding s5, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="128,0,0,0"  />
+                <Label Content="Table Name:" Grid.Column="3" Grid.Row="1"  Style="{StaticResource Label}" Margin="2,0,0,0" />
+                <TextBox x:Name="screen_tableNameTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="1"
+                Text="{Binding s5, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="128,0,0,0"  />
+
 
             </Grid>
             <Grid x:Name="scrnVTGrid" Grid.Row="1"  Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" Width="1126" Margin="3,0,3,0" >
@@ -356,10 +362,10 @@
                 <Button x:Name="field_nextBtn" Content="Next" Grid.Column="2" Style="{StaticResource cmdButton}"  />
             </Grid>
         </Grid>
-        <Grid x:Name="screenSelectionGrid" Grid.Row="1" Height="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Collapsed">
+        <Grid x:Name="screenSelectionGrid" Grid.Row="1" Height="auto" Visibility="Collapsed" Margin="0,0,0,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" MinHeight="90"/>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="190"/>
+                <RowDefinition Height="250" />
             </Grid.RowDefinitions>
 
             <Grid x:Name="sel_screenDetailGrid" Grid.Row="0" HorizontalAlignment="Center" Visibility="Visible" VerticalAlignment="Center" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Width="1126" Height="auto" Margin="0,6,0,0">
@@ -377,14 +383,19 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="Module Code:" Grid.Row="0" Style="{StaticResource Label}"/>
-                <TextBox x:Name="selScr_moduleCodeTextBox" Grid.Row="0" Style="{StaticResource TextBox}"
+                <Label Content="Screen Code:" Grid.Row="0" Style="{StaticResource Label}"/>
+                <TextBox x:Name="selScr_screenCodeTextBox" Grid.Row="0" Style="{StaticResource TextBox}"
                   Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
 
 
-                <Label Content="Module Name:" Grid.Row="1" Style="{StaticResource Label}"/>
-                <TextBox x:Name="selScr_moduleNameTextBox" Grid.Row="1" Style="{StaticResource TextBox}"
+                <Label Content="Screen Name:" Grid.Row="1" Style="{StaticResource Label}"/>
+                <TextBox x:Name="selScr_screenNameTextBox" Grid.Row="1" Style="{StaticResource TextBox}"
                   Text="{Binding s2, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+
+                <Label Content="Table Name:" Grid.Column="1" Grid.Row="4" Style="{StaticResource Label}"/>
+                <TextBox x:Name="selScr_tableNameTextBox" Grid.Column="1" Grid.Row="4" Style="{StaticResource TextBox}"
+                  Text="{Binding s32, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+
 
                 <Label Content="Product Code:" Grid.Row="2" Style="{StaticResource Label}"/>
                 <TextBox x:Name="selScr_productCodeTextBox" Grid.Row="2" Style="{StaticResource TextBox}"                  
@@ -407,9 +418,9 @@
                 <TextBox x:Name="selScr_displayOrderTextBox" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBox}"
                   Text="{Binding n1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />
 
-                <Label Content="Module Image:" Grid.Column="1" Grid.Row="3" Style="{StaticResource Label}"/>
-                <TextBox x:Name="selScr_moduleImgTextBox" Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBox}"                  
-                     Text="{Binding s8, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                <Label Content="URL:" Grid.Column="1" Grid.Row="3" Style="{StaticResource Label}"/>
+                <TextBox x:Name="selScr_URLTextBox" Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBox}"              
+                     Text="{Binding s4, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
                 <Label Content="Status:" Grid.Column="2" Style="{StaticResource Label}" />
                 <TextBox x:Name="selScr_statusTextBox"  Grid.Column="2" Style="{StaticResource TextBox}" Text="{Binding s101, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
@@ -423,9 +434,11 @@
                 <TextBox x:Name="selScr_docTypeTextBox" Grid.Column="2" Grid.Row="2" Style="{StaticResource TextBox}"
                   Text="{Binding s102, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
 
-
+                <Label Content="View Type:" Grid.Column="1" Grid.Row="0" Style="{StaticResource Label}"/>
+                <TextBox x:Name="selScr_viewTypeTextBox"  Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBox}" Text="{Binding s5, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                 <Label Content="Child Type:" Grid.Column="2" Grid.Row="3" Style="{StaticResource Label}"/>
                 <TextBox x:Name="selScr_childTypeTextBox"  Grid.Column="2" Grid.Row="3" Style="{StaticResource TextBox}" Text="{Binding s100, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+
 
                 <Button Grid.Column="2"  Grid.Row="4" Content="Select Screen" Click="sel_ScreenButton_Click" FontFamily="Bahnschrift SemiBold" Style="{StaticResource cmdButton}">
                     <!--correct this name when fixing UI to sec_selectButton_Click-->
@@ -437,7 +450,7 @@
 
             </Grid>
 
-            <DataGrid x:Name="modtreeDataGrid" HorizontalAlignment="Center" Height="338" Grid.Row="1" VerticalAlignment="Center" Width="1121" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="0,5,0,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource modtreeViewSource}}"/>
+            <DataGrid x:Name="modtreeDataGrid"  Grid.Row="1" Width="1121" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="8,5,8,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource modtreeViewSource}}"/>
 
         </Grid>
     </Grid>

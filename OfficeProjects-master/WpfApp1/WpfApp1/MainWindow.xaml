@@ -160,7 +160,7 @@
             </Grid.RowDefinitions>
             <Label Content="Section Name:" Grid.Column="0" Style="{StaticResource Label}" Height="auto"/>
             <TextBox x:Name="sec_secNameTextBox" Style="{StaticResource TextBox}" Grid.Column="0"                 
-                     Text="{Binding s2, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" Visibility="Collapsed"/>
+                     Text="{Binding s2, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
             <Label Content="Section Code:" Grid.Row="0" Grid.Column="1"  Style="{StaticResource Label}" />
             <TextBox x:Name="sec_secCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="1"
