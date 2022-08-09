@@ -28,6 +28,7 @@ namespace WpfApp1
         private Rules rules = new Rules();
 
         CollectionViewSource modtreeViewSource;
+        CollectionViewSource DVViewSource;
 
         private modtree selectedModule = new modtree();
         private modtree selectedSecLvl1 = new modtree();
@@ -39,8 +40,11 @@ namespace WpfApp1
             InitializeComponent();
 
             modtreeViewSource = ((CollectionViewSource)(FindResource("modtreeViewSource")));
+            DVViewSource = ((CollectionViewSource)(FindResource("screenDVViewSource")));
             DataContext = this;
 
+            context.dvs.Load();
+            DVViewSource.Source = context.dvs.Local;
 
             context.modtrees.Load();
             modtreeViewSource.Source = context.modtrees.Local;
@@ -60,6 +64,7 @@ namespace WpfApp1
                 if (state == "c" || state == "C")
                 {
                     screenCreationGrid.Visibility = visible;
+                    PopulateDVGrid();
                 }
                 else
                 {
@@ -90,6 +95,52 @@ namespace WpfApp1
         {
 
         }
+
+        private void SetVTBtn(string vt)
+        {
+            switch (vt)
+            {
+                case "3000":
+                    vt_3000.Background = Brushes.Green;
+                    break;
+                case "3050":
+                    vt_3050.Background = Brushes.Green;
+                    break;
+                case "3100":
+                    vt_3100.Background = Brushes.Green;
+                    break;
+                case "3200":
+                    vt_3200.Background = Brushes.Green;
+                    break;
+                case "3300":
+                    vt_3300.Background = Brushes.Green;
+                    break;
+                case "3400":
+                    vt_3400.Background = Brushes.Green;
+                    break;
+                case "3450":
+                    vt_3450.Background = Brushes.Green;
+                    break;
+                default:
+                    sysStatLbl.Content = "INVALID VT";
+                    break;
+            }
+        }
+
+        private void SetStsBtnGrid(string code)
+        {
+            bool[] btns = new bool[9];
+            btns = dal.GetButtonInfo(code);
+
+            if (btns[0]) { btns_addCB.IsChecked = true; }
+            if (btns[1]) { btns_editCB.IsChecked = true; }
+            if (btns[2]) { btns_deleteCB.IsChecked = true; }
+            if (btns[3]) { btns_postCB.Content = true; }
+            if (btns[4]) { btns_previewCB.Content = true; }
+            if (btns[6]) { sts_postedCB.Content = true; }
+            if (btns[7]) { sts_unpostedCB.Content = true; }
+        }
+
         //////
         ///GRID DATA GET METHODS
         ///
@@ -112,7 +163,17 @@ namespace WpfApp1
             modtreeViewSource.View.Refresh();
         }
 
-        
+
+        private void PopulateDVGrid()
+        {
+            string code;
+            code = selectedScreen.s102.ToString();
+            string sql = "select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s100 = '"+ code +"'";
+            DVViewSource.Source = dal.Exec(sql);
+            context.SaveChanges();
+            modtreeViewSource.View.Refresh();
+        }
+
 
         //////
         ///STCAK PANEL COMMAND HANDLERS
@@ -147,6 +208,12 @@ namespace WpfApp1
             screenSelectionGrid.Visibility = Visibility.Collapsed;
             screenCreationGrid.Visibility = visible;
 
+            //screenHeaderGrid.IsEnabled = false;
+            //scrnVTGrid.IsEnabled = false;
+            screenButtonsGrid.IsEnabled = false;
+
+            SetVTBtn(selScr_viewTypeTextBox.Text);
+            SetStsBtnGrid(selectedScreen.s1.ToString());
         }
 
         private void refrehBtn_Click(object sender, RoutedEventArgs e)
@@ -157,11 +224,13 @@ namespace WpfApp1
                 sysStatLbl.Content = "Refreshed";
                 modtreeViewSource.View.Refresh();
             }
-            else
+            else if(screenCreationGrid.Visibility == Visibility.Visible)
             {
+                PopulateDVGrid();
+                DVViewSource.View.Refresh();
                 sysStatLbl.Content = "Control Reset";
                 ResetControlls();
-            }
+            } 
 
 
             ////n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s39, s40, n1 
@@ -175,6 +244,61 @@ namespace WpfApp1
             //selectedScreen.s32 = screen_tableNameTextBox.Text;
             //selectedScreen.s39 = selScr_treeLvlTextBox.Text;
             //selectedScreen.s40 = selScr_prevLvlTextBox.Text;
+        }
+
+        private void mdtreScreen_saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void field_AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 
+            dv field = new dv()
+            {
+                s100 = selectedScreen.s102.ToString(),
+                s101 = selectedScreen.s101.ToString(),
+                s107 = tabComboBox.Text.ToString(),
+                s2 = dv_nameTextBox.Text.ToString(),
+                s1 = dv_fieldTextBox.Text.ToString(),
+                s3 = dv_dataTypeTextBox.Text.ToString(),
+                s4 = dv_comboBoxTextBox.Text.ToString(),
+                s6 =  dv_depCaseTextBox.Text.ToString(),
+                s7 = dv_normalisationTextBox.Text.ToString(),
+                s8 = dv_whrLeftTextBox.Text.ToString(),
+                s9 = dv_whrRightTextBox.Text.ToString(),
+                s10 = dv_rigixTextBox.Text.ToString(),
+                s13 = dv_listItemTextBox.Text.ToString(),
+                s14 = dv_validationTextBox.Text.ToString(),
+                s31 = dv_tabCdTextBox.Text.ToString(),
+                s32 = dv_tableNameTextBox.Text.ToString(),
+                s35 = dv_botstrapTextBox.Text.ToString()
+            };
+
+            dal.AddDV(field);
+            sysStatLbl.Content = "Field Succesfully Added";
+        }
+
+        private void mdtreScreen_AddNewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            modtree screen = new modtree()
+            {
+                //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s35, s39, s40, n1
+
+                s100 = "SCR",
+                s101 = screen_statusComboBox.Text.ToString(),
+                s102 = screen_docTypeTextBox.Text.ToString(),
+                s105 = selectedSecLvl1.s105.ToString(),
+                s1 = screen_screenCodeTextBox.Text.ToString(),
+                s2 = screen_screenNameTextBox.Text.ToString(),
+                s4 = screen_urlTextBox.Text.ToString(),
+                s32 = screen_tableNameTextBox.Text.ToString(),
+                s39 = screen_treelvlTextBox.Text.ToString(),
+                s40 = screen_prevLvlTextBox.Text.ToString(),
+            };
+
+            dal.AddModtree(screen);
+            sysStatLbl.Content = "Field Succesfully Added";
+
         }
     }
 }

@@ -20,17 +20,17 @@ namespace WpfApp1
 {
     internal class DAL
     {
-        private DBEntities modtreeContext = null;
+        private DBEntities DBContext = null;
         SqlConnection conn = new SqlConnection();
 
         public DAL()
         {
-            modtreeContext = new DBEntities();
+            DBContext = new DBEntities();
         }
 
         public modtree Get(int id)
         {
-            return modtreeContext.modtrees.Find(id);
+            return DBContext.modtrees.Find(id);
         }
 
         public int Search(string sVal)
@@ -42,6 +42,7 @@ namespace WpfApp1
                 return mods;
             }
         }
+
 
 
         public modtree GetRecord(string sVal)
@@ -56,41 +57,58 @@ namespace WpfApp1
 
         public void InsertSectionLvl1(modtree module, string secName, string secCode)
         {
-            modtree entry = new modtree();
-            entry.s1 = secCode;
-            entry.s2 = secName;
-            entry.s3 = "1";
-            entry.s39 = "1";
-            entry.s100 = "SEC";
-            entry.s102 = "SEC";
-            entry.s101 = module.s101;
-            entry.s105 = module.s105;
-            entry.s40 = module.s1.ToString().Substring(0, 2);
-
-            if (entry != null)
+            try
             {
-                modtreeContext.modtrees.Add(entry);
-                modtreeContext.SaveChanges();
+                modtree entry = new modtree();
+                entry.s1 = secCode;
+                entry.s2 = secName;
+                entry.s3 = "1";
+                entry.s39 = "1";
+                entry.s100 = "SEC";
+                entry.s102 = "SEC";
+                entry.s101 = module.s101;
+                entry.s105 = module.s105;
+                entry.s40 = module.s1.ToString().Substring(0, 2);
+
+                if (entry != null)
+                {
+                    DBContext.modtrees.Add(entry);
+                    DBContext.SaveChanges();
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
             }
         }
         public void InsertSectionLvl2(modtree module, string secName, string secCode)
         {
-            modtree entry = new modtree();
-            entry.s1 = secCode;
-            entry.s2 = secName;
-            entry.s3 = "1";
-            entry.s39 = "2";
-            entry.s40 = secCode.Substring(0, 4);
-            entry.s100 = "SEC";
-            entry.s101 = module.s101;
-            entry.s102 = "SEC";
-            entry.s105 = module.s105;
-
-            if (entry != null)
+            try
             {
-                modtreeContext.modtrees.Add(entry);
-                modtreeContext.SaveChanges();
+                modtree entry = new modtree();
+                entry.s1 = secCode;
+                entry.s2 = secName;
+                entry.s3 = "1";
+                entry.s39 = "2";
+                entry.s40 = secCode.Substring(0, 4);
+                entry.s100 = "SEC";
+                entry.s101 = module.s101;
+                entry.s102 = "SEC";
+                entry.s105 = module.s105;
+
+                if (entry != null)
+                {
+                    DBContext.modtrees.Add(entry);
+                    DBContext.SaveChanges();
+                }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
+            
         }
 
         public List<modtree> GetAll()
@@ -165,30 +183,75 @@ namespace WpfApp1
 
         public  DataTable Exec(string sql)
         {
-            //IDictionary<int, string> comboData = new Dictionary<int, string>();
-
-            conn = GetConnection();
-            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-            DataTable dt = new DataTable();
+            SqlDataAdapter da = null;
+            DataTable dt = null;
+            try
+            {
+                conn = GetConnection();
+                da = new SqlDataAdapter(sql, conn);
+                dt = new DataTable();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                //throw;
+            }            
 
             da.Fill(dt);
-
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-            //    comboData.Add(i, dt.Rows[i][0].ToString());
-            //    //captionCb_sPnl.Items.Add(dt.Rows[i]["ItemName"].toString());
-            //}
-
             conn.Close();
             return dt;
         }
 
-        public void AddStudent(modtree modtre)
+        public bool[] GetButtonInfo(string code)
         {
-            if (modtre != null)
+            bool[] result = new bool[10];
+            string temp;
+            for (int i = 0; i < 10; i++)
             {
-                modtreeContext.modtrees.Add(modtre);
-                modtreeContext.SaveChanges();
+                result[i] = false;
+                temp = code + "0" + (i+1).ToString();
+                if (Search(temp) > 0)
+                {
+                    result[i] = true;
+                }
+            }
+            return result;
+         }
+        public void AddModtree(modtree modtre)
+        {
+            try
+            {
+                if (modtre != null)
+                {
+                    DBContext.modtrees.Add(modtre);
+                    DBContext.SaveChanges();
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
+            
+        } 
+        public void AddDV(dv dvData)
+        {
+            try
+            {
+                if (dvData != null)
+                {
+                    DBContext.dvs.Add(dvData);
+                    DBContext.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Data NUllr", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
             }
         }
 
@@ -211,7 +274,7 @@ namespace WpfApp1
                     modtreFind.s39 = modtre.s39;
                     modtreFind.s40 = modtre.s40;
                     modtreFind.n1 = modtre.n1;
-                    modtreeContext.SaveChanges();
+                    DBContext.SaveChanges();
                 }
                 return true;
                 //MessageBox.Show("Sql Connected.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -230,11 +293,11 @@ namespace WpfApp1
         {
             try
             {
-                var modtreObj = modtreeContext.modtrees.Find(id);
+                var modtreObj = DBContext.modtrees.Find(id);
                 if (modtreObj != null)
                 {
-                    modtreeContext.modtrees.Remove(modtreObj);
-                    modtreeContext.SaveChanges();
+                    DBContext.modtrees.Remove(modtreObj);
+                    DBContext.SaveChanges();
                 }
                 MessageBox.Show("Module Deleted", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 

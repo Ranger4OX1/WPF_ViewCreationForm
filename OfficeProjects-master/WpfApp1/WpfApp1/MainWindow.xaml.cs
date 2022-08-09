@@ -398,7 +398,7 @@ namespace WpfApp1
                     };
                     if (rules.modtreeValidation(mt) == true)
                     {
-                        dal.AddStudent(mt);
+                        dal.AddModtree(mt);
                         sysStatLbl.Content = "Record successfully saved.";
                         ResetControls();
                     }
