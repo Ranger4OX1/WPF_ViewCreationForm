@@ -64,7 +64,6 @@ namespace WpfApp1
                 if (state == "c" || state == "C")
                 {
                     screenCreationGrid.Visibility = visible;
-                    PopulateDVGrid();
                 }
                 else
                 {
@@ -166,12 +165,23 @@ namespace WpfApp1
 
         private void PopulateDVGrid()
         {
-            string code;
-            code = selectedScreen.s102.ToString();
-            string sql = "select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s100 = '"+ code +"'";
-            DVViewSource.Source = dal.Exec(sql);
-            context.SaveChanges();
-            modtreeViewSource.View.Refresh();
+            string code, sql;
+
+            if (selectedScreen.s102 == null)
+            {
+                sql = "select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv ";
+                DVViewSource.Source = dal.Exec(sql);
+                context.SaveChanges();
+                modtreeViewSource.View.Refresh();
+            }
+            else
+            {
+                code = selectedScreen.s102.ToString();
+                sql = "select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s100 = '" + code + "'";
+                DVViewSource.Source = dal.Exec(sql);
+                context.SaveChanges();
+                modtreeViewSource.View.Refresh();
+            }            
         }
 
 
@@ -183,7 +193,7 @@ namespace WpfApp1
         ///SECTION BUTTON CLICK COMMANDS
         private void sel_ScreenButton_Click(object sender, RoutedEventArgs e)
         {
-            if (selScr_idTextBox.Text != null)
+            if ( !string.IsNullOrEmpty(selScr_idTextBox.Text) )
             {
                 //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s39, s40, n1
                 selectedModule.n100 = Convert.ToDecimal(selScr_idTextBox.Text);
@@ -203,7 +213,14 @@ namespace WpfApp1
                     selectedScreen.n1 = 0;
                 else
                     selectedScreen.n1 = Convert.ToDecimal(selScr_displayOrderTextBox.Text);
-            }            
+
+                SetVTBtn(selScr_viewTypeTextBox.Text);
+                SetStsBtnGrid(selectedScreen.s1.ToString());
+            }
+            else
+            {
+                sysStatLbl.Content = "No screen selected.  Create New";
+            }         
 
             screenSelectionGrid.Visibility = Visibility.Collapsed;
             screenCreationGrid.Visibility = visible;
@@ -212,8 +229,6 @@ namespace WpfApp1
             //scrnVTGrid.IsEnabled = false;
             screenButtonsGrid.IsEnabled = false;
 
-            SetVTBtn(selScr_viewTypeTextBox.Text);
-            SetStsBtnGrid(selectedScreen.s1.ToString());
         }
 
         private void refrehBtn_Click(object sender, RoutedEventArgs e)

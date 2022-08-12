@@ -176,7 +176,7 @@
             </Grid>
         </Grid>
         
-        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Center" Visibility="Visible" Margin="0,0,0,-26" >
+        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Center" Visibility="Collapsed" Margin="0,0,0,-26" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="74"/>
                 <RowDefinition Height="34" />

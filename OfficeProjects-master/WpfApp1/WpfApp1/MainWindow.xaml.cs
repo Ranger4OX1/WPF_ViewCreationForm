@@ -227,6 +227,8 @@ namespace WpfApp1
 
             //modtreeDataGrid.Visibility = Visibility.Visible;
             //PopulateGrid();
+            sec_addButton.IsEnabled = true;
+            selectButton.IsEnabled = true;
             
         }
 
@@ -237,7 +239,10 @@ namespace WpfApp1
             {
                 dal.RemoveMod(Convert.ToDecimal(create_idTextBox.Text));
                 sysStatLbl.Content = "Module " + create_moduleNameTextBox.Text + " Deleted";
-            }            
+            }
+
+            sec_addButton.IsEnabled = true;
+            selectButton.IsEnabled = true;
         }
 
         private void StkPnlNavButtons_IsEnabled(bool flag)
@@ -297,6 +302,7 @@ namespace WpfApp1
             {
                 MessageBox.Show("Please dont leave any fields empty", "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            selectButton.IsEnabled = false;
         }
         
         private void addScreenButton_Click(object sender, RoutedEventArgs e)
@@ -350,6 +356,9 @@ namespace WpfApp1
                 string modCode = newSectionLvl1_sectionCodeTextBox.Text;
                 if ( (newSectionLvl2_sectionCodeTextBox.Text.Substring(0, 4) == modCode) && (newSectionLvl2_sectionCodeTextBox.Text.Length == 6 ) && (rules.IsUnique(selectedModule.s1.ToString(), newSectionLvl2_sectionCodeTextBox.Text, 2) == true) )
                 {
+
+                    selectedSecLvl2.s1 = newSectionLvl2_sectionCodeTextBox.Text;
+                    selectedSecLvl2.s2 = newSectionLvl2_sectionNameTextBox.Text;
                     dal.InsertSectionLvl2(selectedModule, newSectionLvl2_sectionNameTextBox.Text, newSectionLvl2_sectionCodeTextBox.Text);
                 }
                 else
@@ -423,21 +432,24 @@ namespace WpfApp1
         {
             modtree mt = new modtree();
 
-            mt.n100 = Convert.ToInt32(idTextBox.Text);
-            mt.s100 = childTypeComboBox.Text;
-            mt.s101 = statusComboBox.Text;
-            mt.s102 = docTypeTextBox.Text;
-            mt.s105 = productCodeTextBox.Text;
-            mt.s1 = moduleCodeTextBox.Text;
-            mt.s2 = moduleNameTextBox.Text;
-            mt.s3 = parentComboBox.Text;
-            mt.s8 = moduleImgTextBox.Text;
-            mt.s39 = treeLvlTextBox.Text;
-            mt.s40 = prevLvlTextBox.Text;
-            mt.n1 = Convert.ToDecimal(displayOrderTextBox.Text);
+            mt.n100 = Convert.ToDecimal(create_idTextBox.Text);
+            mt.s100 = create_childTypeTextBox.Text;
+            mt.s101 = create_statusTextBox.Text;
+            mt.s102 = create_docTypeTextBox.Text;
+            mt.s105 = create_productCodeTextBox.Text;
+            mt.s1 = create_moduleCodeTextBox.Text;
+            mt.s2 = create_moduleNameTextBox.Text;
+            mt.s3 = create_parentTextBox.Text;
+            mt.s8 = create_moduleImgTextBox.Text;
+            mt.s39 = create_treeLvlTextBox.Text;
+            mt.s40 = create_prevLvlTextBox.Text;
+            mt.n1 = Convert.ToDecimal(create_displayOrderTextBox.Text);
 
             if (dal.UpdateMod(mt))
                 sysStatLbl.Content = "Record Updated";
+
+            sec_addButton.IsEnabled = true;
+            selectButton.IsEnabled = true;
         }
 
         private void sec_addButton_Click(object sender, RoutedEventArgs e)
@@ -458,7 +470,7 @@ namespace WpfApp1
             //string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,2)= '" + modCode + "' AND LEN(s1)= 4 ORDER BY s1 DESC";
             //modViewSource.Source = dal.Exec(sql);
             //modViewSource.View.Refresh();
-
+            sec_addButton.IsEnabled = false;
         }
 
         private void selSecCntrl_ssL1Btn_Click(object sender, RoutedEventArgs e)
