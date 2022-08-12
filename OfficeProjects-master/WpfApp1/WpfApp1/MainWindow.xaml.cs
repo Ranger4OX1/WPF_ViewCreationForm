@@ -144,7 +144,6 @@ namespace WpfApp1
             existingModtreeGrid.Visibility = Visibility.Collapsed;
             creationModtreeGrid.Visibility = visible;    
             modtreeDataGrid.Visibility = visible;
-
         }
 
         //////
@@ -174,7 +173,6 @@ namespace WpfApp1
             create_treeLvlTextBox.Text = string.Empty;
             create_prevLvlTextBox.Text = string.Empty;
             create_displayOrderTextBox.Text = string.Empty;
-
         }
 
         private void Collapse()//// Collapse Evrything HAHAH!!
@@ -204,6 +202,25 @@ namespace WpfApp1
             window.Show();
         }
 
+        private void StkPnlNavButtons_IsEnabled(bool flag)
+        {
+            if (flag)
+            {
+                btnFirst.IsEnabled = true;
+                btnPrev.IsEnabled = true;
+                btnNext.IsEnabled = true;
+                btnLast.IsEnabled = true;
+            }
+            else
+            {
+                btnFirst.IsEnabled = false;
+                btnPrev.IsEnabled = false;
+                btnNext.IsEnabled = false;
+                btnLast.IsEnabled = false;
+            }
+        }
+
+
         //////
         /// SECTION BUTTON CLICK COMMANDS
         private void searchButton_Click(object sender, RoutedEventArgs e)
@@ -232,7 +249,7 @@ namespace WpfApp1
             
         }
 
-        //Dose not yet delete the whole Module YET
+        //Dose not delete the whole Module YET
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("All parts of the Module will be deleted\n", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
@@ -245,27 +262,8 @@ namespace WpfApp1
             selectButton.IsEnabled = true;
         }
 
-        private void StkPnlNavButtons_IsEnabled(bool flag)
-        {
-            if (flag)
-            {
-                btnFirst.IsEnabled = true;
-                btnPrev.IsEnabled = true;
-                btnNext.IsEnabled = true;
-                btnLast.IsEnabled = true;
-            }
-            else
-            {
-                btnFirst.IsEnabled = false;
-                btnPrev.IsEnabled = false;
-                btnNext.IsEnabled = false;
-                btnLast.IsEnabled = false;
-            }
-        }
-
         private void selectButton_Click(object sender, RoutedEventArgs e)
         {
-
             StkPnlNavButtons_IsEnabled(false);
 
             if (!string.IsNullOrEmpty(create_childTypeTextBox.Text) && !string.IsNullOrEmpty(create_statusTextBox.Text) && !string.IsNullOrEmpty(create_docTypeTextBox.Text) && !string.IsNullOrEmpty(create_productCodeTextBox.Text) && !string.IsNullOrEmpty(create_moduleCodeTextBox.Text) && !string.IsNullOrEmpty(create_displayOrderTextBox.Text)  && !string.IsNullOrEmpty(create_moduleNameTextBox.Text) && !string.IsNullOrEmpty(create_parentTextBox.Text) && !string.IsNullOrEmpty(create_moduleImgTextBox.Text) && !string.IsNullOrEmpty(create_treeLvlTextBox.Text) && !string.IsNullOrEmpty(create_prevLvlTextBox.Text))
@@ -305,16 +303,6 @@ namespace WpfApp1
             selectButton.IsEnabled = false;
         }
         
-        private void addScreenButton_Click(object sender, RoutedEventArgs e)
-        {
-            StkPnlNavButtons_IsEnabled(true);
-            LoadScreenForm("C");
-        }
-        
-        private void editScreenButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void addSecLvl1Button_Click(object sender, RoutedEventArgs e)
         {
             modViewSource.View.Refresh();
@@ -333,6 +321,8 @@ namespace WpfApp1
 
                     PopulatesecLvl2ViewSource();
                     newSectionLvl1Grid.IsEnabled = false;
+
+                    sysStatLbl.Content = "Section " + selectedSecLvl1 + " added";
                 }
                 else
                 {
@@ -360,6 +350,8 @@ namespace WpfApp1
                     selectedSecLvl2.s1 = newSectionLvl2_sectionCodeTextBox.Text;
                     selectedSecLvl2.s2 = newSectionLvl2_sectionNameTextBox.Text;
                     dal.InsertSectionLvl2(selectedModule, newSectionLvl2_sectionNameTextBox.Text, newSectionLvl2_sectionCodeTextBox.Text);
+
+                    sysStatLbl.Content = "Section " + selectedSecLvl2 + " added";
                 }
                 else
                 {
@@ -392,7 +384,6 @@ namespace WpfApp1
                 {
                     modtree mt = new modtree()
                     {
-                        //n100 = Convert.ToInt32(idTextBox.Text),
                         s100 = childTypeComboBox.Text,
                         s101 = statusComboBox.Text,
                         s102 = docTypeTextBox.Text,
@@ -405,6 +396,7 @@ namespace WpfApp1
                         s40 = prevLvlTextBox.Text,
                         n1 = Convert.ToDecimal(displayOrderTextBox.Text)
                     };
+
                     if (rules.modtreeValidation(mt) == true)
                     {
                         dal.AddModtree(mt);
@@ -464,12 +456,7 @@ namespace WpfApp1
 
             moduleDataGrid.Visibility = visible;
 
-
             PopulateModuleGrid();
-            //string modCode = selectedModule.s1.ToString().Substring(0, 2);
-            //string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,2)= '" + modCode + "' AND LEN(s1)= 4 ORDER BY s1 DESC";
-            //modViewSource.Source = dal.Exec(sql);
-            //modViewSource.View.Refresh();
             sec_addButton.IsEnabled = false;
         }
 
@@ -517,6 +504,11 @@ namespace WpfApp1
         private void screenNav_editScrnBtn_Click(object sender, RoutedEventArgs e)
         {
             LoadScreenForm("S");
+        }
+
+        private void addScreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadScreenForm("C");
         }
 
         ///// ednds heree

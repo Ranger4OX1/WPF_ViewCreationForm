@@ -123,7 +123,7 @@
             <!--<Button Name="btnNewOrder" Content="New Section" FontSize="11" Width="80" Style="{StaticResource NavButton}" Click="NewOrder_click"/>-->
             <StackPanel Width="125"/>
         </StackPanel>
-        <Grid x:Name="ModuleInfoGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,12,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Grid.RowSpan="2" Width="1126" IsEnabled="False">
+        <Grid x:Name="ModuleInfoGrid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,12,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Grid.RowSpan="2" Width="1126" IsEnabled="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -167,7 +167,7 @@
                   Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
         </Grid>
-        <Grid x:Name="selctSecL2Grid" Grid.Row="1" HorizontalAlignment="Left" Margin="554,52,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" Width="572" >
+        <Grid x:Name="selctSecL2Grid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="554,52,0,0" Visibility="Collapsed" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" VerticalAlignment="Top" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -183,7 +183,7 @@
             <TextBox x:Name="sec_l2secCodeTextBox" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBox}"
                   Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
         </Grid>
-        <Grid x:Name="SectionInfoGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,52,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke"  Grid.RowSpan="2" Width="1126" >
+        <Grid x:Name="SectionInfoGrid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,52,0,0" Visibility="Collapsed" VerticalAlignment="Stretch" Background="WhiteSmoke"  Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -207,7 +207,7 @@
 
 
         </Grid>
-        <Grid x:Name="newSectionLvl1Grid" Grid.Row="1"  HorizontalAlignment="Left" Margin="5,60,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Width="1126" Grid.RowSpan="2">
+        <Grid x:Name="newSectionLvl1Grid" Grid.Row="1"  HorizontalAlignment="Stretch" Margin="5,60,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -233,7 +233,7 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid x:Name="newSectionLvl2Grid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,155,0,0" Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Width="1126" Grid.RowSpan="2" IsEnabled="False">
+        <Grid x:Name="newSectionLvl2Grid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,155,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" IsEnabled="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="375*" />
                 <ColumnDefinition Width="163*" />
@@ -261,7 +261,7 @@
             </Button>
 
         </Grid>
-        <Grid x:Name="selSecCntlBtnGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,91,0,0"  Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" Width="1121" Grid.RowSpan="2" >
+        <Grid x:Name="selSecCntlBtnGrid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,91,0,0"  Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -275,7 +275,7 @@
             <Button x:Name="selSecCntrl_ssL1Btn" Content="Select Section" Grid.Column="1" Style="{StaticResource cmdButton}" Click="selSecCntrl_ssL1Btn_Click" />
             <Button x:Name="selSecCntrl_ssL2Btn" Content="Select Sub Section" Grid.Column="2" Style="{StaticResource cmdButton}" Click="selSecCntrl_ssL2Btn_Click"  IsEnabled="False"/>
         </Grid>
-        <Grid x:Name="scrnCntlBtnGrid" Grid.Row="2" HorizontalAlignment="Center"  Visibility="Collapsed" Background="WhiteSmoke" Width="1126" Margin="0,331,0,150" IsEnabled="False">
+        <Grid x:Name="scrnCntlBtnGrid" Grid.Row="2" HorizontalAlignment="Stretch"  Visibility="Collapsed" Background="WhiteSmoke" Margin="0,331,0,150" IsEnabled="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="700" />
                 <ColumnDefinition Width="*" />
@@ -320,7 +320,7 @@
             <Label Content="SELECT A SECTION FROM THE GRID BELOW:" Grid.Column="2" Grid.Row="2" Style="{StaticResource Label}" Height="23" Width="258" HorizontalAlignment="Center"/>
 
         </Grid>-->
-        <Grid x:Name="creationModtreeGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,12,0,0" Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Width="1121">
+        <Grid x:Name="creationModtreeGrid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,12,0,0" Visibility="Collapsed" VerticalAlignment="Stretch" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MinWidth="300"/>
                 <ColumnDefinition Width="*" MinWidth="360"/>
@@ -414,7 +414,7 @@
             <TextBox x:Name="create_childTypeTextBox"  Grid.Column="2" Grid.Row="3" Style="{StaticResource TextBox}" Text="{Binding s100, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
 
         </Grid>
-        <Grid x:Name="existingModtreeGrid" Grid.Row="1" HorizontalAlignment="Left" Margin="5,10,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="AntiqueWhite" DataContext="{StaticResource modtreeViewSource}" Width="1126">
+        <Grid x:Name="existingModtreeGrid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,10,0,0" Visibility="Collapsed" VerticalAlignment="Stretch" Background="AntiqueWhite" DataContext="{StaticResource modtreeViewSource}" Cursor="Hand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MinWidth="230"/>
                 <ColumnDefinition Width="*" MinWidth="400"/>
@@ -515,11 +515,11 @@
         </Grid>
 
 
-        <DataGrid x:Name="modtreeDataGrid" HorizontalAlignment="Center" Height="338" Grid.Row="2" VerticalAlignment="Top" Width="1121" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="0,10,0,0" Visibility="Collapsed" ItemsSource="{Binding Source={StaticResource modtreeViewSource}}"/>
+        <DataGrid x:Name="modtreeDataGrid" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="0,10,0,0" Visibility="Collapsed" ItemsSource="{Binding Source={StaticResource modtreeViewSource}}"/>
 
-        <DataGrid x:Name="moduleDataGrid" HorizontalAlignment="Center" Grid.Row="1" Width="1121" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,129,0,244" Visibility="Collapsed" ItemsSource="{Binding Source={StaticResource moduleViewSource}}" Grid.RowSpan="2" />
+        <DataGrid x:Name="moduleDataGrid" HorizontalAlignment="Stretch" Grid.Row="1" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,129,0,244" Visibility="Collapsed" ItemsSource="{Binding Source={StaticResource moduleViewSource}}" Grid.RowSpan="2" />
 
-        <DataGrid x:Name="secLvl2DataGrid" HorizontalAlignment="Center" Height="200" Grid.Row="2" Width="1120" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" Margin="0,126,0,191" Visibility="Collapsed"  ItemsSource="{Binding Source={StaticResource secLvl2ViewSource}}" />
+        <DataGrid x:Name="secLvl2DataGrid" HorizontalAlignment="Stretch" Grid.Row="2" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" Margin="0,126,0,191" Visibility="Visible"  ItemsSource="{Binding Source={StaticResource secLvl2ViewSource}}" />
 
         <Button x:Name="addScreenButton"  Content="Add Screen" HorizontalAlignment="Right" Style="{StaticResource cmdButton}" VerticalAlignment="Top" Click="addScreenButton_Click" Height="35" Width="182" Margin="0,258,10,0" Grid.Row="2" Visibility="Collapsed" >
             <Button.Background>

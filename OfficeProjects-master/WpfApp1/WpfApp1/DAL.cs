@@ -43,8 +43,6 @@ namespace WpfApp1
             }
         }
 
-
-
         public modtree GetRecord(string sVal)
         {
             using (var ctx = new DBEntities())
@@ -82,6 +80,7 @@ namespace WpfApp1
                 throw;
             }
         }
+
         public void InsertSectionLvl2(modtree module, string secName, string secCode)
         {
             try
@@ -111,6 +110,7 @@ namespace WpfApp1
             
         }
 
+
         public List<modtree> GetAll()
         {
             using (var context = new DBEntities())
@@ -123,11 +123,62 @@ namespace WpfApp1
             }
         }
 
-        //public List<modtree> GetModule(string sVal)
-        //{
-           
-        //}
+        public bool UpdateMod(modtree modtre)
+        {
+            try
+            {
+                decimal id = modtre.n100;
+                var modtreFind = this.Get(Convert.ToInt32(id));
+                if (modtreFind != null)
+                {
+                    modtreFind.s100 = modtre.s100;
+                    modtreFind.s101 = modtre.s101;
+                    modtreFind.s102 = modtre.s102;
+                    modtreFind.s1 = modtre.s1;
+                    modtreFind.s2 = modtre.s2;
+                    modtreFind.s3 = modtre.s3;
+                    modtreFind.s8 = modtre.s8;
+                    modtreFind.s39 = modtre.s39;
+                    modtreFind.s40 = modtre.s40;
+                    modtreFind.n1 = modtre.n1;
+                    DBContext.SaveChanges();
+                }
+                return true;
+                //MessageBox.Show("Sql Connected.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                //throw;
+            }
+            return false;
 
+
+        }
+
+        public void RemoveMod(decimal id)
+        {
+            try
+            {
+                var modtreObj = DBContext.modtrees.Find(id);
+                if (modtreObj != null)
+                {
+                    DBContext.modtrees.Remove(modtreObj);
+                    DBContext.SaveChanges();
+                }
+                MessageBox.Show("Module Deleted", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                //throw;
+            }
+
+        }
+
+        /// <summary>
+        ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
             string sql = @"Data Source = localhost;
@@ -152,35 +203,7 @@ namespace WpfApp1
         {
             conn.Close();
         }
-        public static string[] dtToSArray(DataTable dt, char type)
-        {
-            string[] arr = new string[1];
-            try
-            {
-                if (type == 'M')
-                {
-                    arr = new string[dt.Rows.Count];
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        arr[i] = dt.Rows[i][0].ToString();
-                    }
-                }
-                else
-                {
-                    arr = new string[dt.Columns.Count];
-                    for (int i = 0; i < dt.Columns.Count; i++)
-                    {
-                        arr[i] += dt.Rows[0][i].ToString();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error in converting dt to Array", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            return arr;
-        }
-
+        
         public  DataTable Exec(string sql)
         {
             SqlDataAdapter da = null;
@@ -255,60 +278,7 @@ namespace WpfApp1
             }
         }
 
-
-        public bool UpdateMod(modtree modtre)
-        {
-            try
-            {
-                decimal id = modtre.n100;
-                var modtreFind = this.Get(Convert.ToInt32(id));
-                if (modtreFind != null)
-                {
-                    modtreFind.s100 = modtre.s100;
-                    modtreFind.s101 = modtre.s101;
-                    modtreFind.s102 = modtre.s102;
-                    modtreFind.s1 = modtre.s1;
-                    modtreFind.s2 = modtre.s2;
-                    modtreFind.s3 = modtre.s3;
-                    modtreFind.s8 = modtre.s8;
-                    modtreFind.s39 = modtre.s39;
-                    modtreFind.s40 = modtre.s40;
-                    modtreFind.n1 = modtre.n1;
-                    DBContext.SaveChanges();
-                }
-                return true;
-                //MessageBox.Show("Sql Connected.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                //throw;
-            }
-            return false;
-           
-            
-        }
-
-        public void RemoveMod(decimal id)
-        {
-            try
-            {
-                var modtreObj = DBContext.modtrees.Find(id);
-                if (modtreObj != null)
-                {
-                    DBContext.modtrees.Remove(modtreObj);
-                    DBContext.SaveChanges();
-                }
-                MessageBox.Show("Module Deleted", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                //throw;
-            }       
-            
-        }
+       
     }
 
     /// <AUTHOR>                                    ///

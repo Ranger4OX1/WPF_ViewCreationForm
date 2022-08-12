@@ -100,28 +100,34 @@ namespace WpfApp1
             switch (vt)
             {
                 case "3000":
-                    vt_3000.Background = Brushes.Green;
+                    vt_3000.Background = Brushes.LightGreen;
                     break;
                 case "3050":
-                    vt_3050.Background = Brushes.Green;
+                    vt_3050.Background = Brushes.LightGreen;
                     break;
                 case "3100":
-                    vt_3100.Background = Brushes.Green;
+                    vt_3100.Background = Brushes.LightGreen;
                     break;
                 case "3200":
-                    vt_3200.Background = Brushes.Green;
+                    vt_3200.Background = Brushes.LightGreen;
                     break;
                 case "3300":
-                    vt_3300.Background = Brushes.Green;
+                    vt_3300.Background = Brushes.LightGreen;
                     break;
                 case "3400":
-                    vt_3400.Background = Brushes.Green;
+                    vt_3400.Background = Brushes.LightGreen;
                     break;
                 case "3450":
-                    vt_3450.Background = Brushes.Green;
+                    vt_3450.Background = Brushes.LightGreen;
                     break;
                 default:
-                    sysStatLbl.Content = "INVALID VT";
+                    vt_3000.Background = Brushes.LightSteelBlue;
+                    vt_3050.Background = Brushes.LightSteelBlue;
+                    vt_3100.Background = Brushes.LightSteelBlue;
+                    vt_3200.Background = Brushes.LightSteelBlue;
+                    vt_3300.Background = Brushes.LightSteelBlue;
+                    vt_3400.Background = Brushes.LightSteelBlue;
+                    vt_3450.Background = Brushes.LightSteelBlue;
                     break;
             }
         }
@@ -142,7 +148,6 @@ namespace WpfApp1
 
         //////
         ///GRID DATA GET METHODS
-        ///
         private void PopulateModTreGrid()
         {
             string code;
@@ -169,6 +174,7 @@ namespace WpfApp1
 
             if (selectedScreen.s102 == null)
             {
+                sysStatLbl.Content = "NO, Entries found for this screen";
                 sql = "select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv ";
                 DVViewSource.Source = dal.Exec(sql);
                 context.SaveChanges();
@@ -186,11 +192,7 @@ namespace WpfApp1
 
 
         //////
-        ///STCAK PANEL COMMAND HANDLERS
-
-
-        //////
-        ///SECTION BUTTON CLICK COMMANDS
+        /// SECTION BUTTON CLICK COMMANDS
         private void sel_ScreenButton_Click(object sender, RoutedEventArgs e)
         {
             if ( !string.IsNullOrEmpty(selScr_idTextBox.Text) )
@@ -314,6 +316,62 @@ namespace WpfApp1
             dal.AddModtree(screen);
             sysStatLbl.Content = "Field Succesfully Added";
 
+        }
+
+        private void vt_3000_Click(object sender, RoutedEventArgs e)
+        {
+            SetVTBtn("");
+            SetVTBtn("3000");
+            selectedScreen.s5 = "3000";
+            sysStatLbl.Content = "3000";
+        }
+
+        private void vt_3100_Click(object sender, RoutedEventArgs e)
+        {
+            SetVTBtn("");
+            SetVTBtn("3100");
+            selectedScreen.s5 = "3100";
+            sysStatLbl.Content = "3100";
+        }
+
+        private void vt_3050_Click(object sender, RoutedEventArgs e)
+        {
+            SetVTBtn("");
+            SetVTBtn("3050");
+            selectedScreen.s5 = "3050";
+            sysStatLbl.Content = "3050";
+        }
+
+        private void vt_3200_Click(object sender, RoutedEventArgs e)
+        {
+            SetVTBtn("");
+            SetVTBtn("3200");
+            selectedScreen.s5 = "3200";
+            sysStatLbl.Content = "3200";
+        }
+
+        private void vt_3300_Click(object sender, RoutedEventArgs e)
+        {
+            SetVTBtn("");
+            SetVTBtn("3300");
+            selectedScreen.s5 = "3300";
+            sysStatLbl.Content = "3300";
+        }
+
+        private void vt_3400_Click(object sender, RoutedEventArgs e)
+        {
+            SetVTBtn("");
+            SetVTBtn("3400");
+            selectedScreen.s5 = "3400";
+            sysStatLbl.Content = "3400";
+        }
+
+        private void vt_3450_Click(object sender, RoutedEventArgs e)
+        {
+            SetVTBtn("");
+            SetVTBtn("3450");
+            selectedScreen.s5 = "3450";
+            sysStatLbl.Content = "3450";
         }
     }
 }
