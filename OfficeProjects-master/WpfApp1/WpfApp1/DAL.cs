@@ -110,7 +110,6 @@ namespace WpfApp1
             
         }
 
-
         public List<modtree> GetAll()
         {
             using (var context = new DBEntities())
@@ -181,9 +180,12 @@ namespace WpfApp1
         ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
-            string sql = @"Data Source = localhost;
-                            Initial Catalog = LocalMaster;
-                            Integrated Security = true ";
+            //string sql = @"Data Source = localhost;
+            //                Initial Catalog = LocalMaster;
+            //                Integrated Security = true ";
+            string sql = @"Data Source = 172.16.1.10;
+                            Initial Catalog = PearlErpMaster;
+                            UID = sa; Pwd = Pearl@2016;";
             conn = new SqlConnection(sql);
             try
             {
@@ -240,6 +242,7 @@ namespace WpfApp1
             }
             return result;
          }
+
         public void AddModtree(modtree modtre)
         {
             try
@@ -257,6 +260,7 @@ namespace WpfApp1
             }
             
         } 
+
         public void AddDV(dv dvData)
         {
             try
