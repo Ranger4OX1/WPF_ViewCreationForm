@@ -100,7 +100,7 @@
         <CommandBinding Command="{StaticResource SelectModuleCommand}" Executed="SelectModuleCommandHandler"/>
         <CommandBinding Command="{StaticResource RefreshCommand}" Executed="RefreshCommandCommandHandler"/>
     </Window.CommandBindings>
-    <Grid Height="559" VerticalAlignment="Top">
+    <Grid Height="559" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -112,7 +112,7 @@
             <Button Name="btnNext" Content="►" Command="{StaticResource NextCommand}" Style="{StaticResource NavButton}"/>
             <Button Name="btnLast" Content="►|" Command="{StaticResource LastCommand}" Style="{StaticResource NavButton}"/>
             <Button Name="btnAdd" Content="New Module" Command="{StaticResource AddModuleCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
-            <Button Name="btnSelectModule" Content="Select/Edit Module" Command="{StaticResource SelectModuleCommand}" FontSize="11" Width="100" Style="{StaticResource NavButton}"/>
+            <Button Name="btnSelectModule" Content="Select/Edit Module" Command="{StaticResource SelectModuleCommand}" FontSize="11" Width="100" Style="{StaticResource NavButton}" />
             <Button Content="Cancel" Name="btnCancel" Command="{StaticResource CancelCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
             <Button Content="Refresh Data" Name="btnPopMTGrir" Command="{StaticResource RefreshCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}" />
             <Label x:Name="sysStatLbl" Content="System Status" Width="230" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="281,0,0,0" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" />
@@ -207,7 +207,7 @@
 
 
         </Grid>
-        <Grid x:Name="newSectionLvl1Grid" Grid.Row="1"  HorizontalAlignment="Stretch" Margin="5,60,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Grid.RowSpan="2">
+        <Grid x:Name="newSectionLvl1Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Grid.RowSpan="2" Height="88">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -233,7 +233,7 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid x:Name="newSectionLvl2Grid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,155,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" IsEnabled="False">
+        <Grid x:Name="newSectionLvl2Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" Height="92">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="375*" />
                 <ColumnDefinition Width="163*" />
@@ -263,6 +263,8 @@
         </Grid>
         <Grid x:Name="selSecCntlBtnGrid" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,91,0,0"  Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -272,8 +274,10 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="selSecCntrl_ssL1Btn" Content="Select Section" Grid.Column="1" Style="{StaticResource cmdButton}" Click="selSecCntrl_ssL1Btn_Click" />
-            <Button x:Name="selSecCntrl_ssL2Btn" Content="Select Sub Section" Grid.Column="2" Style="{StaticResource cmdButton}" Click="selSecCntrl_ssL2Btn_Click"  IsEnabled="False"/>
+            <Button x:Name="selSecCntrl_ssL1Btn" Content="Select Section" Grid.Column="2" Style="{StaticResource cmdButton}" Click="selSecCntrl_ssL1Btn_Click" />
+            <Button x:Name="selSecCntrl_addSecL1Btn" Content="Add New Section" Grid.Column="1" Style="{StaticResource cmdButton}" Click="selSecCntrl_addSecL1Btn_Click"  />
+            <Button x:Name="selSecCntrl_ssL2Btn" Content="Select Sub Section" Grid.Column="5" Style="{StaticResource cmdButton}" Click="selSecCntrl_ssL2Btn_Click"  IsEnabled="False"/>
+            <Button x:Name="selSecCntrl_addSecL2Btn" Content="Add New Sub-Section"  IsEnabled="False" Grid.Column="4" Style="{StaticResource cmdButton}"  Width="auto" Click="selSecCntrl_addSecL2Btn_Click"/>
         </Grid>
         <Grid x:Name="scrnCntlBtnGrid" Grid.Row="2" HorizontalAlignment="Stretch"  Visibility="Collapsed" Background="WhiteSmoke" Margin="0,331,0,150" IsEnabled="False">
             <Grid.ColumnDefinitions>
@@ -349,13 +353,13 @@
                 </Button.Background>
             </Button>
 
-            <Button x:Name="selectButton" Grid.Column="2" Content="Add Section" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="100,3,3,3"  Click="selectButton_Click" FontFamily="Bahnschrift SemiBold" Style="{StaticResource cmdButton}" IsEnabled="False">
-                <!--correct this name when fixing UI to sec_addButton_Click-->
+            <!--<Button x:Name="selectButton" Grid.Column="2" Content="Add Section" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="100,3,3,3"  Click="selectButton_Click" FontFamily="Bahnschrift SemiBold" Style="{StaticResource cmdButton}" IsEnabled="False">
+                --><!--correct this name when fixing UI to sec_addButton_Click--><!--
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuColorKey}}"/>
                 </Button.Background>
-            </Button>
-            <Button x:Name="sec_addButton" Grid.Column="2" Content="Select Section" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3,3,40,3"  Click="sec_addButton_Click" FontFamily="Bahnschrift SemiBold" Style="{StaticResource cmdButton}" IsEnabled="False">
+            </Button>-->
+            <Button x:Name="sec_addButton" Grid.Column="2" Content="Select Section" Click="sec_addButton_Click" FontFamily="Bahnschrift SemiBold" Style="{StaticResource cmdButton}" IsEnabled="False">
                 <!--correct this name when fixing UI to sec_selectButton_Click-->
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuColorKey}}"/>
@@ -519,7 +523,7 @@
 
         <DataGrid x:Name="moduleDataGrid" HorizontalAlignment="Stretch" Grid.Row="1" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,129,0,244" Visibility="Collapsed" ItemsSource="{Binding Source={StaticResource moduleViewSource}}" Grid.RowSpan="2" />
 
-        <DataGrid x:Name="secLvl2DataGrid" HorizontalAlignment="Stretch" Grid.Row="2" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" Margin="0,126,0,191" Visibility="Visible"  ItemsSource="{Binding Source={StaticResource secLvl2ViewSource}}" />
+        <DataGrid x:Name="secLvl2DataGrid" HorizontalAlignment="Stretch" Grid.Row="2" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" Margin="0,126,0,191" Visibility="Collapsed"  ItemsSource="{Binding Source={StaticResource secLvl2ViewSource}}" />
 
         <Button x:Name="addScreenButton"  Content="Add Screen" HorizontalAlignment="Right" Style="{StaticResource cmdButton}" VerticalAlignment="Top" Click="addScreenButton_Click" Height="35" Width="182" Margin="0,258,10,0" Grid.Row="2" Visibility="Collapsed" >
             <Button.Background>

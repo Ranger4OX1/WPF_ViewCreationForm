@@ -86,8 +86,6 @@ namespace WpfApp1
 
             string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,4)= '" + secCode + "' AND LEN(s1)=6";
             secL2ViewSource.Source = dal.Exec(sql);
-            //modtreeViewSource.View.Refresh();         
-            //
         }
 
         //////
@@ -116,7 +114,6 @@ namespace WpfApp1
         private void RefreshCommandCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             PopulateModTreGrid();
-
             sysStatLbl.Content = "Data Refreshed";
         }
         
@@ -140,6 +137,7 @@ namespace WpfApp1
         private void SelectModuleCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             Collapse();
+            StkPnlNavButtons_IsEnabled(true);
 
             existingModtreeGrid.Visibility = Visibility.Collapsed;
             creationModtreeGrid.Visibility = visible;    
@@ -245,7 +243,6 @@ namespace WpfApp1
             //modtreeDataGrid.Visibility = Visibility.Visible;
             //PopulateGrid();
             sec_addButton.IsEnabled = true;
-            selectButton.IsEnabled = true;
             
         }
 
@@ -259,7 +256,6 @@ namespace WpfApp1
             }
 
             sec_addButton.IsEnabled = true;
-            selectButton.IsEnabled = true;
         }
 
         private void selectButton_Click(object sender, RoutedEventArgs e)
@@ -300,7 +296,6 @@ namespace WpfApp1
             {
                 MessageBox.Show("Please dont leave any fields empty", "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            selectButton.IsEnabled = false;
         }
         
         private void addSecLvl1Button_Click(object sender, RoutedEventArgs e)
@@ -323,6 +318,12 @@ namespace WpfApp1
                     newSectionLvl1Grid.IsEnabled = false;
 
                     sysStatLbl.Content = "Section " + selectedSecLvl1 + " added";
+
+                    moduleDataGrid.Visibility = visible;
+                    newSectionLvl1Grid.Visibility = Visibility.Collapsed;
+                    selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = true;
+
+                    modViewSource.View.Refresh();
                 }
                 else
                 {
@@ -343,7 +344,7 @@ namespace WpfApp1
             if (!string.IsNullOrEmpty(newSectionLvl2_sectionNameTextBox.Text) && !string.IsNullOrEmpty(newSectionLvl2_sectionCodeTextBox.Text))
             {
                 ///Checks if section lvl 2 code has the first 4 digits of sec lvl 1 and has a len of 6
-                string modCode = newSectionLvl1_sectionCodeTextBox.Text;
+                string modCode = selectedSecLvl1.s1.ToString();
                 if ( (newSectionLvl2_sectionCodeTextBox.Text.Substring(0, 4) == modCode) && (newSectionLvl2_sectionCodeTextBox.Text.Length == 6 ) && (rules.IsUnique(selectedModule.s1.ToString(), newSectionLvl2_sectionCodeTextBox.Text, 2) == true) )
                 {
 
@@ -352,6 +353,12 @@ namespace WpfApp1
                     dal.InsertSectionLvl2(selectedModule, newSectionLvl2_sectionNameTextBox.Text, newSectionLvl2_sectionCodeTextBox.Text);
 
                     sysStatLbl.Content = "Section " + selectedSecLvl2 + " added";
+
+                    secLvl2DataGrid.Visibility = visible;
+                    newSectionLvl2Grid.Visibility = Visibility.Collapsed;
+                    selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = true;
+                    PopulatesecLvl2ViewSource();
+                    secL2ViewSource.View.Refresh();
                 }
                 else
                 {
@@ -441,7 +448,6 @@ namespace WpfApp1
                 sysStatLbl.Content = "Record Updated";
 
             sec_addButton.IsEnabled = true;
-            selectButton.IsEnabled = true;
         }
 
         private void sec_addButton_Click(object sender, RoutedEventArgs e)
@@ -462,6 +468,8 @@ namespace WpfApp1
 
         private void selSecCntrl_ssL1Btn_Click(object sender, RoutedEventArgs e)
         {
+            selSecCntrl_ssL1Btn.IsEnabled = selSecCntrl_addSecL1Btn.IsEnabled = selctSecL1Grid.IsEnabled =  false;
+
             selectedSecLvl1.s1 = sec_secCodeTextBox.Text;
             selectedSecLvl1.s2 = sec_secNameTextBox.Text;
             selectedSecLvl1.s101 = selectedModule.s101;
@@ -482,7 +490,8 @@ namespace WpfApp1
             {
                 sysStatLbl.Content = "No Sub-Section Available";
             }
-            scrnCntlBtnGrid.IsEnabled = true;            
+            scrnCntlBtnGrid.IsEnabled = true;
+            selSecCntrl_addSecL2Btn.IsEnabled = true;
         }
 
         private void selSecCntrl_ssL2Btn_Click(object sender, RoutedEventArgs e)
@@ -509,6 +518,20 @@ namespace WpfApp1
         private void addScreenButton_Click(object sender, RoutedEventArgs e)
         {
             LoadScreenForm("C");
+        }
+
+        private void selSecCntrl_addSecL1Btn_Click(object sender, RoutedEventArgs e)
+        {
+            selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = false;
+            moduleDataGrid.Visibility = Visibility.Collapsed;
+            newSectionLvl1Grid.Visibility = visible;
+        }
+
+        private void selSecCntrl_addSecL2Btn_Click(object sender, RoutedEventArgs e)
+        {
+            selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = false;
+            secLvl2DataGrid.Visibility = Visibility.Collapsed;
+            newSectionLvl2Grid.Visibility = visible;
         }
 
         ///// ednds heree

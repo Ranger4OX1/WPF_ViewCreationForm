@@ -26,6 +26,7 @@ namespace WpfApp1
         DBEntities context = new DBEntities();
         private DAL dal = new DAL();
         private Rules rules = new Rules();
+        private dv field = new dv();
 
         CollectionViewSource modtreeViewSource;
         CollectionViewSource DVViewSource;
@@ -120,6 +121,9 @@ namespace WpfApp1
                 case "3450":
                     vt_3450.Background = Brushes.LightGreen;
                     break;
+                case "rpt":
+                    vt_rpt.Background = Brushes.LightGreen;
+                    break;
                 default:
                     vt_3000.Background = Brushes.LightSteelBlue;
                     vt_3050.Background = Brushes.LightSteelBlue;
@@ -128,6 +132,7 @@ namespace WpfApp1
                     vt_3300.Background = Brushes.LightSteelBlue;
                     vt_3400.Background = Brushes.LightSteelBlue;
                     vt_3450.Background = Brushes.LightSteelBlue;
+                    vt_rpt.Background = Brushes.LightSteelBlue;
                     break;
             }
         }
@@ -269,30 +274,33 @@ namespace WpfApp1
 
         private void field_AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            //n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 
-            dv field = new dv()
+            //n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35
+            if (!string.IsNullOrEmpty(field.s107))
             {
-                s100 = selectedScreen.s102.ToString(),
-                s101 = selectedScreen.s101.ToString(),
-                s107 = tabComboBox.Text.ToString(),
-                s2 = dv_nameTextBox.Text.ToString(),
-                s1 = dv_fieldTextBox.Text.ToString(),
-                s3 = dv_dataTypeTextBox.Text.ToString(),
-                s4 = dv_comboBoxTextBox.Text.ToString(),
-                s6 =  dv_depCaseTextBox.Text.ToString(),
-                s7 = dv_normalisationTextBox.Text.ToString(),
-                s8 = dv_whrLeftTextBox.Text.ToString(),
-                s9 = dv_whrRightTextBox.Text.ToString(),
-                s10 = dv_rigixTextBox.Text.ToString(),
-                s13 = dv_listItemTextBox.Text.ToString(),
-                s14 = dv_validationTextBox.Text.ToString(),
-                s31 = dv_tabCdTextBox.Text.ToString(),
-                s32 = dv_tableNameTextBox.Text.ToString(),
-                s35 = dv_botstrapTextBox.Text.ToString()
-            };
+                field.s100 = selectedScreen.s102.ToString();
+                field.s101 = selectedScreen.s101.ToString();
+                field.s2 = dv_nameTextBox.Text.ToString();
+                field.s1 = dv_fieldTextBox.Text.ToString();
+                field.s3 = dv_dataTypeTextBox.Text.ToString();
+                field.s4 = dv_comboBoxTextBox.Text.ToString();
+                field.s6 = dv_depCaseTextBox.Text.ToString();
+                field.s7 = dv_normalisationTextBox.Text.ToString();
+                field.s8 = dv_whrLeftTextBox.Text.ToString();
+                field.s9 = dv_whrRightTextBox.Text.ToString();
+                field.s10 = dv_rigixTextBox.Text.ToString();
+                field.s13 = dv_listItemTextBox.Text.ToString();
+                field.s14 = dv_validationTextBox.Text.ToString();
+                field.s31 = dv_tabCdTextBox.Text.ToString();
+                field.s32 = dv_tableNameTextBox.Text.ToString();
+                field.s35 = dv_botstrapTextBox.Text.ToString();
 
-            dal.AddDV(field);
-            sysStatLbl.Content = "Field Succesfully Added";
+                dal.AddDV(field);
+                sysStatLbl.Content = "Field Succesfully Added";
+            }
+            else
+            {
+                sysStatLbl.Content = "Pls Select a tab";
+            }             
         }
 
         private void mdtreScreen_AddNewBtn_Click(object sender, RoutedEventArgs e)
@@ -300,7 +308,6 @@ namespace WpfApp1
             modtree screen = new modtree()
             {
                 //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s35, s39, s40, n1
-
                 s100 = "SCR",
                 s101 = screen_statusComboBox.Text.ToString(),
                 s102 = screen_docTypeTextBox.Text.ToString(),
@@ -314,7 +321,7 @@ namespace WpfApp1
             };
 
             dal.AddModtree(screen);
-            sysStatLbl.Content = "Field Succesfully Added";
+            sysStatLbl.Content = "Screen Succesfully Added";
 
         }
 
@@ -373,5 +380,99 @@ namespace WpfApp1
             selectedScreen.s5 = "3450";
             sysStatLbl.Content = "3450";
         }
+
+        private void vt_rpt_Click(object sender, RoutedEventArgs e)
+        {
+            SetVTBtn("");
+            SetVTBtn("rpt");
+            selectedScreen.s5 = "rpt";
+            sysStatLbl.Content = "RPT";
+        }
+
+        private void tab_Master_Click(object sender, RoutedEventArgs e)
+        {
+            field.s107 = "M";
+            sysStatLbl.Content = "Master tab Selected";
+        }
+
+        private void tab_Detail_Click(object sender, RoutedEventArgs e)
+        {
+            field.s107 = "D";
+            sysStatLbl.Content = "Detail tab Selected";
+
+        }
+
+        private int tempTabBtn = 0;
+        private bool btn1ClickFlag = false;
+        private bool btn2ClickFlag = false;
+        private void tab_NTab1_Click(object sender, RoutedEventArgs e)
+        {
+            if (btn1ClickFlag == false)
+            {
+                DVgrid.Visibility = Visibility.Collapsed;
+                dvGrid.Visibility = Visibility.Collapsed;
+                newTabGrid.Visibility = Visibility.Visible;
+                btn1ClickFlag = true;
+                tempTabBtn = 1;
+            }
+            else
+            {
+                field.s107 = tab_NTab1.Content.ToString();
+                sysStatLbl.Content = tab_NTab1.Content.ToString() + "tab Selected";
+            }
+        }
+        private void tab_NTab2_Click(object sender, RoutedEventArgs e)
+        {
+            if (btn2ClickFlag == false)
+            {
+                DVgrid.Visibility = Visibility.Collapsed;
+                dvGrid.Visibility = Visibility.Collapsed;
+                newTabGrid.Visibility = Visibility.Visible;
+                btn2ClickFlag = true;
+                tempTabBtn = 2;
+            }
+            else
+            {
+                field.s107 = tab_NTab2.Content.ToString();
+                sysStatLbl.Content = tab_NTab2.Content.ToString() + "tab Selected";
+
+            }
+        }
+
+        private void tab_saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s35, s39, s40, n1
+            modtree tab = new modtree()
+            {
+                s100 = "TAB",
+                s101 = screen_statusComboBox.Text,
+                s102 = screen_docTypeTextBox.Text.ToString(),
+                s105 = selectedSecLvl1.s105.ToString(),
+                s1 = tab_CodeTextBox.Text.ToString(),
+                s2 = tab_nameTextBox.Text.ToString(),
+                s4 = screen_urlTextBox.Text.ToString(),
+                s32 = screen_tableNameTextBox.Text.ToString(),
+                s39 = tab_treeLvlTextBox.Text.ToString(),
+                s40 = tab_PrevCodeTextBox.Text.ToString(),
+            };
+
+            dal.AddModtree(tab);
+
+            if (tempTabBtn == 1)
+            {
+                tab_NTab1.Content = tab_nameTextBox.Text;
+            }
+            else
+            {
+                tab_NTab2.Content = tab_nameTextBox.Text;
+            }
+
+            DVgrid.Visibility = Visibility.Visible;
+            dvGrid.Visibility = Visibility.Visible;
+            newTabGrid.Visibility = Visibility.Collapsed;
+
+            sysStatLbl.Content = "New Tab added";
+        }
+
     }
 }

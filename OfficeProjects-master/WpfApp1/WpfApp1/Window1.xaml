@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Window1" Height="718" Width="1139" MinHeight="480" MinWidth="600"
-        SizeToContent="WidthAndHeight" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+        Title="Window1" Height="722" Width="1140" MinHeight="480" MinWidth="600"
+        SizeToContent="WidthAndHeight" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" VerticalAlignment="Top">
     <Window.Resources>
         <Style x:Key="Label" TargetType="{x:Type Label}" BasedOn="{x:Null}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -112,7 +112,7 @@
             <RowDefinition Height="500"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1130"/>
+            <ColumnDefinition Width="1139"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Height="116" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
@@ -127,7 +127,7 @@
             <Label x:Name="sysStatLbl" Content="System Status" Width="542" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" Margin="565,0,0,0" Height="26" />
 
 
-            <Grid x:Name="ModuleInfoGrid" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible" VerticalAlignment="Center" Background="WhiteSmoke" Width="1126" IsEnabled="False" Height="34">
+            <Grid x:Name="ModuleInfoGrid" Grid.Row="1" Visibility="Visible" Background="WhiteSmoke" Width="1126" IsEnabled="False" Height="34">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -150,7 +150,7 @@
                 <Label Content="Doc Type:" Grid.Row="0" Grid.Column="3" Style="{StaticResource Label}" />
                 <TextBox x:Name="mod_docTypeTextBox" Grid.Row="0" Grid.Column="3" Style="{StaticResource TextBox}"/>
             </Grid>
-            <Grid x:Name="SectionInfoGrid" Grid.Row="2" HorizontalAlignment="Center" Visibility="Visible" VerticalAlignment="Center"  Background="WhiteSmoke"  Width="1126" IsEnabled="False" Height="35" >
+            <Grid x:Name="SectionInfoGrid" Grid.Row="2" Visibility="Visible"  Background="WhiteSmoke"  Width="1126" IsEnabled="False" Height="35" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -171,12 +171,10 @@
 
                 <Label Content="Sub Section Code:" Grid.Column="3" Style="{StaticResource Label}" Height="auto"/>
                 <Label x:Name="secInfo_subSectionCodeLbl"  Grid.Column="3" Style="{StaticResource displayLabel}" Height="auto"/>
-
-
             </Grid>
         </Grid>
-        
-        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Center" Visibility="Visible" Margin="0,0,0,-26" >
+
+        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Center" Visibility="Collapsed" Margin="0,0,0,-26" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="74"/>
                 <RowDefinition Height="34" />
@@ -187,7 +185,7 @@
             </Grid.RowDefinitions>
 
 
-            <Grid x:Name="screenHeaderGrid" Grid.Row="0" HorizontalAlignment="Center" Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Grid.RowSpan="2" Width="1126" Margin="3,0,3,0" >
+            <Grid x:Name="screenHeaderGrid" Grid.Row="0" Visibility="Visible" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Grid.RowSpan="2" Width="1126" Margin="3,0,3,0" VerticalAlignment="Top" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -235,8 +233,9 @@
 
 
             </Grid>
-            <Grid x:Name="scrnVTGrid" Grid.Row="1"  Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" Width="1126" Margin="3,0,3,0" >
+            <Grid x:Name="scrnVTGrid" Grid.Row="1"  Visibility="Visible" Background="WhiteSmoke" Margin="3,0,0,0" VerticalAlignment="Top" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -259,9 +258,10 @@
                 <Button x:Name="vt_3300" Content="3300" Grid.Column="5" Style="{StaticResource VTButton}" Click="vt_3300_Click"  />
                 <Button x:Name="vt_3400" Content="3400" Grid.Column="6" Style="{StaticResource VTButton}" Click="vt_3400_Click"  />
                 <Button x:Name="vt_3450" Content="3450" Grid.Column="7" Style="{StaticResource VTButton}" Click="vt_3450_Click"  />
+                <Button x:Name="vt_rpt" Content="RPT" Grid.Column="8" Style="{StaticResource VTButton}" Click="vt_rpt_Click"  />
 
             </Grid>
-            <Grid x:Name="screenButtonsGrid" Grid.Row="2"  Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" Width="1126" Margin="3,0,3,0" >
+            <Grid x:Name="screenButtonsGrid" Grid.Row="2"  Visibility="Visible" Background="WhiteSmoke" Margin="3,0,0,0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -302,7 +302,7 @@
                 <Button x:Name="mdtreScreen_AddNewBtn" Content="Add" Grid.Column="2" Style="{StaticResource cmdButton}" Grid.RowSpan="2" Height="23" Grid.Row="1" Margin="0,0,0,4" Click="mdtreScreen_AddNewBtn_Click"  />
             </Grid>
 
-            <Grid x:Name="tabsGrid" Grid.Row="3"  Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" Margin="3,3,2,0" >
+            <Grid x:Name="tabsGrid" Grid.Row="3"  Visibility="Visible" Background="WhiteSmoke" Margin="3,3,2,5" VerticalAlignment="Top" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -319,16 +319,16 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Chose TAB" FontFamily="Copperplate Gothic Bold" HorizontalAlignment="Center" Height="29" VerticalAlignment="Bottom" FontSize="14" />
-                <ComboBox x:Name="tabComboBox" Grid.Column="1" Style="{StaticResource ComboBox}" Text="{Binding s107}" HorizontalAlignment="Right" >
-                    <ComboBoxItem Content="M"/>
-                    <ComboBoxItem Content="D"/>
-                    <ComboBoxItem Content="F"/>
-                </ComboBox>
+
+                <Button x:Name="tab_Master" Content="Master" Grid.Column="1" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_Master_Click"  />
+                <Button x:Name="tab_Detail" Content="Detail" Grid.Column="2" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_Detail_Click"  />
+                <Button x:Name="tab_NTab1" Content="New Tab" Grid.Column="3" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_NTab1_Click"  />
+                <Button x:Name="tab_NTab2" Content="New Tab" Grid.Column="4" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_NTab2_Click" />
                 <Button x:Name="field_SaveBtn" Content="Save" Grid.Column="7" Style="{StaticResource cmdButton}" Height="23"  />
                 <Button x:Name="field_AddBtn" Content="Add" Grid.Column="6" Style="{StaticResource cmdButton}" Height="23" Click="field_AddBtn_Click"  />
 
             </Grid>
-            <Grid x:Name="dvGrid" Grid.Row="4"  Margin="3,0,2,0" Visibility="Visible"  Background="WhiteSmoke" DataContext="{StaticResource screenDVViewSource}" >
+            <Grid x:Name="dvGrid" Grid.Row="4"  Margin="3,0,2,0" Visibility="Visible"  Background="WhiteSmoke" DataContext="{StaticResource screenDVViewSource}" VerticalAlignment="Top" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -399,11 +399,40 @@
 
 
             </Grid>
+            <Grid x:Name="newTabGrid" Grid.Row="4"  Margin="3,0,2,105" Visibility="Collapsed"  Background="WhiteSmoke" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="225*" />
+                    <ColumnDefinition Width="225*" />
+                    <ColumnDefinition Width="167*" />
+                    <ColumnDefinition Width="58*"/>
+                    <ColumnDefinition Width="225*" />
+                    <ColumnDefinition Width="225*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="37"/>
+                </Grid.RowDefinitions>
+                <Label Content="Name :" Grid.Column="0" Style="{StaticResource Label}" Margin="3,0,0,0" />
+                <TextBox x:Name="tab_nameTextBox" Style="{StaticResource TextBox}" Grid.Column="0" HorizontalAlignment="Left" Margin="72,0,0,0" />
 
-            <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="190" Width="1121" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="8,5,1,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}"/>
+                <Label Content="TreeLvl :" Grid.Column="1" Style="{StaticResource Label}" Margin="3,0,0,0" />
+                <TextBox x:Name="tab_treeLvlTextBox" Style="{StaticResource TextBox}" Grid.Column="1" HorizontalAlignment="Left" Margin="73,0,0,0" />
+
+                <Label Content="Prev Code:" Grid.Column="2" Style="{StaticResource Label}" Margin="3,0,0,0" />
+                <TextBox x:Name="tab_PrevCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="72,0,0,0" />
+
+                <Label Content="Code:" Grid.Column="4" Style="{StaticResource Label}" Margin="3,0,0,0" />
+                <TextBox x:Name="tab_CodeTextBox" Style="{StaticResource TextBox}" Grid.Column="4" HorizontalAlignment="Left" Margin="73,0,0,0" />
+
+                <Button x:Name="tab_saveBtn" Content="Save" Grid.Column="5" Style="{StaticResource cmdButton}"   Margin="57,4,58,8" Click="tab_saveBtn_Click" />
+
+
+
+            </Grid>
+
+            <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="190" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,5,1,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}" VerticalAlignment="Top"/>
         </Grid>
 
-        <Grid x:Name="screenSelectionGrid" Grid.Row="1" Height="auto" Visibility="Collapsed" Margin="0,0,0,0">
+        <Grid x:Name="screenSelectionGrid" Grid.Row="1" Height="auto" Visibility="Visible" Margin="0,0,0,0" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="190"/>
                 <RowDefinition Height="250" />
@@ -491,7 +520,7 @@
 
             </Grid>
 
-            <DataGrid x:Name="modtreeDataGrid"  Grid.Row="1" Width="1121" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="8,5,8,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource modtreeViewSource}}"/>
+            <DataGrid x:Name="modtreeDataGrid"  Grid.Row="1" Width="1121" Height="250" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="8,5,8,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource modtreeViewSource}}" VerticalAlignment="Top"/>
 
         </Grid>
     </Grid>
