@@ -174,7 +174,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Center" Visibility="Collapsed" Margin="0,0,0,-26" >
+        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Center" Visibility="Visible" Margin="0,0,0,-26" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="74"/>
                 <RowDefinition Height="34" />
@@ -298,11 +298,11 @@
                     <RowDefinition Height="28"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="mdtreScreen_saveBtn" Content="Save" Grid.Column="0" Style="{StaticResource cmdButton}" Grid.Row="1" Height="23" HorizontalAlignment="Center" Margin="0,0,0,4" Click="mdtreScreen_saveBtn_Click" />
-                <Button x:Name="mdtreScreen_nextBtn" Content="Next" Grid.Column="1" Style="{StaticResource cmdButton}" Grid.RowSpan="2" Height="23" Grid.Row="1" Margin="0,0,0,4"  />
+                <Button x:Name="mdtreScreen_nextBtn" Content="Next" Grid.Column="1" Style="{StaticResource cmdButton}" Grid.RowSpan="2" Height="23" Grid.Row="1" Margin="0,0,0,4" Click="mdtreScreen_nextBtn_Click"  />
                 <Button x:Name="mdtreScreen_AddNewBtn" Content="Add" Grid.Column="2" Style="{StaticResource cmdButton}" Grid.RowSpan="2" Height="23" Grid.Row="1" Margin="0,0,0,4" Click="mdtreScreen_AddNewBtn_Click"  />
             </Grid>
 
-            <Grid x:Name="tabsGrid" Grid.Row="3"  Visibility="Visible" Background="WhiteSmoke" Margin="3,3,2,5" VerticalAlignment="Top" >
+            <Grid x:Name="tabsGrid" Grid.Row="3"  Visibility="Visible" Background="WhiteSmoke" Margin="3,3,2,5" VerticalAlignment="Top" IsEnabled="False" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -328,7 +328,7 @@
                 <Button x:Name="field_AddBtn" Content="Add" Grid.Column="6" Style="{StaticResource cmdButton}" Height="23" Click="field_AddBtn_Click"  />
 
             </Grid>
-            <Grid x:Name="dvGrid" Grid.Row="4"  Margin="3,0,2,0" Visibility="Visible"  Background="WhiteSmoke" DataContext="{StaticResource screenDVViewSource}" VerticalAlignment="Top" >
+            <Grid x:Name="dvGrid" Grid.Row="4"  Margin="3,0,2,0" Visibility="Visible"  Background="WhiteSmoke" DataContext="{StaticResource screenDVViewSource}" VerticalAlignment="Top" IsEnabled="False" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -429,10 +429,9 @@
 
             </Grid>
 
-            <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="190" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,5,1,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}" VerticalAlignment="Top"/>
+            <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="190" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,5,1,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}" VerticalAlignment="Top" IsEnabled="False"/>
         </Grid>
-
-        <Grid x:Name="screenSelectionGrid" Grid.Row="1" Height="auto" Visibility="Visible" Margin="0,0,0,0" VerticalAlignment="Top">
+        <Grid x:Name="screenSelectionGrid" Grid.Row="1" Height="auto" Visibility="Collapsed" Margin="0,0,0,0" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="190"/>
                 <RowDefinition Height="250" />

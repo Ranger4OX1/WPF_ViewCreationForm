@@ -150,6 +150,150 @@ namespace WpfApp1
             if (btns[6]) { sts_postedCB.Content = true; }
             if (btns[7]) { sts_unpostedCB.Content = true; }
         }
+        
+        private bool[] GetStsBtnGrid(string code)
+        {
+            bool[] btns = new bool[9];
+            btns = dal.GetButtonInfo(code);
+
+            if (btns_addCB.IsChecked == true) { btns[0] = true; }
+            if (btns_editCB.IsChecked == true) { btns[1] = true; }
+            if (btns_deleteCB.IsChecked == true) { btns[2] = true; }
+            if (btns_postCB.IsChecked == true) { btns[3] = true; }
+            if (btns_previewCB.IsChecked == true) { btns[4] = true; }
+            if (sts_postedCB.IsChecked == true) { btns[5] = true; }
+            if (sts_unpostedCB.IsChecked == true) { btns[6] = true; }
+
+            return btns;
+        }
+
+        private modtree GetBtnStsTabModtree(string pram, modtree scrn)
+        {
+            modtree result = new modtree();
+            //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1
+
+            //SCR A CMMR  03 | 10  12010301 Machine Reading 0 /CMMS/12/VLst/CMMR/SB01 3000  NULL MTRM  NULL  3 120103 NULL
+            //BTN A   CMMR    03 | 10   1201030101  Add 0   2   3000                4   12010301    0.00
+            //BTN A   CMMR    03 | 10   1201030102  Edit    0                       4   12010301    0.00
+            //BTN A   CMMR    03 | 10   1201030103  Delete  0           glyphicon - trash         4   12010301    0.00
+            //BTN A   CMMR    03 | 10   1201030104  Post    0           glyphicon - pushpin           4   12010301    0.00
+            //BTN A   CMMR    03 | 10   1201030105  Preview 0                       4   12010301    0.00
+            //STS A   CMMR    03 | 10   1201030106  Unposted0   2   3000                4   12010301    0.00
+            //STS A   CMMR    03 | 10   1201030107  Posted  0   4   3100                4   12010301    0.00
+            //TAB A   CMMR    03 | 10   1201030108  Main    0               MSHDD       4   12010301    0.00
+            switch (pram)
+            {
+                case "add":
+                    result.s100 = scrn.s100;
+                    result.s101 = scrn.s101;
+                    result.s102 = scrn.s102;
+                    result.s105 = scrn.s105;
+                    result.s1 = scrn.s1.ToString() + "01";
+                    result.s2 = "Add";
+                    result.s3 = "0";
+                    result.s4 = "2";
+                    result.s5 = scrn.s5;
+                    result.s39 = "4";
+                    result.s40 = scrn.s1;
+                    break;
+                case "edit":
+                    result.s100 = scrn.s100;
+                    result.s101 = scrn.s101;
+                    result.s102 = scrn.s102;
+                    result.s105 = scrn.s105;
+                    result.s1 = scrn.s1.ToString() + "02";
+                    result.s2 = "Edit";
+                    result.s3 = "0";
+                    result.s39 = "4";
+                    result.s40 = scrn.s1;
+                    break;
+                case "delete":
+                    result.s100 = scrn.s100;
+                    result.s101 = scrn.s101;
+                    result.s102 = scrn.s102;
+                    result.s105 = scrn.s105;
+                    result.s1 = scrn.s1.ToString() + "03";
+                    result.s2 = "Delete";
+                    result.s3 = "0";
+                    result.s8 = "glyphicon-trash";
+                    result.s39 = "4";
+                    result.s40 = scrn.s1;
+                    break;
+                case "post":
+                    result.s100 = scrn.s100;
+                    result.s101 = scrn.s101;
+                    result.s102 = scrn.s102;
+                    result.s105 = scrn.s105;
+                    result.s1 = scrn.s1.ToString() + "04";
+                    result.s2 = "Post";
+                    result.s3 = "0";
+                    result.s8 = "glyphicon-pushpin";
+                    result.s39 = "4";
+                    result.s40 = scrn.s1;
+                    break;
+                case "preview":
+                    result.s100 = scrn.s100;
+                    result.s101 = scrn.s101;
+                    result.s102 = scrn.s102;
+                    result.s105 = scrn.s105;
+                    result.s1 = scrn.s1.ToString() + "05";
+                    result.s2 = "Preview";
+                    result.s3 = "0";
+                    result.s39 = "4";
+                    result.s40 = scrn.s1;
+                    break;
+                case "unposted":
+                    result.s100 = scrn.s100;
+                    result.s101 = scrn.s101;
+                    result.s102 = scrn.s102;
+                    result.s105 = scrn.s105;
+                    result.s1 = scrn.s1.ToString() + "06";
+                    result.s2 = "Preview";
+                    result.s3 = "0";
+                    result.s4 = "2";
+                    result.s5 = scrn.s5;//check
+                    result.s39 = "4";
+                    result.s40 = scrn.s1;
+                    break;
+                case "posted":
+                    result.s100 = scrn.s100;
+                    result.s101 = scrn.s101;
+                    result.s102 = scrn.s102;
+                    result.s105 = scrn.s105;
+                    result.s1 = scrn.s1.ToString() + "07";
+                    result.s2 = "Posted";
+                    result.s3 = "0";
+                    result.s4 = "4";
+                    result.s5 = "3100";
+                    result.s39 = "4";
+                    result.s40 = scrn.s1;
+                    break;
+                case "main":
+                    result.s100 = scrn.s100;
+                    result.s101 = scrn.s101;
+                    result.s102 = scrn.s102;
+                    result.s105 = scrn.s105;
+                    result.s1 = scrn.s1.ToString() + "06";
+                    result.s2 = "Preview";
+                    result.s3 = "0";
+                    //result.s32 = "MSHDD"; //  HOW
+                    result.s39 = "4";
+                    result.s40 = scrn.s1;
+                    break;
+                default:
+                    sysStatLbl.Content = "Error Get btns Modtree";
+                    break;
+            }
+            return result;
+        }
+
+        private string InsertBtns(modtree scrn)
+        {
+            int count = 1;
+
+
+
+        }
 
         //////
         ///GRID DATA GET METHODS
@@ -308,6 +452,7 @@ namespace WpfApp1
             modtree screen = new modtree()
             {
                 //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s35, s39, s40, n1
+                //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1
                 s100 = "SCR",
                 s101 = screen_statusComboBox.Text.ToString(),
                 s102 = screen_docTypeTextBox.Text.ToString(),
@@ -319,6 +464,8 @@ namespace WpfApp1
                 s39 = screen_treelvlTextBox.Text.ToString(),
                 s40 = screen_prevLvlTextBox.Text.ToString(),
             };
+
+            InsertBtns();
 
             dal.AddModtree(screen);
             sysStatLbl.Content = "Screen Succesfully Added";
@@ -474,5 +621,10 @@ namespace WpfApp1
             sysStatLbl.Content = "New Tab added";
         }
 
+        private void mdtreScreen_nextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            tabsGrid.IsEnabled = dvGrid.IsEnabled = DVgrid.IsEnabled = true;
+
+        }
     }
 }

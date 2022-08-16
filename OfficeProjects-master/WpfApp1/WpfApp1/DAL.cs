@@ -231,13 +231,13 @@ namespace WpfApp1
         {
             bool[] result = new bool[10];
             string temp;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)// from 0 to 9
             {
-                result[i] = false;
-                temp = code + "0" + (i+1).ToString();
-                if (Search(temp) > 0)
+                result[i] = false;//initialisation of element
+                temp = code + "0" + (i+1).ToString();//sets s1 
+                if (Search(temp) > 0)//searches for that s1 in the db
                 {
-                    result[i] = true;
+                    result[i] = true;// makes that element true if found
                 }
             }
             return result;
