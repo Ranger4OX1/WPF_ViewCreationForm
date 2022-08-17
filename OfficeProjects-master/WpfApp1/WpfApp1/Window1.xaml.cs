@@ -139,7 +139,7 @@ namespace WpfApp1
 
         private void SetStsBtnGrid(string code)
         {
-            bool[] btns = new bool[9];
+            bool[] btns = new bool[10];
             btns = dal.GetButtonInfo(code);
 
             if (btns[0]) { btns_addCB.IsChecked = true; }
@@ -148,21 +148,23 @@ namespace WpfApp1
             if (btns[3]) { btns_postCB.Content = true; }
             if (btns[4]) { btns_previewCB.Content = true; }
             if (btns[6]) { sts_postedCB.Content = true; }
-            if (btns[7]) { sts_unpostedCB.Content = true; }
+            if (btns[5]) { sts_unpostedCB.Content = true; }
         }
         
-        private bool[] GetStsBtnGrid(string code)
+        private bool[] GetStsBtnGrid()
         {
-            bool[] btns = new bool[9];
-            btns = dal.GetButtonInfo(code);
+            bool[] btns = new bool[10];
 
-            if (btns_addCB.IsChecked == true) { btns[0] = true; }
-            if (btns_editCB.IsChecked == true) { btns[1] = true; }
-            if (btns_deleteCB.IsChecked == true) { btns[2] = true; }
-            if (btns_postCB.IsChecked == true) { btns[3] = true; }
-            if (btns_previewCB.IsChecked == true) { btns[4] = true; }
-            if (sts_postedCB.IsChecked == true) { btns[5] = true; }
-            if (sts_unpostedCB.IsChecked == true) { btns[6] = true; }
+            for (int i = 0; i < 10; i++) { btns[i] = false; }
+
+            if ((bool)btns_addCB.IsChecked) { btns[0] = true; }
+            if ((bool)btns_editCB.IsChecked) { btns[1] = true; }
+            if ((bool)btns_deleteCB.IsChecked ) { btns[2] = true; }
+            if ((bool)btns_postCB.IsChecked ) { btns[3] = true; }
+            if ((bool)btns_previewCB.IsChecked ) { btns[4] = true; }
+            if ((bool)sts_unpostedCB.IsChecked ) { btns[5] = true; }
+            if ((bool)sts_postedCB.IsChecked ) { btns[6] = true; }
+            
 
             return btns;
         }
@@ -170,6 +172,7 @@ namespace WpfApp1
         private modtree GetBtnStsTabModtree(string pram, modtree scrn)
         {
             modtree result = new modtree();
+
             //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1
 
             //SCR A CMMR  03 | 10  12010301 Machine Reading 0 /CMMS/12/VLst/CMMR/SB01 3000  NULL MTRM  NULL  3 120103 NULL
@@ -184,101 +187,140 @@ namespace WpfApp1
             switch (pram)
             {
                 case "add":
-                    result.s100 = scrn.s100;
-                    result.s101 = scrn.s101;
-                    result.s102 = scrn.s102;
-                    result.s105 = scrn.s105;
-                    result.s1 = scrn.s1.ToString() + "01";
-                    result.s2 = "Add";
-                    result.s3 = "0";
-                    result.s4 = "2";
-                    result.s5 = scrn.s5;
-                    result.s39 = "4";
-                    result.s40 = scrn.s1;
+                    {
+                        result = new modtree();
+                        result.s100 = "BTN";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s1 = scrn.s1.ToString() + "01";
+                        result.s2 = "Add";
+                        result.s3 = "0";
+                        result.s4 = "2";
+                        result.s5 = scrn.s5;
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }                    
                     break;
                 case "edit":
-                    result.s100 = scrn.s100;
-                    result.s101 = scrn.s101;
-                    result.s102 = scrn.s102;
-                    result.s105 = scrn.s105;
-                    result.s1 = scrn.s1.ToString() + "02";
-                    result.s2 = "Edit";
-                    result.s3 = "0";
-                    result.s39 = "4";
-                    result.s40 = scrn.s1;
+                    {
+                        result = new modtree();
+                        result.s100 = "BTN";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s1 = scrn.s1.ToString() + "02";
+                        result.s2 = "Edit";
+                        result.s3 = "0";
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }
                     break;
                 case "delete":
-                    result.s100 = scrn.s100;
-                    result.s101 = scrn.s101;
-                    result.s102 = scrn.s102;
-                    result.s105 = scrn.s105;
-                    result.s1 = scrn.s1.ToString() + "03";
-                    result.s2 = "Delete";
-                    result.s3 = "0";
-                    result.s8 = "glyphicon-trash";
-                    result.s39 = "4";
-                    result.s40 = scrn.s1;
+                    {
+                        result = new modtree();
+                        result.s100 = "BTN";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s1 = scrn.s1.ToString() + "03";
+                        result.s2 = "Delete";
+                        result.s3 = "0";
+                        result.s8 = "glyphicon-trash";
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }
                     break;
                 case "post":
-                    result.s100 = scrn.s100;
-                    result.s101 = scrn.s101;
-                    result.s102 = scrn.s102;
-                    result.s105 = scrn.s105;
-                    result.s1 = scrn.s1.ToString() + "04";
-                    result.s2 = "Post";
-                    result.s3 = "0";
-                    result.s8 = "glyphicon-pushpin";
-                    result.s39 = "4";
-                    result.s40 = scrn.s1;
+                    {
+                        result = new modtree();
+                        result.s100 = "BTN";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s1 = scrn.s1.ToString() + "04";
+                        result.s2 = "Post";
+                        result.s3 = "0";
+                        result.s8 = "glyphicon-pushpin";
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }
                     break;
                 case "preview":
-                    result.s100 = scrn.s100;
-                    result.s101 = scrn.s101;
-                    result.s102 = scrn.s102;
-                    result.s105 = scrn.s105;
-                    result.s1 = scrn.s1.ToString() + "05";
-                    result.s2 = "Preview";
-                    result.s3 = "0";
-                    result.s39 = "4";
-                    result.s40 = scrn.s1;
+                    {
+                        result = new modtree();
+                        result.s100 = "BTN";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s1 = scrn.s1.ToString() + "05";
+                        result.s2 = "Preview";
+                        result.s3 = "0";
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }
                     break;
                 case "unposted":
-                    result.s100 = scrn.s100;
-                    result.s101 = scrn.s101;
-                    result.s102 = scrn.s102;
-                    result.s105 = scrn.s105;
-                    result.s1 = scrn.s1.ToString() + "06";
-                    result.s2 = "Preview";
-                    result.s3 = "0";
-                    result.s4 = "2";
-                    result.s5 = scrn.s5;//check
-                    result.s39 = "4";
-                    result.s40 = scrn.s1;
+                    {
+                        result = new modtree();
+                        result.s100 = "STS";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s1 = scrn.s1.ToString() + "06";
+                        result.s2 = "Unposted";
+                        result.s3 = "0";
+                        result.s5 = scrn.s5;//check
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }
                     break;
                 case "posted":
-                    result.s100 = scrn.s100;
-                    result.s101 = scrn.s101;
-                    result.s102 = scrn.s102;
-                    result.s105 = scrn.s105;
-                    result.s1 = scrn.s1.ToString() + "07";
-                    result.s2 = "Posted";
-                    result.s3 = "0";
-                    result.s4 = "4";
-                    result.s5 = "3100";
-                    result.s39 = "4";
-                    result.s40 = scrn.s1;
+                    {
+                        result = new modtree();
+                        result.s100 = "STS";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s1 = scrn.s1.ToString() + "07";
+                        result.s2 = "Posted";
+                        result.s3 = "0";
+                        result.s5 = "3100";
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }
                     break;
                 case "main":
-                    result.s100 = scrn.s100;
-                    result.s101 = scrn.s101;
-                    result.s102 = scrn.s102;
-                    result.s105 = scrn.s105;
-                    result.s1 = scrn.s1.ToString() + "06";
-                    result.s2 = "Preview";
-                    result.s3 = "0";
-                    //result.s32 = "MSHDD"; //  HOW
-                    result.s39 = "4";
-                    result.s40 = scrn.s1;
+                    {
+                        result = new modtree();
+                        result.s100 = "TAB";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s1 = scrn.s1.ToString() + "08";
+                        result.s2 = "Main";
+                        result.s3 = "0";
+                        if (!string.IsNullOrEmpty(mains32TextBox.Text))
+                            result.s32 = mains32TextBox.Text;
+                        else
+                        {
+                            sysStatLbl.Content = "Pls fill Main s32";
+                        }
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }
+                    break;
+                case "newTab":
+                    {
+                        result = new modtree();
+                        result.s100 = "TAB";
+                        result.s101 = scrn.s101;
+                        result.s102 = scrn.s102;
+                        result.s105 = scrn.s105;
+                        result.s3 = "0";
+                        result.s39 = "4";
+                        result.s40 = scrn.s1;
+                    }                        
                     break;
                 default:
                     sysStatLbl.Content = "Error Get btns Modtree";
@@ -290,9 +332,62 @@ namespace WpfApp1
         private string InsertBtns(modtree scrn)
         {
             int count = 1;
+            modtree mod = new modtree();
 
+            bool[] temp = GetStsBtnGrid();
 
+            if (temp[0] == true)
+            { 
+                mod = GetBtnStsTabModtree("add", scrn);
+                dal.AddModtree(mod);
+                count++;
+                mod = null;
+            }
+            if (temp[1] == true)
+            {
+                mod = GetBtnStsTabModtree("edit", scrn);
+                dal.AddModtree(mod);
+                count++;
+                mod = null;
+            }
+            if (temp[2] == true)
+            {
+                mod = GetBtnStsTabModtree("delete", scrn);
+                dal.AddModtree(mod);
+                count++;
+                mod = null;
+            }
+            if (temp[3] == true)
+            {
+                mod = GetBtnStsTabModtree("post", scrn);
+                dal.AddModtree(mod);
+                count++;
+                mod = null;
+            }
+            if (temp[4] == true)
+            {
+                mod = GetBtnStsTabModtree("preview", scrn);
+                dal.AddModtree(mod);
+                MessageBox.Show("preview");
+                count++;
+                mod = null;
+            }
+            if (temp[5] == true)
+            {
+                mod = GetBtnStsTabModtree("unposted", scrn);
+                dal.AddModtree(mod);
+                count++;
+                mod = null;
+            }
+            if (temp[6] == true)
+            {
+                mod = GetBtnStsTabModtree("posted", scrn);
+                dal.AddModtree(mod);
+                count++;
+                mod = null;
+            }
 
+            return count + "btns and sts inserted";
         }
 
         //////
@@ -440,6 +535,23 @@ namespace WpfApp1
 
                 dal.AddDV(field);
                 sysStatLbl.Content = "Field Succesfully Added";
+
+                DVViewSource.View.Refresh();
+                dv_nameTextBox.Text = String.Empty;
+                dv_fieldTextBox.Text = String.Empty;
+                dv_dataTypeTextBox.Text = String.Empty;
+                dv_comboBoxTextBox.Text = String.Empty;
+                dv_depCaseTextBox.Text = String.Empty;
+                dv_normalisationTextBox.Text = String.Empty;
+                dv_whrLeftTextBox.Text = String.Empty;
+                dv_whrRightTextBox.Text = String.Empty;
+                dv_rigixTextBox.Text = String.Empty;
+                dv_listItemTextBox.Text = String.Empty;
+                dv_validationTextBox.Text = String.Empty;
+                dv_tabCdTextBox.Text = String.Empty;
+                dv_tableNameTextBox.Text = String.Empty;
+                dv_botstrapTextBox.Text = String.Empty;
+
             }
             else
             {
@@ -449,27 +561,39 @@ namespace WpfApp1
 
         private void mdtreScreen_AddNewBtn_Click(object sender, RoutedEventArgs e)
         {
-            modtree screen = new modtree()
+            bool addScrnFlag = false;
+            //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1
+            selectedScreen.s101 = screen_statusComboBox.Text.ToString();
+            selectedScreen.s102 = screen_docTypeTextBox.Text.ToString();
+            selectedScreen.s105 = selectedSecLvl1.s105.ToString();
+            selectedScreen.s1 = screen_screenCodeTextBox.Text.ToString();
+            selectedScreen.s2 = screen_screenNameTextBox.Text.ToString();
+            selectedScreen.s4 = screen_urlTextBox.Text.ToString();
+            selectedScreen.s32 = screen_tableNameTextBox.Text.ToString();
+            selectedScreen.s39 = screen_treelvlTextBox.Text.ToString();
+            selectedScreen.s40 = screen_prevLvlTextBox.Text.ToString();
+
+            switch (selectedScreen.s5)
             {
-                //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s35, s39, s40, n1
-                //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1
-                s100 = "SCR",
-                s101 = screen_statusComboBox.Text.ToString(),
-                s102 = screen_docTypeTextBox.Text.ToString(),
-                s105 = selectedSecLvl1.s105.ToString(),
-                s1 = screen_screenCodeTextBox.Text.ToString(),
-                s2 = screen_screenNameTextBox.Text.ToString(),
-                s4 = screen_urlTextBox.Text.ToString(),
-                s32 = screen_tableNameTextBox.Text.ToString(),
-                s39 = screen_treelvlTextBox.Text.ToString(),
-                s40 = screen_prevLvlTextBox.Text.ToString(),
-            };
+                case "3000":
+                    selectedScreen.s100 = "SCR";
+                    selectedScreen.s3 = "1";
+                    sysStatLbl.Content = InsertBtns(selectedScreen);
+                    modtree main = GetBtnStsTabModtree("main", selectedScreen);
+                    dal.AddModtree(main);
+                    addScrnFlag = true;
+                    break;
+                default:
+                    sysStatLbl.Content = "No ViewType selected";
+                    break;
+            }
 
-            InsertBtns();
 
-            dal.AddModtree(screen);
-            sysStatLbl.Content = "Screen Succesfully Added";
-
+            if (addScrnFlag)
+            {
+                dal.AddModtree(selectedScreen);
+                sysStatLbl.Content = "Screen Succesfully Added"; 
+            }
         }
 
         private void vt_3000_Click(object sender, RoutedEventArgs e)
@@ -576,7 +700,7 @@ namespace WpfApp1
                 dvGrid.Visibility = Visibility.Collapsed;
                 newTabGrid.Visibility = Visibility.Visible;
                 btn2ClickFlag = true;
-                tempTabBtn = 2;
+                tempTabBtn = 2;                
             }
             else
             {
@@ -589,31 +713,22 @@ namespace WpfApp1
         private void tab_saveBtn_Click(object sender, RoutedEventArgs e)
         {
             //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s35, s39, s40, n1
-            modtree tab = new modtree()
-            {
-                s100 = "TAB",
-                s101 = screen_statusComboBox.Text,
-                s102 = screen_docTypeTextBox.Text.ToString(),
-                s105 = selectedSecLvl1.s105.ToString(),
-                s1 = tab_CodeTextBox.Text.ToString(),
-                s2 = tab_nameTextBox.Text.ToString(),
-                s4 = screen_urlTextBox.Text.ToString(),
-                s32 = screen_tableNameTextBox.Text.ToString(),
-                s39 = tab_treeLvlTextBox.Text.ToString(),
-                s40 = tab_PrevCodeTextBox.Text.ToString(),
-            };
-
-            dal.AddModtree(tab);
+            modtree tab = GetBtnStsTabModtree("newTab", selectedScreen);            
+            tab.s2 = tab_nameTextBox.Text;
+            tab.s32 = tab_s32TextBox.Text;
 
             if (tempTabBtn == 1)
             {
                 tab_NTab1.Content = tab_nameTextBox.Text;
+                tab.s1 = selectedScreen.s1 + "09";
             }
             else
             {
                 tab_NTab2.Content = tab_nameTextBox.Text;
+                tab.s1 = selectedScreen.s1 + "10";
             }
 
+            dal.AddModtree(tab);
             DVgrid.Visibility = Visibility.Visible;
             dvGrid.Visibility = Visibility.Visible;
             newTabGrid.Visibility = Visibility.Collapsed;
@@ -624,6 +739,10 @@ namespace WpfApp1
         private void mdtreScreen_nextBtn_Click(object sender, RoutedEventArgs e)
         {
             tabsGrid.IsEnabled = dvGrid.IsEnabled = DVgrid.IsEnabled = true;
+        }
+
+        private void field_FinishBtn_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

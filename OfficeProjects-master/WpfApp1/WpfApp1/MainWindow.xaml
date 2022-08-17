@@ -233,7 +233,7 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid x:Name="newSectionLvl2Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" Height="92">
+        <Grid x:Name="newSectionLvl2Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" Height="92">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="375*" />
                 <ColumnDefinition Width="163*" />

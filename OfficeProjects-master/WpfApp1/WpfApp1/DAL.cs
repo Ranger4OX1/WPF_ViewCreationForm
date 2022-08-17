@@ -252,6 +252,10 @@ namespace WpfApp1
                     DBContext.modtrees.Add(modtre);
                     DBContext.SaveChanges();
                 }
+                else
+                {
+                    MessageBox.Show("null modtre");
+                }
             }
             catch (SqlException ex)
             {
