@@ -85,7 +85,11 @@ namespace WpfApp1
             string secCode = selectedSecLvl1.s1.ToString();
 
             string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,4)= '" + secCode + "' AND LEN(s1)=6";
-            secL2ViewSource.Source = dal.Exec(sql);
+            DataTable temp = dal.Exec(sql);
+            if (temp.Rows.Count != 0)
+                secL2ViewSource.Source = temp;
+            else
+                sysStatLbl.Content = "No Sub-Section Found";
         }
 
         //////

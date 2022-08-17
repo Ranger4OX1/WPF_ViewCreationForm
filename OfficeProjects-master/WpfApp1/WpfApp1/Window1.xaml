@@ -263,7 +263,7 @@
             </Grid>
 
 
-<Grid x:Name="screenButtonsGrid" Grid.Row="2"  Visibility="Visible" Background="WhiteSmoke" Margin="3,0,0,0" >
+            <Grid x:Name="screenButtonsGrid" Grid.Row="2"  Visibility="Visible" Background="WhiteSmoke" Margin="3,0,0,0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -329,7 +329,7 @@
                 <Button x:Name="tab_NTab1" Content="New Tab" Grid.Column="3" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_NTab1_Click"  />
                 <Button x:Name="tab_NTab2" Content="New Tab" Grid.Column="4" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_NTab2_Click" />
                 <Button x:Name="field_FinishBtn" Content="Finish" Grid.Column="7" Style="{StaticResource cmdButton}" Height="23" Click="field_FinishBtn_Click"  />
-                <Button x:Name="field_AddBtn" Content="Add" Grid.Column="6" Style="{StaticResource cmdButton}" Height="23" Click="field_AddBtn_Click"  />
+                <Button x:Name="field_AddBtn" Content="Add" Grid.Column="6" Style="{StaticResource cmdButton}" Height="Auto" Click="field_AddBtn_Click" Margin="16,3,15,3"  />
 
             </Grid>
             <Grid x:Name="dvGrid" Grid.Row="4"  Margin="3,0,2,0" Visibility="Visible"  Background="WhiteSmoke" DataContext="{StaticResource screenDVViewSource}" VerticalAlignment="Top" IsEnabled="False" >
@@ -403,8 +403,8 @@
 
 
             </Grid>
-            
-<Grid x:Name="newTabGrid" Grid.Row="4"  Margin="3,0,2,105" Visibility="Collapsed"  Background="WhiteSmoke" >
+
+            <Grid x:Name="newTabGrid" Grid.Row="4"  Margin="3,0,2,105" Visibility="Collapsed"  Background="WhiteSmoke" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

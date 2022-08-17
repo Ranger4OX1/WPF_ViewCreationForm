@@ -35,6 +35,7 @@ namespace WpfApp1
         private modtree selectedSecLvl1 = new modtree();
         private modtree selectedSecLvl2 = new modtree();
         private modtree selectedScreen = new modtree();
+        private modtree tab = new modtree();
 
         public Window1(modtree mod, modtree secL1, modtree secL2, string state)
         {
@@ -87,8 +88,12 @@ namespace WpfApp1
 
             secInfo_sectionNameLbl.Content = selectedSecLvl1.s2.ToString();
             secInfo_sectionCodeLbl.Content = selectedSecLvl1.s1.ToString();
-            secInfo_subSectionCodeLbl.Content = selectedSecLvl2.s1.ToString();
-            secInfo_subSectionNameLbl.Content = selectedSecLvl2.s2.ToString();
+            if (selectedSecLvl2.n100 != 0 )
+            {
+                secInfo_subSectionCodeLbl.Content = selectedSecLvl2.s1.ToString();
+                secInfo_subSectionNameLbl.Content = selectedSecLvl2.s2.ToString();
+            }
+            
         }
 
         private void ResetControlls()
@@ -122,6 +127,7 @@ namespace WpfApp1
                     vt_3450.Background = Brushes.LightGreen;
                     break;
                 case "rpt":
+                case "RPT":
                     vt_rpt.Background = Brushes.LightGreen;
                     break;
                 default:
@@ -395,7 +401,7 @@ namespace WpfApp1
         private void PopulateModTreGrid()
         {
             string code;
-            if(selectedSecLvl2.n100.ToString() == null)
+            if(selectedSecLvl2.n100 == 0)
             {
                 code = selectedSecLvl1.s1.ToString();
                 modtreeViewSource.Source = dal.Exec("SELECT n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s39, s40, n1  FROM modtree WHERE(s100 = 'SCR' OR s100 = 'RPT') AND LEFT(s1,4)= '" + code + "'");
@@ -410,7 +416,6 @@ namespace WpfApp1
             context.SaveChanges();
             modtreeViewSource.View.Refresh();
         }
-
 
         private void PopulateDVGrid()
         {
@@ -433,7 +438,6 @@ namespace WpfApp1
                 modtreeViewSource.View.Refresh();
             }            
         }
-
 
         //////
         /// SECTION BUTTON CLICK COMMANDS
