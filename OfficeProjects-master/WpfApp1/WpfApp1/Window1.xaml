@@ -431,7 +431,7 @@
 
             </Grid>
 
-            <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="190" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,5,1,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}" VerticalAlignment="Top" IsEnabled="False"/>
+            <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="190" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,5,1,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}" VerticalAlignment="Top" IsEnabled="False" />
         </Grid>
         <Grid x:Name="screenSelectionGrid" Grid.Row="1" Height="auto" Visibility="Collapsed" Margin="0,0,0,0" VerticalAlignment="Top">
             <Grid.RowDefinitions>

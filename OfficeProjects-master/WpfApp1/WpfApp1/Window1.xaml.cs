@@ -582,7 +582,8 @@ namespace WpfApp1
 
         private void mdtreScreen_AddNewBtn_Click(object sender, RoutedEventArgs e)
         {
-            //bool addScrnFlag = false;
+            bool addScrnFlag = false;
+
             //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1
             selectedScreen.s101 = screen_statusComboBox.Text.ToString();
             selectedScreen.s102 = screen_docTypeTextBox.Text.ToString();
@@ -596,9 +597,6 @@ namespace WpfApp1
 
             if ( rules.ScreenValidation(selectedScreen) )
             {
-                dal.AddModtree(selectedScreen);
-                sysStatLbl.Content = "Screen Succesfully Added";
-
                 switch (selectedScreen.s5)
                 {
                     case "3000":
@@ -607,11 +605,32 @@ namespace WpfApp1
                         sysStatLbl.Content = InsertBtns(selectedScreen);
                         modtree main = GetBtnStsTabModtree("main", selectedScreen);
                         dal.AddModtree(main);
-                        //addScrnFlag = true;
+                        addScrnFlag = true;
+                        break; 
+                    case "3050":
+                        selectedScreen.s100 = "SCR";
+                        selectedScreen.s3 = "1";
+                        addScrnFlag = true;
+                        break;
+                    case "3400":
+                        selectedScreen.s100 = "SCR";
+                        selectedScreen.s3 = "0"; 
+                        addScrnFlag = true;
+                        break;
+                    case "RPT":
+                        selectedScreen.s100 = "RPT";
+                        selectedScreen.s102 = "RPT";
+                        selectedScreen.s4 = "RPT";
+                        addScrnFlag = true;
                         break;
                     default:
-                        sysStatLbl.Content = "No ViewType selected";
+                        sysStatLbl.Content = "No View Type selected";
                         break;
+                }
+                if (addScrnFlag)
+                {
+                    dal.AddModtree(selectedScreen);
+                    sysStatLbl.Content = "Screen Succesfully Added";
                 }
             }
             else
@@ -644,6 +663,15 @@ namespace WpfApp1
             SetVTBtn("3050");
             selectedScreen.s5 = "3050";
             sysStatLbl.Content = "3050";
+            // / CMMS / 12 / DISCO / CMPMG / SB01
+            screen_urlTextBox.Text = "/" + selectedModule.s102.ToString() + "/" + selectedModule.s1.ToString() + "/DISCO/" + screen_docTypeTextBox.Text + "/SB01";
+            screen_prevLvlTextBox.Text = screen_screenCodeTextBox.Text.Substring(0, 4);
+
+            screenButtonsGrid.IsEnabled = false;
+            tabsGrid.IsEnabled = false;
+            field_AddBtn.IsEnabled = true;
+            field_FinishBtn.IsEnabled = true;
+            field_updateBtn.IsEnabled = true;
         }
 
         private void vt_3200_Click(object sender, RoutedEventArgs e)
@@ -668,6 +696,15 @@ namespace WpfApp1
             SetVTBtn("3400");
             selectedScreen.s5 = "3400";
             sysStatLbl.Content = "3400";
+            ///CMMS/12/CM04C/TEAM
+            screen_urlTextBox.Text = "/" + selectedModule.s102.ToString() + "/" + selectedModule.s1.ToString() + "/CM04C/" + screen_docTypeTextBox.Text;
+            screen_prevLvlTextBox.Text = screen_screenCodeTextBox.Text.Substring(0, 4);
+
+            screenButtonsGrid.IsEnabled = false;
+            tabsGrid.IsEnabled = false;
+            field_AddBtn.IsEnabled = true;
+            field_FinishBtn.IsEnabled = true;
+            field_updateBtn.IsEnabled = true;
         }
 
         private void vt_3450_Click(object sender, RoutedEventArgs e)
@@ -682,8 +719,10 @@ namespace WpfApp1
         {
             SetVTBtn("");
             SetVTBtn("rpt");
-            selectedScreen.s5 = "rpt";
+            selectedScreen.s5 = "RPT";
             sysStatLbl.Content = "RPT";
+            screen_urlTextBox.Text = "RPT";
+            screen_prevLvlTextBox.Text = screen_screenCodeTextBox.Text.Substring(0, 4);
         }
 
         private string tab31;
