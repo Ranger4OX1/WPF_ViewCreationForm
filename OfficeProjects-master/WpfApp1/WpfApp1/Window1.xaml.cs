@@ -88,7 +88,7 @@ namespace WpfApp1
 
             secInfo_sectionNameLbl.Content = selectedSecLvl1.s2.ToString();
             secInfo_sectionCodeLbl.Content = selectedSecLvl1.s1.ToString();
-            if (selectedSecLvl2.n100 != 0 )
+            if ( (selectedSecLvl2.n100 >= 1) )
             {
                 secInfo_subSectionCodeLbl.Content = selectedSecLvl2.s1.ToString();
                 secInfo_subSectionNameLbl.Content = selectedSecLvl2.s2.ToString();
@@ -151,10 +151,10 @@ namespace WpfApp1
             if (btns[0]) { btns_addCB.IsChecked = true; }
             if (btns[1]) { btns_editCB.IsChecked = true; }
             if (btns[2]) { btns_deleteCB.IsChecked = true; }
-            if (btns[3]) { btns_postCB.Content = true; }
-            if (btns[4]) { btns_previewCB.Content = true; }
-            if (btns[6]) { sts_postedCB.Content = true; }
-            if (btns[5]) { sts_unpostedCB.Content = true; }
+            if (btns[3]) { btns_postCB.IsChecked = true; }
+            if (btns[4]) { btns_previewCB.IsChecked = true; }
+            if (btns[6]) { sts_postedCB.IsChecked = true; }
+            if (btns[5]) { sts_unpostedCB.IsChecked = true; }
         }
         
         private bool[] GetStsBtnGrid()
@@ -190,6 +190,14 @@ namespace WpfApp1
             //STS A   CMMR    03 | 10   1201030106  Unposted0   2   3000                4   12010301    0.00
             //STS A   CMMR    03 | 10   1201030107  Posted  0   4   3100                4   12010301    0.00
             //TAB A   CMMR    03 | 10   1201030108  Main    0               MSHDD       4   12010301    0.00
+            string temp;
+            if (scrn.s1.Length > 6)
+            {
+                temp = "4";
+            }else
+            {
+                temp = "3";
+            }
             switch (pram)
             {
                 case "add":
@@ -204,7 +212,7 @@ namespace WpfApp1
                         result.s3 = "0";
                         result.s4 = "2";
                         result.s5 = scrn.s5;
-                        result.s39 = "4";
+                        result.s39 = temp;
                         result.s40 = scrn.s1;
                     }                    
                     break;
@@ -218,7 +226,7 @@ namespace WpfApp1
                         result.s1 = scrn.s1.ToString() + "02";
                         result.s2 = "Edit";
                         result.s3 = "0";
-                        result.s39 = "4";
+                        result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
                     break;
@@ -233,7 +241,7 @@ namespace WpfApp1
                         result.s2 = "Delete";
                         result.s3 = "0";
                         result.s8 = "glyphicon-trash";
-                        result.s39 = "4";
+                        result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
                     break;
@@ -248,7 +256,7 @@ namespace WpfApp1
                         result.s2 = "Post";
                         result.s3 = "0";
                         result.s8 = "glyphicon-pushpin";
-                        result.s39 = "4";
+                        result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
                     break;
@@ -261,8 +269,8 @@ namespace WpfApp1
                         result.s105 = scrn.s105;
                         result.s1 = scrn.s1.ToString() + "05";
                         result.s2 = "Preview";
-                        result.s3 = "0";
-                        result.s39 = "4";
+                        result.s3 = "0"; 
+                        result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
                     break;
@@ -277,7 +285,7 @@ namespace WpfApp1
                         result.s2 = "Unposted";
                         result.s3 = "0";
                         result.s5 = scrn.s5;//check
-                        result.s39 = "4";
+                        result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
                     break;
@@ -292,7 +300,7 @@ namespace WpfApp1
                         result.s2 = "Posted";
                         result.s3 = "0";
                         result.s5 = "3100";
-                        result.s39 = "4";
+                        result.s39 = temp; 
                         result.s40 = scrn.s1;
                     }
                     break;
@@ -312,7 +320,7 @@ namespace WpfApp1
                         {
                             sysStatLbl.Content = "Pls fill Main s32";
                         }
-                        result.s39 = "4";
+                        result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
                     break;
@@ -323,8 +331,8 @@ namespace WpfApp1
                         result.s101 = scrn.s101;
                         result.s102 = scrn.s102;
                         result.s105 = scrn.s105;
-                        result.s3 = "0";
-                        result.s39 = "4";
+                        result.s3 = "0"; 
+                        result.s39 = temp;
                         result.s40 = scrn.s1;
                     }                        
                     break;
@@ -337,7 +345,7 @@ namespace WpfApp1
 
         private string InsertBtns(modtree scrn)
         {
-            int count = 1;
+            int count = 2;
             modtree mod = new modtree();
 
             bool[] temp = GetStsBtnGrid();
@@ -374,7 +382,6 @@ namespace WpfApp1
             {
                 mod = GetBtnStsTabModtree("preview", scrn);
                 dal.AddModtree(mod);
-                MessageBox.Show("preview");
                 count++;
                 mod = null;
             }
@@ -393,7 +400,7 @@ namespace WpfApp1
                 mod = null;
             }
 
-            return count + "btns and sts inserted";
+            return count + " records inserted";
         }
 
         //////
@@ -401,7 +408,7 @@ namespace WpfApp1
         private void PopulateModTreGrid()
         {
             string code;
-            if(selectedSecLvl2.n100 == 0)
+            if( !string.IsNullOrEmpty( selectedSecLvl2.n100.ToString() ) )
             {
                 code = selectedSecLvl1.s1.ToString();
                 modtreeViewSource.Source = dal.Exec("SELECT n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s39, s40, n1  FROM modtree WHERE(s100 = 'SCR' OR s100 = 'RPT') AND LEFT(s1,4)= '" + code + "'");
@@ -533,14 +540,14 @@ namespace WpfApp1
                 field.s10 = dv_rigixTextBox.Text.ToString();
                 field.s13 = dv_listItemTextBox.Text.ToString();
                 field.s14 = dv_validationTextBox.Text.ToString();
-                field.s31 = dv_tabCdTextBox.Text.ToString();
+                if (tab31 != "") { field.s31 = tab31; } else { sysStatLbl.Content = "Pls select a tab"; }
                 field.s32 = dv_tableNameTextBox.Text.ToString();
                 field.s35 = dv_botstrapTextBox.Text.ToString();
 
                 dal.AddDV(field);
                 sysStatLbl.Content = "Field Succesfully Added";
 
-                DVViewSource.View.Refresh();
+                PopulateDVGrid();
                 dv_nameTextBox.Text = String.Empty;
                 dv_fieldTextBox.Text = String.Empty;
                 dv_dataTypeTextBox.Text = String.Empty;
@@ -563,9 +570,19 @@ namespace WpfApp1
             }             
         }
 
+        private void field_FinishBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void field_updateBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void mdtreScreen_AddNewBtn_Click(object sender, RoutedEventArgs e)
         {
-            bool addScrnFlag = false;
+            //bool addScrnFlag = false;
             //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1
             selectedScreen.s101 = screen_statusComboBox.Text.ToString();
             selectedScreen.s102 = screen_docTypeTextBox.Text.ToString();
@@ -577,27 +594,30 @@ namespace WpfApp1
             selectedScreen.s39 = screen_treelvlTextBox.Text.ToString();
             selectedScreen.s40 = screen_prevLvlTextBox.Text.ToString();
 
-            switch (selectedScreen.s5)
-            {
-                case "3000":
-                    selectedScreen.s100 = "SCR";
-                    selectedScreen.s3 = "1";
-                    sysStatLbl.Content = InsertBtns(selectedScreen);
-                    modtree main = GetBtnStsTabModtree("main", selectedScreen);
-                    dal.AddModtree(main);
-                    addScrnFlag = true;
-                    break;
-                default:
-                    sysStatLbl.Content = "No ViewType selected";
-                    break;
-            }
-
-
-            if (addScrnFlag)
+            if ( rules.ScreenValidation(selectedScreen) )
             {
                 dal.AddModtree(selectedScreen);
-                sysStatLbl.Content = "Screen Succesfully Added"; 
+                sysStatLbl.Content = "Screen Succesfully Added";
+
+                switch (selectedScreen.s5)
+                {
+                    case "3000":
+                        selectedScreen.s100 = "SCR";
+                        selectedScreen.s3 = "1";
+                        sysStatLbl.Content = InsertBtns(selectedScreen);
+                        modtree main = GetBtnStsTabModtree("main", selectedScreen);
+                        dal.AddModtree(main);
+                        //addScrnFlag = true;
+                        break;
+                    default:
+                        sysStatLbl.Content = "No ViewType selected";
+                        break;
+                }
             }
+            else
+            {
+                sysStatLbl.Content = "Screen code already exists";
+            }            
         }
 
         private void vt_3000_Click(object sender, RoutedEventArgs e)
@@ -606,6 +626,8 @@ namespace WpfApp1
             SetVTBtn("3000");
             selectedScreen.s5 = "3000";
             sysStatLbl.Content = "3000";
+            screen_urlTextBox.Text = "/"+ selectedModule.s102.ToString() +"/"+ selectedModule.s1.ToString() +"/VLst/"+ screen_docTypeTextBox.Text +"/SB01";
+            screen_prevLvlTextBox.Text = screen_screenCodeTextBox.Text.Substring(0, 4);
         }
 
         private void vt_3100_Click(object sender, RoutedEventArgs e)
@@ -664,6 +686,7 @@ namespace WpfApp1
             sysStatLbl.Content = "RPT";
         }
 
+        private string tab31;
         private void tab_Master_Click(object sender, RoutedEventArgs e)
         {
             field.s107 = "M";
@@ -674,7 +697,7 @@ namespace WpfApp1
         {
             field.s107 = "D";
             sysStatLbl.Content = "Detail tab Selected";
-
+            tab31 = selectedScreen.s1.ToString() + "08";
         }
 
         private int tempTabBtn = 0;
@@ -694,6 +717,7 @@ namespace WpfApp1
             {
                 field.s107 = tab_NTab1.Content.ToString();
                 sysStatLbl.Content = tab_NTab1.Content.ToString() + "tab Selected";
+                tab31 = selectedScreen.s1.ToString() + "099";
             }
         }
         private void tab_NTab2_Click(object sender, RoutedEventArgs e)
@@ -710,7 +734,7 @@ namespace WpfApp1
             {
                 field.s107 = tab_NTab2.Content.ToString();
                 sysStatLbl.Content = tab_NTab2.Content.ToString() + "tab Selected";
-
+                tab31 = selectedScreen.s1.ToString() + "10";
             }
         }
 
@@ -745,9 +769,5 @@ namespace WpfApp1
             tabsGrid.IsEnabled = dvGrid.IsEnabled = DVgrid.IsEnabled = true;
         }
 
-        private void field_FinishBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

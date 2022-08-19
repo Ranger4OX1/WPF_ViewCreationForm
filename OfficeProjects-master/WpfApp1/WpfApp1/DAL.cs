@@ -45,11 +45,19 @@ namespace WpfApp1
 
         public modtree GetRecord(string sVal)
         {
-            using (var ctx = new DBEntities())
+            try
             {
-                var mods = ctx.modtrees
-                                .Where(s => s.s1 == sVal).First();
-                return mods;
+                using (var ctx = new DBEntities())
+                {
+                    var mods = ctx.modtrees
+                                    .Where(s => s.s1 == sVal).First();
+                    return mods;
+                }
+            }
+            catch (Exception)
+            {
+                modtree mod = new modtree();
+                return mod;
             }
         }
 
@@ -61,6 +69,7 @@ namespace WpfApp1
                 entry.s1 = secCode;
                 entry.s2 = secName;
                 entry.s3 = "1";
+                entry.s4 = "A";
                 entry.s39 = "1";
                 entry.s100 = "SEC";
                 entry.s102 = module.s102.ToString();
@@ -180,12 +189,12 @@ namespace WpfApp1
         ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
-            string sql = @"Data Source = localhost;
-                            Initial Catalog = LocalMaster;
-                            Integrated Security = true ";
-            //string sql = @"Data Source = 172.16.1.10;
-            //                Initial Catalog = PearlErpMaster;
-            //                UID = sa; Pwd = Pearl@2016;";
+            //string sql = @"Data Source = localhost;
+            //                Initial Catalog = LocalMaster;
+            //                Integrated Security = true ";
+            string sql = @"Data Source = 172.16.1.10;
+                            Initial Catalog = PearlErpMaster;
+                            UID = sa; Pwd = Pearl@2016;";
             conn = new SqlConnection(sql);
             try
             {
@@ -199,6 +208,27 @@ namespace WpfApp1
                 //throw;
             }
             return conn;
+        }
+
+        /// <summary>
+        /// "select * from " + tableName + " where " + column1 + " = " + where1
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="column1"></param>
+        /// <param name="where1"></param>
+        /// <returns> TRUE IF NO RECORD FOUND </returns>
+        public bool IsUnique(string tableName, string column1, string where1)//, string column2, string where2)
+        {
+            string sql = "select * from " + tableName + " where " + column1 + " = " + where1;
+            //+ " and " + column2 + " = " + where2;
+
+            DataTable result = Exec(sql);
+
+            if (result.Rows.Count >= 1)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void CloseConn()
@@ -264,6 +294,7 @@ namespace WpfApp1
             }
             
         } 
+
         public void AddDV(dv dvData)
         {
             try

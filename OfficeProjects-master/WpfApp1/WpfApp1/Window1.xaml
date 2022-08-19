@@ -328,8 +328,9 @@
                 <Button x:Name="tab_Detail" Content="Detail" Grid.Column="2" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_Detail_Click"  />
                 <Button x:Name="tab_NTab1" Content="New Tab" Grid.Column="3" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_NTab1_Click"  />
                 <Button x:Name="tab_NTab2" Content="New Tab" Grid.Column="4" Style="{StaticResource VTButton}" Margin="6,3,6,3" Background="#FFCAC4CC" FontWeight="Normal" FontFamily="Cascadia Code" FontSize="16" Click="tab_NTab2_Click" />
+                <Button x:Name="field_updateBtn" Content="Update" Grid.Column="5" Style="{StaticResource cmdButton}" Height="Auto" Click="field_updateBtn_Click" Margin="16,3,15,3"  />
                 <Button x:Name="field_FinishBtn" Content="Finish" Grid.Column="7" Style="{StaticResource cmdButton}" Height="23" Click="field_FinishBtn_Click"  />
-                <Button x:Name="field_AddBtn" Content="Add" Grid.Column="6" Style="{StaticResource cmdButton}" Height="Auto" Click="field_AddBtn_Click" Margin="16,3,15,3"  />
+                <Button x:Name="field_AddBtn" Content="Add" Grid.Column="6" Style="{StaticResource cmdButton}" Height="23" Click="field_AddBtn_Click" Margin="16,0,15,3" VerticalAlignment="Bottom"  />
 
             </Grid>
             <Grid x:Name="dvGrid" Grid.Row="4"  Margin="3,0,2,0" Visibility="Visible"  Background="WhiteSmoke" DataContext="{StaticResource screenDVViewSource}" VerticalAlignment="Top" IsEnabled="False" >
@@ -363,7 +364,7 @@
 
                 <Label Content="Tab Code :" Grid.Column="1" Grid.Row="1" Style="{StaticResource Label}" />
                 <TextBox x:Name="dv_tabCdTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="1"                
-                     Text="{Binding s31, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                     Text="{Binding s31, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" />
 
                 <Label Content="Table Name:" Grid.Column="2" Grid.Row="1" Style="{StaticResource Label}" />
                 <TextBox x:Name="dv_tableNameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="1"                

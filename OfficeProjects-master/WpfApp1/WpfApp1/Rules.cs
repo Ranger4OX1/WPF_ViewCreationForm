@@ -76,6 +76,17 @@ namespace WpfApp1
             return false;
         }
 
+        public bool ScreenValidation(modtree screen)
+        {
+            string s1 = "'"+ screen.s1.ToString() +"'";
+            if ( dal.IsUnique("modtree", "s1", s1) )
+            {
+                MessageBox.Show("true");
+                return true;
+            }
+            return false;
+        }
+
     }
 
     /// <AUTHOR>                                    ///
