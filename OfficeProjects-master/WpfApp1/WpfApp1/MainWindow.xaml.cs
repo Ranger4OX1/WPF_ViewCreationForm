@@ -68,7 +68,7 @@ namespace WpfApp1
         ///GRID DATA GET METHODS
         private void PopulateModTreGrid()
         {
-            modtreeViewSource.Source = dal.Exec("select n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1 from modtree where s100 = 'MOD' order by s1");
+            modtreeViewSource.Source = dal.Exec("select n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1 from modtree where s100 = 'MOD' order by s1");
             //modtreeViewSource.View.Refresh();         
 
         }
@@ -76,7 +76,7 @@ namespace WpfApp1
         private void PopulateModuleGrid()
         { 
             string modCode = selectedModule.s1.ToString().Substring(0, 2);
-            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,2)= '" + modCode + "' AND LEN(s1)= 4 ORDER BY s1 DESC";
+            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,2)= '" + modCode + "' AND LEN(s1)= 4 ORDER BY s1 DESC";
             modViewSource.Source = dal.Exec(sql);
         }
 
@@ -84,7 +84,7 @@ namespace WpfApp1
         {
             string secCode = selectedSecLvl1.s1.ToString();
 
-            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s8, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,4)= '" + secCode + "' AND LEN(s1)=6";
+            string sql = "SELECT n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,4)= '" + secCode + "' AND LEN(s1)=6";
             DataTable temp = dal.Exec(sql);
             if (temp.Rows.Count != 0)
                 secL2ViewSource.Source = temp;
@@ -313,20 +313,31 @@ namespace WpfApp1
         private void addSecLvl1Button_Click(object sender, RoutedEventArgs e)
         {
             if (( newSectionLvl1_sectionNameTextBox.Text.ToString() != "" ) && 
-                ( newSectionLvl1_sectionCodeTextBox.Text.ToString() != "" ) )
+                ( newSectionLvl1_sectionCodeTextBox.Text.ToString() != "" ) &&
+                ( newSectionLvl1_menuTypeComboBox.Text.ToString() != "")     )
             {
                 ///Checks if section lvl 1 code has the first 2 digits of the module code and has a len of 4 and checks if the code already exists in the database
                 string modCode = selectedModule.s1.ToString().Substring(0, 2);
                 if ( (newSectionLvl1_sectionCodeTextBox.Text.Substring(0,2) == modCode) && (newSectionLvl1_sectionCodeTextBox.Text.Length == 4) && (rules.IsUnique(selectedModule.s1.ToString(), newSectionLvl1_sectionCodeTextBox.Text,1) == true) )
                 {
-                    dal.InsertSectionLvl1(selectedModule, newSectionLvl1_sectionNameTextBox.Text, newSectionLvl1_sectionCodeTextBox.Text);
-                    newSectionLvl2Grid.IsEnabled = true;
-                    addScreenButton.Visibility = visible;
-
+                    //dal.InsertSectionLvl1(selectedModule, newSectionLvl1_sectionNameTextBox.Text, newSectionLvl1_sectionCodeTextBox.Text);
                     selectedSecLvl1.s1 = newSectionLvl1_sectionCodeTextBox.Text;
                     selectedSecLvl1.s2 = newSectionLvl1_sectionNameTextBox.Text;
+                    selectedSecLvl1.s3 = "1";
+                    selectedSecLvl1.s4 = "A";
+                    selectedSecLvl1.s7 = newSectionLvl1_menuTypeComboBox.Text;
+                    selectedSecLvl1.s14 = "1";
+                    selectedSecLvl1.s39 = "1";
+                    selectedSecLvl1.s100 = "SEC";
+                    selectedSecLvl1.s102 = "SEC";
+                    selectedSecLvl1.s101 = selectedModule.s101;
+                    selectedSecLvl1.s105 = selectedModule.s105;
+                    selectedSecLvl1.s40 = selectedModule.s1.ToString().Substring(0, 2);
 
-                    sysStatLbl.Content = "Section " + selectedSecLvl1 + " added";
+                    dal.AddModtree(selectedSecLvl1);
+                    newSectionLvl2Grid.IsEnabled = true;
+
+                    sysStatLbl.Content = "Section " + selectedSecLvl1.s2 + " added";
 
                     moduleDataGrid.Visibility = visible;
                     newSectionLvl1Grid.Visibility = Visibility.Collapsed;
@@ -348,24 +359,35 @@ namespace WpfApp1
         private void addSecLvl2Button_Click(object sender, RoutedEventArgs e)
         { 
 
-            if (!string.IsNullOrEmpty(newSectionLvl2_sectionNameTextBox.Text) && !string.IsNullOrEmpty(newSectionLvl2_sectionCodeTextBox.Text))
+            if (!string.IsNullOrEmpty(newSectionLvl2_sectionNameTextBox.Text) && !string.IsNullOrEmpty(newSectionLvl2_sectionCodeTextBox.Text) && (!string.IsNullOrEmpty(newSectionLvl2_menuTypeComboBox.Text)))
             {
                 ///Checks if section lvl 2 code has the first 4 digits of sec lvl 1 and has a len of 6
-                string modCode = selectedSecLvl1.s1.ToString();
-                if ( (newSectionLvl2_sectionCodeTextBox.Text.Substring(0, 4) == modCode) && (newSectionLvl2_sectionCodeTextBox.Text.Length == 6 ) && (rules.IsUnique(selectedModule.s1.ToString(), newSectionLvl2_sectionCodeTextBox.Text, 2) == true) )
+                if ( (newSectionLvl2_sectionCodeTextBox.Text.Substring(0, 4) == selectedSecLvl1.s1) && (newSectionLvl2_sectionCodeTextBox.Text.Length == 6 ) && (rules.IsUnique(selectedModule.s1.ToString(), newSectionLvl2_sectionCodeTextBox.Text, 2) == true) )
                 {
-
                     selectedSecLvl2.s1 = newSectionLvl2_sectionCodeTextBox.Text;
                     selectedSecLvl2.s2 = newSectionLvl2_sectionNameTextBox.Text;
-                    dal.InsertSectionLvl2(selectedModule, newSectionLvl2_sectionNameTextBox.Text, newSectionLvl2_sectionCodeTextBox.Text);
+                    selectedSecLvl2.s3 = "1";
+                    selectedSecLvl2.s4 = "A";
+                    selectedSecLvl2.s7 = newSectionLvl2_menuTypeComboBox.Text;
+                    selectedSecLvl2.s14 = "1";
+                    selectedSecLvl2.s39 = "2";
+                    selectedSecLvl2.s100 = "SEC";
+                    selectedSecLvl2.s102 = "SEC";
+                    selectedSecLvl2.s101 = selectedModule.s101;
+                    selectedSecLvl2.s105 = selectedModule.s105;
+                    selectedSecLvl2.s40 = selectedSecLvl1.s1;
 
-                    sysStatLbl.Content = "Section " + selectedSecLvl2 + " added";
+                    dal.AddModtree(selectedSecLvl2);
+                    //dal.InsertSectionLvl2(selectedModule, newSectionLvl2_sectionNameTextBox.Text, newSectionLvl2_sectionCodeTextBox.Text);
 
-                    secLvl2DataGrid.Visibility = visible;
-                    newSectionLvl2Grid.Visibility = Visibility.Collapsed;
-                    selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = true;
+                    sysStatLbl.Content = "Section " + selectedSecLvl2.s2 + " added";
+
                     PopulatesecLvl2ViewSource();
-                    secL2ViewSource.View.Refresh();
+                    secLvl2DataGrid.Visibility = visible;
+                    newSectionLvl2Grid.Visibility = Visibility.Visible;
+                    selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = true;
+
+                    
                 }
                 else
                 {
@@ -398,15 +420,17 @@ namespace WpfApp1
                 {
                     modtree mt = new modtree()
                     {
+                        //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1
                         s100 = childTypeComboBox.Text,
                         s101 = statusComboBox.Text,
                         s102 = docTypeTextBox.Text,
                         s105 = productCodeTextBox.Text,
                         s1 = moduleCodeTextBox.Text,
                         s2 = moduleNameTextBox.Text,
-                        s4 = moduleURlTextBox.Text,
                         s3 = parentComboBox.Text,
-                        s8 = moduleImgTextBox.Text,
+                        s4 = moduleURlTextBox.Text,
+                        s7 = "MOD",
+                        s14 = "1",
                         s39 = treeLvlTextBox.Text,
                         s40 = prevLvlTextBox.Text,
                         n1 = Convert.ToDecimal(displayOrderTextBox.Text)
@@ -489,19 +513,8 @@ namespace WpfApp1
             sysStatLbl.Content = "Section  Selected";
 
             PopulatesecLvl2ViewSource();
-            //DataTable temp = dal.Exec("SELECT n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1 FROM modtree WHERE s100 = 'SEC' AND LEFT(s1,4)= '" + sec_secCodeTextBox.Text + "'");
-            //if (temp.Rows.Count > 0)
-            //{
-            //    selctSecL2Grid.IsEnabled = true;
-            //    moduleDataGrid.Visibility = Visibility.Collapsed;
-            //    secLvl2DataGrid.Visibility = visible;
-            //    PopulatesecLvl2ViewSource();
-            //    selSecCntrl_ssL2Btn.IsEnabled = true;
-            //}
-            //else
-            //{
-            //    sysStatLbl.Content = "No Sub-Section Available";
-            //}
+            moduleDataGrid.Visibility = Visibility.Collapsed ;
+            secLvl2DataGrid.Visibility = visible;
             scrnCntlBtnGrid.IsEnabled = true;
             selSecCntrl_addSecL2Btn.IsEnabled = true;
         }

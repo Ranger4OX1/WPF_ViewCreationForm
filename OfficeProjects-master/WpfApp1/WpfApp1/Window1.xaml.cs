@@ -212,6 +212,8 @@ namespace WpfApp1
                         result.s3 = "0";
                         result.s4 = "2";
                         result.s5 = scrn.s5;
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         result.s39 = temp;
                         result.s40 = scrn.s1;
                     }                    
@@ -226,6 +228,8 @@ namespace WpfApp1
                         result.s1 = scrn.s1.ToString() + "02";
                         result.s2 = "Edit";
                         result.s3 = "0";
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
@@ -240,6 +244,8 @@ namespace WpfApp1
                         result.s1 = scrn.s1.ToString() + "03";
                         result.s2 = "Delete";
                         result.s3 = "0";
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         result.s8 = "glyphicon-trash";
                         result.s39 = temp;
                         result.s40 = scrn.s1;
@@ -255,6 +261,8 @@ namespace WpfApp1
                         result.s1 = scrn.s1.ToString() + "04";
                         result.s2 = "Post";
                         result.s3 = "0";
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         result.s8 = "glyphicon-pushpin";
                         result.s39 = temp;
                         result.s40 = scrn.s1;
@@ -270,7 +278,9 @@ namespace WpfApp1
                         result.s1 = scrn.s1.ToString() + "05";
                         result.s2 = "Preview";
                         result.s3 = "0"; 
-                        result.s39 = temp;
+                        result.s39 = temp; 
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         result.s40 = scrn.s1;
                     }
                     break;
@@ -285,6 +295,8 @@ namespace WpfApp1
                         result.s2 = "Unposted";
                         result.s3 = "0";
                         result.s5 = scrn.s5;//check
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
@@ -300,6 +312,8 @@ namespace WpfApp1
                         result.s2 = "Posted";
                         result.s3 = "0";
                         result.s5 = "3100";
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         result.s39 = temp; 
                         result.s40 = scrn.s1;
                     }
@@ -314,6 +328,8 @@ namespace WpfApp1
                         result.s1 = scrn.s1.ToString() + "08";
                         result.s2 = "Main";
                         result.s3 = "0";
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         if (!string.IsNullOrEmpty(mains32TextBox.Text))
                             result.s32 = mains32TextBox.Text;
                         else
@@ -331,7 +347,9 @@ namespace WpfApp1
                         result.s101 = scrn.s101;
                         result.s102 = scrn.s102;
                         result.s105 = scrn.s105;
-                        result.s3 = "0"; 
+                        result.s3 = "0";
+                        result.s7 = scrn.s7;
+                        result.s14 = "1";
                         result.s39 = temp;
                         result.s40 = scrn.s1;
                     }                        
@@ -562,7 +580,6 @@ namespace WpfApp1
                 dv_tabCdTextBox.Text = String.Empty;
                 dv_tableNameTextBox.Text = String.Empty;
                 dv_botstrapTextBox.Text = String.Empty;
-
             }
             else
             {
@@ -591,9 +608,15 @@ namespace WpfApp1
             selectedScreen.s1 = screen_screenCodeTextBox.Text.ToString();
             selectedScreen.s2 = screen_screenNameTextBox.Text.ToString();
             selectedScreen.s4 = screen_urlTextBox.Text.ToString();
+            selectedScreen.s7 = screen_menuTypeComboBox.Text.ToString();
+            selectedScreen.s14 = "1";
             selectedScreen.s32 = screen_tableNameTextBox.Text.ToString();
             selectedScreen.s39 = screen_treelvlTextBox.Text.ToString();
-            selectedScreen.s40 = screen_prevLvlTextBox.Text.ToString();
+
+            if (selectedSecLvl2.n100 != 0)
+                selectedScreen.s40 = screen_screenCodeTextBox.Text.Substring(0, 4);
+            else
+                selectedScreen.s40 = screen_screenCodeTextBox.Text.Substring(0,6);
 
             if ( rules.ScreenValidation(selectedScreen) )
             {
@@ -620,7 +643,13 @@ namespace WpfApp1
                     case "RPT":
                         selectedScreen.s100 = "RPT";
                         selectedScreen.s102 = "RPT";
+                        selectedScreen.s3 = "0";
                         selectedScreen.s4 = "RPT";
+                        selectedScreen.s5 = "RPT";
+                        selectedScreen.s7 = "RPTS";
+                        selectedScreen.s35 = "1";
+
+
                         addScrnFlag = true;
                         break;
                     default:
@@ -646,7 +675,6 @@ namespace WpfApp1
             selectedScreen.s5 = "3000";
             sysStatLbl.Content = "3000";
             screen_urlTextBox.Text = "/"+ selectedModule.s102.ToString() +"/"+ selectedModule.s1.ToString() +"/VLst/"+ screen_docTypeTextBox.Text +"/SB01";
-            screen_prevLvlTextBox.Text = screen_screenCodeTextBox.Text.Substring(0, 4);
         }
 
         private void vt_3100_Click(object sender, RoutedEventArgs e)
@@ -665,7 +693,6 @@ namespace WpfApp1
             sysStatLbl.Content = "3050";
             // / CMMS / 12 / DISCO / CMPMG / SB01
             screen_urlTextBox.Text = "/" + selectedModule.s102.ToString() + "/" + selectedModule.s1.ToString() + "/DISCO/" + screen_docTypeTextBox.Text + "/SB01";
-            screen_prevLvlTextBox.Text = screen_screenCodeTextBox.Text.Substring(0, 4);
 
             screenButtonsGrid.IsEnabled = false;
             tabsGrid.IsEnabled = false;
@@ -698,7 +725,6 @@ namespace WpfApp1
             sysStatLbl.Content = "3400";
             ///CMMS/12/CM04C/TEAM
             screen_urlTextBox.Text = "/" + selectedModule.s102.ToString() + "/" + selectedModule.s1.ToString() + "/CM04C/" + screen_docTypeTextBox.Text;
-            screen_prevLvlTextBox.Text = screen_screenCodeTextBox.Text.Substring(0, 4);
 
             screenButtonsGrid.IsEnabled = false;
             tabsGrid.IsEnabled = false;
@@ -722,7 +748,14 @@ namespace WpfApp1
             selectedScreen.s5 = "RPT";
             sysStatLbl.Content = "RPT";
             screen_urlTextBox.Text = "RPT";
-            screen_prevLvlTextBox.Text = screen_screenCodeTextBox.Text.Substring(0, 4);
+            menuTypeGrid.Visibility = Visibility.Collapsed;
+            reportCaseGrid.Visibility = visible;
+            screen_tableNameTextBox.IsEnabled = false;
+            screen_reportCaseTextBox.Text = screen_screenCodeTextBox.Text;
+            screen_docTypeTextBox.Text = "RPT";
+
+            screenButtonsGrid.IsEnabled = tabsGrid.IsEnabled = false;
+            field_AddBtn.IsEnabled = field_FinishBtn.IsEnabled = field_updateBtn.IsEnabled = true;
         }
 
         private string tab31;

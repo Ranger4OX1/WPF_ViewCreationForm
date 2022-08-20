@@ -223,10 +223,41 @@
                 <TextBox x:Name="screen_screenCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="1"
                 Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />
 
-                <Label Content="Pre Lvl:" Grid.Column="2" Grid.Row="1"  Style="{StaticResource Label}" Margin="2,0,0,0" />
+                <!--<Label Content="Pre Lvl:" Grid.Column="2" Grid.Row="1"  Style="{StaticResource Label}" Margin="2,0,0,0" />
                 <TextBox x:Name="screen_prevLvlTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="1"
-                Text="{Binding s40, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                Text="{Binding s40, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />-->
 
+                <Grid x:Name="menuTypeGrid" Grid.Column="2" Grid.Row="1"  Visibility="Visible" Background="WhiteSmoke" Margin="3,0,0,0" VerticalAlignment="Top" >
+                    <Label Content="Menu Type:"  Style="{StaticResource Label}" Margin="3,0,0,0"/>
+                    <ComboBox x:Name="screen_menuTypeComboBox" Grid.Column="2" Grid.Row="1" Style="{StaticResource ComboBox}" Text="{Binding s7}" HorizontalAlignment="Right"  Width="150"  >
+                        <ComboBoxItem Content="ACTS"/>
+                        <ComboBoxItem Content="SMT"/>
+                        <ComboBoxItem Content="DOCS"/>
+                        <ComboBoxItem Content="MF"/>
+                        <ComboBoxItem Content="IS"/>
+                        <ComboBoxItem Content="TRAN"/>
+                        <ComboBoxItem Content="CONF"/>
+                        <ComboBoxItem Content="DSHB"/>
+                        <ComboBoxItem Content="CDFL"/>
+                        <ComboBoxItem Content="RPTS"/>
+                        <ComboBoxItem Content="SCR"/>
+                        <ComboBoxItem Content="TRNS"/>
+                        <ComboBoxItem Content="DISCO"/>
+                        <ComboBoxItem Content="Initial Setup"/>
+                        <ComboBoxItem Content="IMF"/>
+                        <ComboBoxItem Content="RPT"/>
+                        <ComboBoxItem Content="NULL"/>
+                        <ComboBoxItem Content="SEC"/>
+                    </ComboBox>
+
+                </Grid>
+                <Grid x:Name="reportCaseGrid" Grid.Column="2" Grid.Row="1"  Visibility="Collapsed" Background="WhiteSmoke" Margin="3,0,0,0" VerticalAlignment="Top" >
+                    <Label Content="Report case:"  Style="{StaticResource Label}" Margin="3,0,0,0"/>
+                    <TextBox x:Name="screen_reportCaseTextBox" Style="{StaticResource TextBox}"
+                Text="{Binding s21, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />
+
+                </Grid>
+                
                 <Label Content="Table Name:" Grid.Column="3" Grid.Row="1"  Style="{StaticResource Label}" Margin="2,0,0,0" />
                 <TextBox x:Name="screen_tableNameTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="1"
                 Text="{Binding s32, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />

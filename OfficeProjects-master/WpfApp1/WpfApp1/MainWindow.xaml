@@ -115,7 +115,7 @@
             <Button Name="btnSelectModule" Content="Select/Edit Module" Command="{StaticResource SelectModuleCommand}" FontSize="11" Width="100" Style="{StaticResource NavButton}" />
             <Button Content="Cancel" Name="btnCancel" Command="{StaticResource CancelCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
             <Button Content="Refresh Data" Name="btnPopMTGrir" Command="{StaticResource RefreshCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}" />
-            <Label x:Name="sysStatLbl" Content="System Status" Width="230" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="281,0,0,0" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" />
+            <Label x:Name="sysStatLbl" Content="System Status" Width="280" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="275,0,0,0" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" />
 
             <!--<Button Name="btnDelete" Content="Delete Module" Command="{StaticResource DeleteModuleCommand}" FontSize="11" Width="120" Style="{StaticResource NavButton}"/>-->
             <!--<Button Name="btnUpdate" Content="Commit" Command="{StaticResource UpdateCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>-->
@@ -207,7 +207,7 @@
 
 
         </Grid>
-        <Grid x:Name="newSectionLvl1Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Grid.RowSpan="2" Height="88">
+        <Grid x:Name="newSectionLvl1Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Grid.RowSpan="2" Height="88">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -218,43 +218,87 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Section Level 1:" Grid.Row="0" Style="{StaticResource Label}" Margin="3,0,0,0" Height="auto" Width="auto" HorizontalAlignment="Center"/>
+            <Label Content="Section Level 1:" Grid.Row="0" Style="{StaticResource Label}" Margin="3,0,0,0"  HorizontalAlignment="Center"/>
 
-            <Label Content="Section Name:" Grid.Row="1" Style="{StaticResource Label}" Margin="3,0,0,0" Height="auto" Width="auto"/>
+            <Label Content="Section Name:" Grid.Row="1" Style="{StaticResource Label}" Margin="3,0,0,0"/>
             <TextBox x:Name="newSectionLvl1_sectionNameTextBox" Grid.Row="1" Style="{StaticResource TextBox}"
-                  Text="{Binding s2, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="108,0,0,0" HorizontalAlignment="Left" Width="250" Height="28" />
+                  Text="{Binding s2, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="108,0,0,0" Width="250" />
 
-            <Label Content="Section Code:" Grid.Row="2" Style="{StaticResource Label}" Margin="3,0,0,0" Height="auto" Width="auto"/>
+            <Label Content="Section Code:" Grid.Row="2" Style="{StaticResource Label}" Margin="3,0,0,0"/>
             <TextBox x:Name="newSectionLvl1_sectionCodeTextBox" Grid.Row="2" Style="{StaticResource TextBox}"
-                  Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="108,0,0,0"  HorizontalAlignment="Left" Height="28" Width="250" />
-            <Button Grid.Column="1" Grid.Row="1" Content="Add Section" HorizontalAlignment="Center" Style="{StaticResource cmdButton}" VerticalAlignment="Center" Click="addSecLvl1Button_Click" Height="24" Width="130" >
+                  Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="108,0,0,0" Width="250" />
+
+            <Label Content="Menu Type:" Grid.Column="1" Grid.Row="1" Style="{StaticResource Label}" Margin="3,0,0,0"/>
+            <ComboBox x:Name="newSectionLvl1_menuTypeComboBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource ComboBox}" Text="{Binding s7}" HorizontalAlignment="Left" Margin="196,0,0,0" Width="178"  >
+                <ComboBoxItem Content="ACTS"/>
+                <ComboBoxItem Content="SMT"/>
+                <ComboBoxItem Content="DOCS"/>
+                <ComboBoxItem Content="MF"/>
+                <ComboBoxItem Content="IS"/>
+                <ComboBoxItem Content="TRAN"/>
+                <ComboBoxItem Content="CONF"/>
+                <ComboBoxItem Content="DSHB"/>
+                <ComboBoxItem Content="CDFL"/>
+                <ComboBoxItem Content="RPTS"/>
+                <ComboBoxItem Content="SCR"/>
+                <ComboBoxItem Content="TRNS"/>
+                <ComboBoxItem Content="DISCO"/>
+                <ComboBoxItem Content="Initial Setup"/>
+                <ComboBoxItem Content="IMF"/>
+                <ComboBoxItem Content="RPT"/>
+                <ComboBoxItem Content="NULL"/>
+                <ComboBoxItem Content="SEC"/>
+            </ComboBox>
+
+            <Button Grid.Column="2" Grid.Row="1" Content="Add Section" HorizontalAlignment="Center" Style="{StaticResource cmdButton}" VerticalAlignment="Center" Click="addSecLvl1Button_Click" Height="24" Width="130" >
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuColorKey}}"/>
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid x:Name="newSectionLvl2Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" Height="92">
+        <Grid x:Name="newSectionLvl2Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource secLvl2ViewSource}" Grid.RowSpan="2" Height="100">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="375*" />
-                <ColumnDefinition Width="163*" />
-                <ColumnDefinition Width="212*"/>
-                <ColumnDefinition Width="375*" MinWidth="200" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" MinWidth="200" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Section Level 2:" Style="{StaticResource Label}" Margin="133,0,0,0" Height="auto" Width="auto"/>
+            <Label Content="Section Level 2:" Style="{StaticResource Label}"  Width="112" HorizontalAlignment="Center"/>
 
-            <Label Content="Section Name:" Grid.Row="1" Style="{StaticResource Label}" Margin="3,0,0,0" Height="auto" Width="auto"/>
+            <Label Content="Section Name:" Grid.Row="1" Style="{StaticResource Label}"  Width="105"/>
             <TextBox x:Name="newSectionLvl2_sectionNameTextBox" Grid.Row="1" Style="{StaticResource TextBox}"
-                  Text="{Binding s2, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="108,0,0,0" HorizontalAlignment="Left" Width="250" Height="28" />
+                  Text="{Binding s2, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" />
 
-            <Label Content="Section Code:" Grid.Row="2" Style="{StaticResource Label}" Margin="3,0,0,0" Height="auto" Width="auto"/>
+            <Label Content="Section Code:" Grid.Row="2" Style="{StaticResource Label}"  Width="100"/>
             <TextBox x:Name="newSectionLvl2_sectionCodeTextBox" Grid.Row="2" Style="{StaticResource TextBox}"
-                  Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="108,0,0,0" HorizontalAlignment="Left" Height="28" Width="250" />
-            <Button Grid.Column="1" Grid.Row="1" Content="Add Section" HorizontalAlignment="Left" Style="{StaticResource cmdButton}" VerticalAlignment="Center" Click="addSecLvl2Button_Click" Height="24" Width="130" Grid.ColumnSpan="2" Margin="123,0,0,0" >
+                  Text="{Binding s1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="250" />
+
+            <Label Content="Menu Type:" Grid.Column="1" Grid.Row="1" Style="{StaticResource Label}" Margin="3,0,0,0"/>
+            <ComboBox x:Name="newSectionLvl2_menuTypeComboBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource ComboBox}" Text="{Binding s7}" HorizontalAlignment="Left" Margin="196,0,0,0" Width="178"  >
+                <ComboBoxItem Content="ACTS"/>
+                <ComboBoxItem Content="SMT"/>
+                <ComboBoxItem Content="DOCS"/>
+                <ComboBoxItem Content="MF"/>
+                <ComboBoxItem Content="IS"/>
+                <ComboBoxItem Content="TRAN"/>
+                <ComboBoxItem Content="CONF"/>
+                <ComboBoxItem Content="DSHB"/>
+                <ComboBoxItem Content="CDFL"/>
+                <ComboBoxItem Content="RPTS"/>
+                <ComboBoxItem Content="SCR"/>
+                <ComboBoxItem Content="TRNS"/>
+                <ComboBoxItem Content="DISCO"/>
+                <ComboBoxItem Content="Initial Setup"/>
+                <ComboBoxItem Content="IMF"/>
+                <ComboBoxItem Content="RPT"/>
+                <ComboBoxItem Content="NULL"/>
+                <ComboBoxItem Content="SEC"/>
+            </ComboBox>
+            <Button Grid.Column="2" Grid.Row="1" Content="Add Section" Style="{StaticResource cmdButton}" Click="addSecLvl2Button_Click" Height="24" Width="130" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuColorKey}}"/>
                 </Button.Background>

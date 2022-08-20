@@ -61,6 +61,60 @@ namespace WpfApp1
             }
         }
 
+        public dv GetDVRecord(dv dvRec)
+        {
+            try
+            {
+                using (var ctx = new DBEntities())
+                {
+                    var mods = ctx.dvs.Where(s => s.s100 == dvRec.s100 && s.s107 == dvRec.s107 && s.s1 == dvRec.s1 && s.s31 == dvRec.s31).First();
+                                    
+                    return mods;
+                }
+            }
+            catch (Exception)
+            {
+                dv mod = new dv();
+                return mod;
+            }
+        }
+
+        public modtreetran GetMTTRecord(string sVal)
+        {
+            try
+            {
+                using (var ctx = new DBEntities())
+                {
+                    var mods = ctx.modtreetrans
+                                    .Where(s => s.s1 == sVal).First();
+                    return mods;
+                }
+            }
+            catch (Exception)
+            {
+                modtreetran mod = new modtreetran();
+                return mod;
+            }
+        }
+
+        public dvtran GetDVTRecord(string sVal)
+        {
+            try
+            {
+                using (var ctx = new DBEntities())
+                {
+                    var mods = ctx.dvtrans
+                                    .Where(s => s.s1 == sVal).First();
+                    return mods;
+                }
+            }
+            catch (Exception)
+            {
+                dvtran mod = new dvtran();
+                return mod;
+            }
+        }
+
         public void InsertSectionLvl1(modtree module, string secName, string secCode)
         {
             try
@@ -72,7 +126,7 @@ namespace WpfApp1
                 entry.s4 = "A";
                 entry.s39 = "1";
                 entry.s100 = "SEC";
-                entry.s102 = module.s102.ToString();
+                entry.s102 = "SEC";
                 entry.s101 = module.s101;
                 entry.s105 = module.s105;
                 entry.s40 = module.s1.ToString().Substring(0, 2);
@@ -279,7 +333,20 @@ namespace WpfApp1
             {
                 if (modtre != null)
                 {
-                    DBContext.modtrees.Add(modtre);
+                    DBContext.modtrees.Add(modtre);                    
+                    DBContext.SaveChanges();
+
+                    modtree x = new modtree();
+                    modtreetran mtt = new modtreetran();
+
+                    x = GetRecord(modtre.s1);
+
+                    mtt.n101 = x.n100;
+                    mtt.s100 = "en-US";
+                    mtt.s101 = "A";
+                    mtt.s1 = x.s2;
+
+                    DBContext.modtreetrans.Add(mtt);
                     DBContext.SaveChanges();
                 }
                 else
@@ -294,14 +361,67 @@ namespace WpfApp1
             }
             
         } 
-
         public void AddDV(dv dvData)
         {
+            //s100,s107,s1,s31
             try
             {
                 if (dvData != null)
                 {
                     DBContext.dvs.Add(dvData);
+                    DBContext.SaveChanges();
+
+                    dv x = new dv();
+                    dvtran dvt = new dvtran();
+
+                    x = GetDVRecord(dvData);
+
+                    dvt.n101 = x.n100;
+                    dvt.s100 = "en-US";
+                    dvt.s101 = "A";
+                    dvt.s1 = x.s2;
+
+                    DBContext.dvtrans.Add(dvt);
+                    DBContext.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Data NUllr", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
+        } 
+        public void AddModTreeTran(modtreetran mttData)
+        {
+            try
+            {
+                if (mttData != null)
+                {
+                    DBContext.modtreetrans.Add(mttData);
+                    DBContext.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Data NUllr", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
+        }
+        public void AddDVTran(dvtran dvtData)
+        {
+            try
+            {
+                if (dvtData != null)
+                {
+                    DBContext.dvtrans.Add(dvtData);
                     DBContext.SaveChanges();
                 }
                 else
