@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="auto" Width="1136"
+        Title="MainWindow" Height="auto" Width="1200"
     SizeToContent="WidthAndHeight">
     <Window.Resources>
         <Style x:Key="Label" TargetType="{x:Type Label}" BasedOn="{x:Null}">
@@ -115,7 +115,7 @@
             <Button Name="btnSelectModule" Content="Select/Edit Module" Command="{StaticResource SelectModuleCommand}" FontSize="11" Width="100" Style="{StaticResource NavButton}" />
             <Button Content="Cancel" Name="btnCancel" Command="{StaticResource CancelCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
             <Button Content="Refresh Data" Name="btnPopMTGrir" Command="{StaticResource RefreshCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}" />
-            <Label x:Name="sysStatLbl" Content="System Status" Width="280" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="275,0,0,0" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" />
+            <Label x:Name="sysStatLbl" Content="System Status" Width="402" VerticalAlignment="Center" Margin="150,0,0,0" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" />
 
             <!--<Button Name="btnDelete" Content="Delete Module" Command="{StaticResource DeleteModuleCommand}" FontSize="11" Width="120" Style="{StaticResource NavButton}"/>-->
             <!--<Button Name="btnUpdate" Content="Commit" Command="{StaticResource UpdateCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>-->
@@ -207,7 +207,7 @@
 
 
         </Grid>
-        <Grid x:Name="newSectionLvl1Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Visible" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Grid.RowSpan="2" Height="88">
+        <Grid x:Name="newSectionLvl1Grid" Grid.Row="1" Margin="5,126,0,0" Visibility="Collapsed" VerticalAlignment="Top" Background="WhiteSmoke" DataContext="{StaticResource moduleViewSource}" Grid.RowSpan="2" Height="88">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />

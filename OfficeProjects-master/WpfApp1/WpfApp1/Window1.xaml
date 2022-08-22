@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Window1" Height="722" Width="1140" MinHeight="480" MinWidth="600"
-        SizeToContent="WidthAndHeight" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" VerticalAlignment="Top">
+        Title="Window1" Width="1146" MinHeight="480" MinWidth="600"
+        SizeToContent="WidthAndHeight" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" VerticalAlignment="Stretch" Height="750" MaxWidth="1600">
     <Window.Resources>
         <Style x:Key="Label" TargetType="{x:Type Label}" BasedOn="{x:Null}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -106,16 +106,16 @@
         <CommandBinding Command="{StaticResource SelectModuleCommand}" Executed="SelectModuleCommandHandler"/>-->
     </Window.CommandBindings>
 
-    <Grid Height="auto" VerticalAlignment="Top">
+    <Grid Height="auto" VerticalAlignment="Top" MaxWidth="1400">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="500"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1139"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Height="116" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
+        <Grid Height="116" Margin="6,0,6,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="42*"/>
@@ -123,11 +123,11 @@
             </Grid.RowDefinitions>
 
 
-            <Button x:Name="refrehBtn" Content="Refresh Data" Style="{StaticResource cmdButton}" HorizontalAlignment="Center" Margin="5,5,150,5" Click="refrehBtn_Click"/>
+            <Button x:Name="refrehBtn" Content="Refresh Data" Style="{StaticResource cmdButton}" HorizontalAlignment="Left" Margin="278,5,0,3" Click="refrehBtn_Click"/>
             <Label x:Name="sysStatLbl" Content="System Status" Width="542" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" Margin="565,0,0,0" Height="26" />
 
 
-            <Grid x:Name="ModuleInfoGrid" Grid.Row="1" Visibility="Visible" Background="WhiteSmoke" Width="1126" IsEnabled="False" Height="34">
+            <Grid x:Name="ModuleInfoGrid" Grid.Row="1" Visibility="Visible" Background="WhiteSmoke"  IsEnabled="False" Height="34" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -150,7 +150,7 @@
                 <Label Content="Doc Type:" Grid.Row="0" Grid.Column="3" Style="{StaticResource Label}" />
                 <TextBox x:Name="mod_docTypeTextBox" Grid.Row="0" Grid.Column="3" Style="{StaticResource TextBox}"/>
             </Grid>
-            <Grid x:Name="SectionInfoGrid" Grid.Row="2" Visibility="Visible"  Background="WhiteSmoke"  Width="1126" IsEnabled="False" Height="35" >
+            <Grid x:Name="SectionInfoGrid" Grid.Row="2" Visibility="Visible"  Background="WhiteSmoke" IsEnabled="False" Height="35" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -174,7 +174,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Center" Visibility="Visible" Margin="0,0,0,-26" >
+        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Stretch" Visibility="Collapsed" Grid.ColumnSpan="2" Width="auto" MaxWidth="1400" Margin="6,0,6,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="74"/>
                 <RowDefinition Height="34" />
@@ -185,7 +185,7 @@
             </Grid.RowDefinitions>
 
 
-            <Grid x:Name="screenHeaderGrid" Grid.Row="0" Visibility="Visible" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Grid.RowSpan="2" Width="1126" Margin="3,0,3,0" VerticalAlignment="Top" >
+            <Grid x:Name="screenHeaderGrid" Grid.Row="0" Visibility="Visible" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Grid.RowSpan="2" VerticalAlignment="Top" MinWidth="1126" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -257,7 +257,7 @@
                 Text="{Binding s21, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />
 
                 </Grid>
-                
+
                 <Label Content="Table Name:" Grid.Column="3" Grid.Row="1"  Style="{StaticResource Label}" Margin="2,0,0,0" />
                 <TextBox x:Name="screen_tableNameTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="1"
                 Text="{Binding s32, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  />
@@ -432,7 +432,7 @@
                 <Label Content="Rigix:" Grid.Column="1" Grid.Row="3" Style="{StaticResource Label}" />
                 <TextBox x:Name="dv_rigixTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="3"                 
                     Text="{Binding s10, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-                
+
                 <Label Content="ID:" Grid.Column="13" Grid.Row="3" Style="{StaticResource Label}" />
                 <TextBox x:Name="dv_idTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="3"                 
                     Text="{Binding n100, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" />
@@ -466,15 +466,15 @@
 
             </Grid>
 
-            <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="190" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="5,5,1,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}" VerticalAlignment="Top" IsEnabled="False" />
+            <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="auto" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}" IsEnabled="False" />
         </Grid>
-        <Grid x:Name="screenSelectionGrid" Grid.Row="1" Height="auto" Visibility="Collapsed" Margin="0,0,0,0" VerticalAlignment="Top">
+        <Grid x:Name="screenSelectionGrid" Grid.Row="1" Visibility="Collapsed" Margin="6,0,6,0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="190"/>
-                <RowDefinition Height="250" />
+                <RowDefinition Height="350" />
             </Grid.RowDefinitions>
 
-            <Grid x:Name="sel_screenDetailGrid" Grid.Row="0" HorizontalAlignment="Center" Visibility="Visible" VerticalAlignment="Center" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Width="1126" Height="auto" Margin="0,6,0,0">
+            <Grid x:Name="sel_screenDetailGrid" Grid.Row="0" HorizontalAlignment="Center" Visibility="Visible" VerticalAlignment="Center" Background="WhiteSmoke" DataContext="{StaticResource modtreeViewSource}" Width="1126" Height="auto" Margin="6,0,6,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" MinWidth="300"/>
                     <ColumnDefinition Width="*" MinWidth="360"/>
@@ -556,7 +556,7 @@
 
             </Grid>
 
-            <DataGrid x:Name="modtreeDataGrid"  Grid.Row="1" Width="1121" Height="250" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True"  Margin="8,5,8,0" Visibility="Visible" ItemsSource="{Binding Source={StaticResource modtreeViewSource}}" VerticalAlignment="Top"/>
+            <DataGrid x:Name="modtreeDataGrid"  Grid.Row="1" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" Visibility="Visible" ItemsSource="{Binding Source={StaticResource modtreeViewSource}}" Margin="6,0,6,0"/>
 
         </Grid>
     </Grid>

@@ -119,63 +119,63 @@ namespace WpfApp1
             }
         }
 
-        public void InsertSectionLvl1(modtree module, string secName, string secCode)
-        {
-            try
-            {
-                modtree entry = new modtree();
-                entry.s1 = secCode;
-                entry.s2 = secName;
-                entry.s3 = "1";
-                entry.s4 = "A";
-                entry.s39 = "1";
-                entry.s100 = "SEC";
-                entry.s102 = "SEC";
-                entry.s101 = module.s101;
-                entry.s105 = module.s105;
-                entry.s40 = module.s1.ToString().Substring(0, 2);
+        //public void InsertSectionLvl1(modtree module, string secName, string secCode)
+        //{
+        //    try
+        //    {
+        //        modtree entry = new modtree();
+        //        entry.s1 = secCode;
+        //        entry.s2 = secName;
+        //        entry.s3 = "1";
+        //        entry.s4 = "A";
+        //        entry.s39 = "1";
+        //        entry.s100 = "SEC";
+        //        entry.s102 = "SEC";
+        //        entry.s101 = module.s101;
+        //        entry.s105 = module.s105;
+        //        entry.s40 = module.s1.ToString().Substring(0, 2);
 
-                if (entry != null)
-                {
-                    DBContext.modtrees.Add(entry);
-                    DBContext.SaveChanges();
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
-                throw;
-            }
-        }
+        //        if (entry != null)
+        //        {
+        //            DBContext.modtrees.Add(entry);
+        //            DBContext.SaveChanges();
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        throw;
+        //    }
+        //}
 
-        public void InsertSectionLvl2(modtree module, string secName, string secCode)
-        {
-            try
-            {
-                modtree entry = new modtree();
-                entry.s1 = secCode;
-                entry.s2 = secName;
-                entry.s3 = "1";
-                entry.s39 = "2";
-                entry.s40 = secCode.Substring(0, 4);
-                entry.s100 = "SEC";
-                entry.s101 = module.s101;
-                entry.s102 = "SEC";
-                entry.s105 = module.s105;
+        //public void InsertSectionLvl2(modtree module, string secName, string secCode)
+        //{
+        //    try
+        //    {
+        //        modtree entry = new modtree();
+        //        entry.s1 = secCode;
+        //        entry.s2 = secName;
+        //        entry.s3 = "1";
+        //        entry.s39 = "2";
+        //        entry.s40 = secCode.Substring(0, 4);
+        //        entry.s100 = "SEC";
+        //        entry.s101 = module.s101;
+        //        entry.s102 = "SEC";
+        //        entry.s105 = module.s105;
 
-                if (entry != null)
-                {
-                    DBContext.modtrees.Add(entry);
-                    DBContext.SaveChanges();
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
-                throw;
-            }
+        //        if (entry != null)
+        //        {
+        //            DBContext.modtrees.Add(entry);
+        //            DBContext.SaveChanges();
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        throw;
+        //    }
             
-        }
+        //}
 
         public List<modtree> GetAll()
         {
@@ -280,12 +280,12 @@ namespace WpfApp1
         ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
-            string sql = @"Data Source = localhost;
-                            Initial Catalog = LocalMaster;
-                            Integrated Security = true ";
-            //string sql = @"Data Source = 172.16.1.10;
-            //                Initial Catalog = PearlErpMaster;
-            //                UID = sa; Pwd = Pearl@2016;";
+            //string sql = @"Data Source = localhost;
+            //                Initial Catalog = LocalMaster;
+            //                Integrated Security = true ";
+            string sql = @"Data Source = 172.16.1.10;
+                            Initial Catalog = PearlErpMaster;
+                            UID = sa; Pwd = Pearl@2016;";
             conn = new SqlConnection(sql);
             try
             {

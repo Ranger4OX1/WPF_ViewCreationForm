@@ -572,6 +572,7 @@ namespace WpfApp1
             switch (selectedScreen.s5)
             {
                 case "3000":
+                case "3050":
                     if (!string.IsNullOrEmpty(field.s107))
                     {
                         if (tab31 != "") { field.s31 = tab31; } else { sysStatLbl.Content = "Pls select a tab"; }
@@ -678,6 +679,10 @@ namespace WpfApp1
                     case "3050":
                         selectedScreen.s100 = "SCR";
                         selectedScreen.s3 = "1";
+                        sysStatLbl.Content = InsertBtns(selectedScreen);
+                        modtree maintb = GetBtnStsTabModtree("main", selectedScreen);
+                        dal.AddModtree(maintb);
+                        MessageBox.Show("You Have Made a DISCO Screen.\n Pls Fill modtree.s20 and dv.s21 Appropriatly", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                         addScrnFlag = true;
                         break;
                     case "3400":
@@ -705,7 +710,7 @@ namespace WpfApp1
                             s1 = "S10",
                             s2 = "Format",
                             s3 = "IN05",
-                            s4 = "[{id:\"4\", name: \"Excel\"}, { id: \"5\", name: \"Portable Doc Format(PDF)\"}, { id: \"10\", name: \"Character Separated Values(CSV)\"}, { id: \"8\", name: \"Excel Record\"}"
+                            s4 = "[{id:\"4\", name: \"Excel\"}, { id: \"5\", name: \"Portable Doc Format(PDF)\"}, { id: \"10\", name: \"Character Separated Values(CSV)\"}, { id: \"8\", name: \"Excel Record\"}]"
                         };
                         dal.AddDV(format);
 
@@ -752,12 +757,6 @@ namespace WpfApp1
             sysStatLbl.Content = "3050";
             // / CMMS / 12 / DISCO / CMPMG / SB01
             screen_urlTextBox.Text = "/" + selectedModule.s102.ToString() + "/" + selectedModule.s1.ToString() + "/DISCO/" + screen_docTypeTextBox.Text + "/SB01";
-
-            screenButtonsGrid.IsEnabled = false;
-            tabsGrid.IsEnabled = false;
-            field_AddBtn.IsEnabled = true;
-            field_FinishBtn.IsEnabled = true;
-            field_updateBtn.IsEnabled = true;
         }
 
         private void vt_3200_Click(object sender, RoutedEventArgs e)
