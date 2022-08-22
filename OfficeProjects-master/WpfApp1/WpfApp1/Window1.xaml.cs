@@ -438,7 +438,7 @@ namespace WpfApp1
                 modtreeViewSource.Source = dal.Exec("SELECT n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s39, s40, n1  FROM modtree WHERE(s100 = 'SCR' OR s100 = 'RPT') AND LEFT(s1,6)= '" + code + "'");
                 sysStatLbl.Content = "Sec 2 Screens";                
             }
-            context.SaveChanges();
+            //context.SaveChanges();
             modtreeViewSource.View.Refresh();
         }
 
@@ -451,7 +451,15 @@ namespace WpfApp1
                 sysStatLbl.Content = "NO, Entries found for this screen";
                 sql = "select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv ";
                 DVViewSource.Source = dal.Exec(sql);
-                context.SaveChanges();
+                //context.SaveChanges();
+                modtreeViewSource.View.Refresh();
+            }
+            else if (selectedScreen.s102.ToString() == "RPT")
+            {
+                code = selectedScreen.s1.ToString();
+                sql = "select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s100='RPT' AND s107='"+ code +"'";
+                DVViewSource.Source = dal.Exec(sql);
+                //context.SaveChanges();
                 modtreeViewSource.View.Refresh();
             }
             else
@@ -459,9 +467,9 @@ namespace WpfApp1
                 code = selectedScreen.s102.ToString();
                 sql = "select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s100 = '" + code + "'";
                 DVViewSource.Source = dal.Exec(sql);
-                context.SaveChanges();
+                //context.SaveChanges();
                 modtreeViewSource.View.Refresh();
-            }            
+            }
         }
 
         //////
@@ -543,48 +551,62 @@ namespace WpfApp1
         private void field_AddBtn_Click(object sender, RoutedEventArgs e)
         {
             //n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35
-            if (!string.IsNullOrEmpty(field.s107))
-            {
-                field.s100 = selectedScreen.s102.ToString();
-                field.s101 = selectedScreen.s101.ToString();
-                field.s2 = dv_nameTextBox.Text.ToString();
-                field.s1 = dv_fieldTextBox.Text.ToString();
-                field.s3 = dv_dataTypeTextBox.Text.ToString();
-                field.s4 = dv_comboBoxTextBox.Text.ToString();
-                field.s6 = dv_depCaseTextBox.Text.ToString();
-                field.s7 = dv_normalisationTextBox.Text.ToString();
-                field.s8 = dv_whrLeftTextBox.Text.ToString();
-                field.s9 = dv_whrRightTextBox.Text.ToString();
-                field.s10 = dv_rigixTextBox.Text.ToString();
-                field.s13 = dv_listItemTextBox.Text.ToString();
-                field.s14 = dv_validationTextBox.Text.ToString();
-                if (tab31 != "") { field.s31 = tab31; } else { sysStatLbl.Content = "Pls select a tab"; }
-                field.s32 = dv_tableNameTextBox.Text.ToString();
-                field.s35 = dv_botstrapTextBox.Text.ToString();
 
+            bool addScrnFlag = false;
+
+            field.s100 = selectedScreen.s102.ToString();
+            field.s101 = selectedScreen.s101.ToString();
+
+            field.s1 = dv_fieldTextBox.Text.ToString();
+            field.s2 = dv_nameTextBox.Text.ToString();
+            field.s3 = dv_dataTypeTextBox.Text.ToString();
+            field.s4 = dv_comboBoxTextBox.Text.ToString();
+            field.s6 = dv_depCaseTextBox.Text.ToString();
+            field.s7 = dv_normalisationTextBox.Text.ToString();
+            field.s8 = dv_whrLeftTextBox.Text.ToString();
+            field.s9 = dv_whrRightTextBox.Text.ToString();
+            field.s10 = dv_rigixTextBox.Text.ToString();
+            field.s13 = dv_listItemTextBox.Text.ToString();
+            field.s14 = dv_validationTextBox.Text.ToString();
+
+            switch (selectedScreen.s5)
+            {
+                case "3000":
+                    if (!string.IsNullOrEmpty(field.s107))
+                    {
+                        if (tab31 != "") { field.s31 = tab31; } else { sysStatLbl.Content = "Pls select a tab"; }
+
+                        field.s32 = dv_tableNameTextBox.Text.ToString();
+                        field.s35 = dv_botstrapTextBox.Text.ToString();
+
+                        addScrnFlag = true;
+                    }
+                    else
+                    {
+                        sysStatLbl.Content = "Pls Select a tab";
+                    }
+                    break;
+                case "RPT":
+                    field.s107 = selectedScreen.s1;
+
+                    tab_Detail.IsEnabled = tab_Master.IsEnabled = tab_NTab1.IsEnabled = tab_NTab2.IsEnabled = true;
+
+                    addScrnFlag = true;
+                    break;
+                default:
+                    break;
+            }
+
+            if (addScrnFlag)
+            {
                 dal.AddDV(field);
                 sysStatLbl.Content = "Field Succesfully Added";
-
-                PopulateDVGrid();
-                dv_nameTextBox.Text = String.Empty;
-                dv_fieldTextBox.Text = String.Empty;
-                dv_dataTypeTextBox.Text = String.Empty;
-                dv_comboBoxTextBox.Text = String.Empty;
-                dv_depCaseTextBox.Text = String.Empty;
-                dv_normalisationTextBox.Text = String.Empty;
-                dv_whrLeftTextBox.Text = String.Empty;
-                dv_whrRightTextBox.Text = String.Empty;
-                dv_rigixTextBox.Text = String.Empty;
-                dv_listItemTextBox.Text = String.Empty;
-                dv_validationTextBox.Text = String.Empty;
-                dv_tabCdTextBox.Text = String.Empty;
-                dv_tableNameTextBox.Text = String.Empty;
-                dv_botstrapTextBox.Text = String.Empty;
             }
-            else
-            {
-                sysStatLbl.Content = "Pls Select a tab";
-            }             
+            //if (selectedScreen.s5 == "RPT") { PopulateDVGrid(); } else { PopulateDVGrid("rpt"); }
+            PopulateDVGrid();
+            dv_nameTextBox.Text = dv_fieldTextBox.Text = dv_dataTypeTextBox.Text = dv_comboBoxTextBox.Text = 
+            dv_depCaseTextBox.Text = dv_normalisationTextBox.Text = dv_whrLeftTextBox.Text = dv_whrRightTextBox.Text = dv_rigixTextBox.Text = dv_listItemTextBox.Text = dv_validationTextBox.Text = dv_tabCdTextBox.Text =
+            dv_tableNameTextBox.Text = dv_botstrapTextBox.Text = String.Empty;           
         }
 
         private void field_FinishBtn_Click(object sender, RoutedEventArgs e)
@@ -594,6 +616,29 @@ namespace WpfApp1
 
         private void field_updateBtn_Click(object sender, RoutedEventArgs e)
         {
+            dv temp = new dv()
+            {
+                n100 = Convert.ToDecimal(dv_idTextBox.Text),
+                s1 = dv_fieldTextBox.Text.ToString(),
+                s2 = dv_nameTextBox.Text.ToString(),
+                s3 = dv_dataTypeTextBox.Text.ToString(),
+                s4 = dv_comboBoxTextBox.Text.ToString(),
+                s6 = dv_depCaseTextBox.Text.ToString(),
+                s7 = dv_normalisationTextBox.Text.ToString(),
+                s8 = dv_whrLeftTextBox.Text.ToString(),
+                s9 = dv_whrRightTextBox.Text.ToString(),
+                s10 = dv_rigixTextBox.Text.ToString(),
+                s13 = dv_listItemTextBox.Text.ToString(),
+                s14 = dv_validationTextBox.Text.ToString(),
+                s35 = dv_botstrapTextBox.Text.ToString(),
+                s31 = dv_tabCdTextBox.Text.ToString(),
+                s32 = dv_tableNameTextBox.Text.ToString()
+            };
+            if (dal.UpdateScrn(temp))
+                sysStatLbl.Content = "Record Updated";
+            else
+                sysStatLbl.Content = "Update Failed";
+
 
         }
 
@@ -613,7 +658,7 @@ namespace WpfApp1
             selectedScreen.s32 = screen_tableNameTextBox.Text.ToString();
             selectedScreen.s39 = screen_treelvlTextBox.Text.ToString();
 
-            if (selectedSecLvl2.n100 != 0)
+            if (selectedSecLvl2.n100 == 0)
                 selectedScreen.s40 = screen_screenCodeTextBox.Text.Substring(0, 4);
             else
                 selectedScreen.s40 = screen_screenCodeTextBox.Text.Substring(0,6);
@@ -648,7 +693,21 @@ namespace WpfApp1
                         selectedScreen.s5 = "RPT";
                         selectedScreen.s7 = "RPTS";
                         selectedScreen.s35 = "1";
+                        selectedScreen.s21 = screen_reportCaseTextBox.Text.ToString();
 
+                        dv format = new dv()
+                        {
+                            //n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35
+                            //1345765    RPT A   100309  S10 Format  IN05    [{id:"4", name: "Excel"}, { id: "5", name: "Portable Doc Format(PDF)"}, { id: "10", name: "Character Separated Values(CSV)"}, { id: "8", name: "Excel Record"}]	NULL NULL    NULL NULL    NULL NULL    NULL NULL    NULL NULL
+                            s100 = "RPT",
+                            s101 = selectedScreen.s101,
+                            s107 = selectedScreen.s1,
+                            s1 = "S10",
+                            s2 = "Format",
+                            s3 = "IN05",
+                            s4 = "[{id:\"4\", name: \"Excel\"}, { id: \"5\", name: \"Portable Doc Format(PDF)\"}, { id: \"10\", name: \"Character Separated Values(CSV)\"}, { id: \"8\", name: \"Excel Record\"}"
+                        };
+                        dal.AddDV(format);
 
                         addScrnFlag = true;
                         break;

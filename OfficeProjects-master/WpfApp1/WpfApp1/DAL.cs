@@ -32,6 +32,10 @@ namespace WpfApp1
         {
             return DBContext.modtrees.Find(id);
         }
+        public dv GetDV(int id)
+        {
+            return DBContext.dvs.Find(id);
+        }
 
         public int Search(string sVal)
         {
@@ -214,8 +218,41 @@ namespace WpfApp1
                 //throw;
             }
             return false;
-
-
+        }
+        public bool UpdateScrn(dv dvData)
+        {
+            try
+            {
+                decimal id = dvData.n100;
+                var dvFind = this.GetDV(Convert.ToInt32(id));
+                if (dvFind != null)
+                {
+                    dvFind.s1 = dvData.s1;
+                    dvFind.s2 = dvData.s2;
+                    dvFind.s3 = dvData.s3;
+                    dvFind.s4 = dvData.s4;
+                    dvFind.s6 = dvData.s6;
+                    dvFind.s7 = dvData.s7;
+                    dvFind.s8 = dvData.s8;
+                    dvFind.s9 = dvData.s9;
+                    dvFind.s10 = dvData.s10;
+                    dvFind.s13 = dvData.s13;
+                    dvFind.s14 = dvData.s14;
+                    dvFind.s35 = dvData.s35;
+                    dvFind.s31 = dvData.s31;
+                    dvFind.s32 = dvData.s32;
+                    //DBContext.dvs.Local.(Convert.ToInt32(id), dvFind);//  --CHECK--
+                    DBContext.SaveChanges();
+                }
+                return true;
+                //MessageBox.Show("Sql Connected.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                //throw;
+            }
+            return false;
         }
 
         public void RemoveMod(decimal id)
@@ -243,12 +280,12 @@ namespace WpfApp1
         ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
-            //string sql = @"Data Source = localhost;
-            //                Initial Catalog = LocalMaster;
-            //                Integrated Security = true ";
-            string sql = @"Data Source = 172.16.1.10;
-                            Initial Catalog = PearlErpMaster;
-                            UID = sa; Pwd = Pearl@2016;";
+            string sql = @"Data Source = localhost;
+                            Initial Catalog = LocalMaster;
+                            Integrated Security = true ";
+            //string sql = @"Data Source = 172.16.1.10;
+            //                Initial Catalog = PearlErpMaster;
+            //                UID = sa; Pwd = Pearl@2016;";
             conn = new SqlConnection(sql);
             try
             {
