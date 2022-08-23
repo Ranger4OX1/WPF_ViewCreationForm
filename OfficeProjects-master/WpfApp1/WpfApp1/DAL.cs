@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//
+//NEW
 using System.Data.SqlClient;
 using System.Windows;
 using System.Data;
+
+//using Microsoft.Data.SqlClient;
+// For ConnString
+using System.Data.Entity.SqlServer;
+using System.Configuration;
+
 
 /// <AUTHOR>                                    ///
 /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
@@ -28,25 +34,68 @@ namespace WpfApp1
             DBContext = new DBEntities();
         }
 
+        ///Connection String Controller 
+        ///<summary>
+        /// Set DBContext.Database.Connection.ConnectionString
+        /// </summary>
+        /// <param name="initialCatalog"></param>
+        /// <param name="dataSource"></param>
+        /// <param name="userId"></param>
+        /// <param name="password"></param>
+        /// <param name="integratedSecuity"></param>
+        /// <param name="configConnectionStringName"></param>
+        public string setDatabase(string initialCatalog = "",string dataSource = "",string userId = "",string password = "",bool integratedSecuity = true)
+           //string configConnectionStringName = "")/* this would be used if the*  connectionString name varied from *  the base EF class name */
+        {
+            string result;
+            try
+            {
+                // use the const name if it's not null, otherwise
+                // using the convention of connection string = EF contextname
+                // grab the type name and we're done
+                //var configNameEf = string.IsNullOrEmpty(configConnectionStringName)
+                //    ? DBContext.GetType().Name
+                //    : configConnectionStringName;
+
+                // add a reference to System.Configuration
+                //var entityCnxStringBuilder = new SqlConnectionStringBuilder(DBContext.Database.Connection.ConnectionString);
+                    //(System.Configuration.ConfigurationManager.ConnectionStrings[configNameEf].ConnectionString);
+
+                // init the sqlbuilder with the full EF connectionstring cargo
+                var sqlCnxStringBuilder = new SqlConnectionStringBuilder();
+
+                // only populate parameters with values if added
+                if (!string.IsNullOrEmpty(initialCatalog))
+                    sqlCnxStringBuilder.InitialCatalog = initialCatalog;
+                if (!string.IsNullOrEmpty(dataSource))
+                    sqlCnxStringBuilder.DataSource = dataSource;
+                if (!string.IsNullOrEmpty(userId))
+                    sqlCnxStringBuilder.UserID = userId;
+                if (!string.IsNullOrEmpty(password))
+                    sqlCnxStringBuilder.Password = password;
+
+                // set the integrated security status
+                sqlCnxStringBuilder.IntegratedSecurity = integratedSecuity;
+
+                // now flip the properties that were changed
+                DBContext.Database.Connection.ConnectionString
+                    = sqlCnxStringBuilder.ConnectionString;
+
+                result = "Succesfully connected to " + initialCatalog;
+            }
+            catch (Exception ex)
+            {
+                // set log item if required
+                result = "Failed to connecte to " + initialCatalog;
+            }
+            return result;
+        }
+
+        ///Get Methods get Record from DB Using EF (LINQ)
         public modtree Get(int id)
         {
             return DBContext.modtrees.Find(id);
         }
-        public dv GetDV(int id)
-        {
-            return DBContext.dvs.Find(id);
-        }
-
-        public int Search(string sVal)
-        {
-            using (var ctx = new DBEntities())
-            {
-                var mods = ctx.modtrees
-                                .Where(s => s.s1 == sVal).Count();
-                return mods;
-            }
-        }
-
         public modtree GetRecord(string sVal)
         {
             try
@@ -64,7 +113,10 @@ namespace WpfApp1
                 return mod;
             }
         }
-
+        public dv GetDV(int id)
+        {
+            return DBContext.dvs.Find(id);
+        }
         public dv GetDVRecord(dv dvRec)
         {
             try
@@ -72,7 +124,7 @@ namespace WpfApp1
                 using (var ctx = new DBEntities())
                 {
                     var mods = ctx.dvs.Where(s => s.s100 == dvRec.s100 && s.s107 == dvRec.s107 && s.s1 == dvRec.s1 && s.s31 == dvRec.s31).First();
-                                    
+
                     return mods;
                 }
             }
@@ -82,7 +134,6 @@ namespace WpfApp1
                 return mod;
             }
         }
-
         public modtreetran GetMTTRecord(string sVal)
         {
             try
@@ -100,7 +151,15 @@ namespace WpfApp1
                 return mod;
             }
         }
-
+        public int Search(string sVal)
+        {
+            using (var ctx = new DBEntities())
+            {
+                var mods = ctx.modtrees
+                                .Where(s => s.s1 == sVal).Count();
+                return mods;
+            }
+        }
         public dvtran GetDVTRecord(string sVal)
         {
             try
@@ -188,7 +247,6 @@ namespace WpfApp1
                 return posts;
             }
         }
-
         public bool UpdateMod(modtree modtre)
         {
             try
@@ -254,7 +312,6 @@ namespace WpfApp1
             }
             return false;
         }
-
         public void RemoveMod(decimal id)
         {
             try
@@ -280,13 +337,15 @@ namespace WpfApp1
         ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
+            string connString = DBContext.Database.Connection.ConnectionString;
             //string sql = @"Data Source = localhost;
             //                Initial Catalog = LocalMaster;
             //                Integrated Security = true ";
-            string sql = @"Data Source = 172.16.1.10;
-                            Initial Catalog = PearlErpMaster;
-                            UID = sa; Pwd = Pearl@2016;";
-            conn = new SqlConnection(sql);
+            //string sql = @"Data Source = 172.16.1.10;
+            //                Initial Catalog = PearlErpMaster;
+            //                UID = sa; Pwd = Pearl@2016;";
+            conn = new SqlConnection(connString);
+
             try
             {
                 conn.Open();
@@ -327,6 +386,11 @@ namespace WpfApp1
             conn.Close();
         }
         
+        /// <summary>
+        /// Executes the passed query
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns>Return System.Data.DataTable</returns>
         public  DataTable Exec(string sql)
         {
             SqlDataAdapter da = null;
@@ -364,6 +428,7 @@ namespace WpfApp1
             return result;
          }
 
+        ///Database Insertiion Methods
         public void AddModtree(modtree modtre)
         {
             try
@@ -476,6 +541,64 @@ namespace WpfApp1
        
     }
 
+    //public static class ConnectionTools
+    //{
+    //    private DBEntities DBContext = null;
+
+    //    // all params are optional
+    //    public static void ChangeDatabase(
+    //        this DbContext source,
+    //        string initialCatalog = "",
+    //        string dataSource = "",
+    //        string userId = "",
+    //        string password = "",
+    //        bool integratedSecuity = true,
+    //        string configConnectionStringName = "")
+    //    /* this would be used if the
+    //    *  connectionString name varied from 
+    //    *  the base EF class name */
+    //    {
+    //        try
+    //        {
+    //            // use the const name if it's not null, otherwise
+    //            // using the convention of connection string = EF contextname
+    //            // grab the type name and we're done
+    //            var configNameEf = string.IsNullOrEmpty(configConnectionStringName)
+    //                ? source.GetType().Name
+    //                : configConnectionStringName;
+
+    //            // add a reference to System.Configuration
+    //            var entityCnxStringBuilder = new EntityConnectionStringBuilder
+    //                (System.Configuration.ConfigurationManager
+    //                    .ConnectionStrings[configNameEf].ConnectionString);
+
+    //            // init the sqlbuilder with the full EF connectionstring cargo
+    //            var sqlCnxStringBuilder = new SqlConnectionStringBuilder
+    //                (entityCnxStringBuilder.ProviderConnectionString);
+
+    //            // only populate parameters with values if added
+    //            if (!string.IsNullOrEmpty(initialCatalog))
+    //                sqlCnxStringBuilder.InitialCatalog = initialCatalog;
+    //            if (!string.IsNullOrEmpty(dataSource))
+    //                sqlCnxStringBuilder.DataSource = dataSource;
+    //            if (!string.IsNullOrEmpty(userId))
+    //                sqlCnxStringBuilder.UserID = userId;
+    //            if (!string.IsNullOrEmpty(password))
+    //                sqlCnxStringBuilder.Password = password;
+
+    //            // set the integrated security status
+    //            sqlCnxStringBuilder.IntegratedSecurity = integratedSecuity;
+
+    //            // now flip the properties that were changed
+    //            source.Database.Connection.ConnectionString
+    //                = sqlCnxStringBuilder.ConnectionString;
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            // set log item if required
+    //        }
+    //    }
+    //}
     /// <AUTHOR>                                    ///
     /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
     /// FOR ::-:Pearl-Solutions:-::                 ///
@@ -485,3 +608,4 @@ namespace WpfApp1
     ///     and screens:-::                         ///
     /// </AUTHOR>                                   ///
 }
+

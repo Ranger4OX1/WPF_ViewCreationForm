@@ -78,6 +78,8 @@
         <RoutedUICommand x:Key="AddModuleCommand" Text="Add"/>
         <RoutedUICommand x:Key="CancelCommand" Text="Cancel"/>
         <RoutedUICommand x:Key="RefreshCommand" Text="Refresh Data"/>
+        <RoutedUICommand x:Key="CloudDBCommand" Text="CloudDBCommand"/>
+        <RoutedUICommand x:Key="localDBCommand" Text="localDBCommand"/>
         <CollectionViewSource x:Key="modtreeViewSource" d:DesignSource="{d:DesignInstance {x:Type local:modtree}}"/>
         <CollectionViewSource x:Key="moduleViewSource" d:DesignSource="{d:DesignInstance {x:Type local:modtree}}"/>
         <CollectionViewSource x:Key="secLvl2ViewSource" d:DesignSource="{d:DesignInstance {x:Type local:modtree}}"/>
@@ -99,6 +101,8 @@
         <CommandBinding Command="{StaticResource CancelCommand}" Executed="CancelCommandHandler"/>
         <CommandBinding Command="{StaticResource SelectModuleCommand}" Executed="SelectModuleCommandHandler"/>
         <CommandBinding Command="{StaticResource RefreshCommand}" Executed="RefreshCommandCommandHandler"/>
+        <CommandBinding Command="{StaticResource CloudDBCommand}" Executed="CloudDBCommand"/>
+        <CommandBinding Command="{StaticResource localDBCommand}" Executed="localDBCommand"/>
     </Window.CommandBindings>
     <Grid Height="559" VerticalAlignment="Center">
         <Grid.RowDefinitions>
@@ -115,7 +119,10 @@
             <Button Name="btnSelectModule" Content="Select/Edit Module" Command="{StaticResource SelectModuleCommand}" FontSize="11" Width="100" Style="{StaticResource NavButton}" />
             <Button Content="Cancel" Name="btnCancel" Command="{StaticResource CancelCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
             <Button Content="Refresh Data" Name="btnPopMTGrir" Command="{StaticResource RefreshCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}" />
-            <Label x:Name="sysStatLbl" Content="System Status" Width="402" VerticalAlignment="Center" Margin="150,0,0,0" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" />
+            <Label x:Name="sysStatLbl" Content="System Status" Width="402" VerticalAlignment="Center"  FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" Margin="50,0,0,0"/>
+            <Button Content="local Server" Name="btnLclServer" Margin="20,0,0,0" Command="{StaticResource localDBCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
+            <Button Content="Cloud" Name="btnCloud" Command="{StaticResource CloudDBCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}" />
+
 
             <!--<Button Name="btnDelete" Content="Delete Module" Command="{StaticResource DeleteModuleCommand}" FontSize="11" Width="120" Style="{StaticResource NavButton}"/>-->
             <!--<Button Name="btnUpdate" Content="Commit" Command="{StaticResource UpdateCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>-->

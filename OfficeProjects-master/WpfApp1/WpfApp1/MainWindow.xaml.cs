@@ -57,6 +57,10 @@ namespace WpfApp1
             secL2ViewSource = ((CollectionViewSource)(FindResource("secLvl2ViewSource")));
 
             DataContext = this;
+            //string sql = @"Data Source = localhost;
+            //                Initial Catalog = LocalMaster;
+            //                Integrated Security = true ";
+            dal.setDatabase("LocalMaster", "localhost", "", "", true);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -113,6 +117,15 @@ namespace WpfApp1
         private void FirstCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             modtreeViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void CloudDBCommand(object sender, ExecutedRoutedEventArgs e)
+        {
+            sysStatLbl.Content =  dal.setDatabase("LocalMaster", "localhost", "", "", true);
+        }
+        private void localDBCommand(object sender, ExecutedRoutedEventArgs e)
+        {
+            sysStatLbl.Content = dal.setDatabase("LocalMaster", "localhost", "", "", true);
         }
 
         private void RefreshCommandCommandHandler(object sender, ExecutedRoutedEventArgs e)
