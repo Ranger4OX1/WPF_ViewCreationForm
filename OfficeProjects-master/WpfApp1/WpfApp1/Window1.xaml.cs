@@ -710,7 +710,8 @@ namespace WpfApp1
                             s1 = "S10",
                             s2 = "Format",
                             s3 = "IN05",
-                            s4 = "[{id:\"4\", name: \"Excel\"}, { id: \"5\", name: \"Portable Doc Format(PDF)\"}, { id: \"10\", name: \"Character Separated Values(CSV)\"}, { id: \"8\", name: \"Excel Record\"}]"
+                            s4 = "[{id:\"4\", name: \"Excel\"}, { id: \"5\", name: \"Portable Doc Format(PDF)\"}, { id: \"10\", name: \"Character Separated Values(CSV)\"}, { id: \"8\", name: \"Excel Record\"}]",
+                            n1 = 10
                         };
                         dal.AddDV(format);
 
