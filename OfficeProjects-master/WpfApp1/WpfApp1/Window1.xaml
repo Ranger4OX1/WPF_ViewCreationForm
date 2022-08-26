@@ -60,13 +60,14 @@
             <Setter Property="Background" Value="LightSteelBlue"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
-        <Style x:Key="navButton" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+        <Style x:Key="NavButton" TargetType="{x:Type Button}" BasedOn="{x:Null}">
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontFamily" Value="Cascadia Code"/>
-            <Setter Property="Margin" Value="2,2,2,2"/>
-            <Setter Property="Width" Value="auto"/>
-            <Setter Property="Height" Value="auto"/>
-            <Setter Property="Background" Value="#FFB7DDB9"/>
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+            <Setter Property="Margin" Value="10,2,0,0"/>
+            <Setter Property="Width" Value="105"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#FFC7D4DF"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
         <Style x:Key="cmdButton" TargetType="{x:Type Button}" BasedOn="{x:Null}">
@@ -117,14 +118,16 @@
 
         <Grid Height="116" Margin="6,0,6,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30*"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="42*"/>
                 <RowDefinition Height="35*"/>
             </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"  Margin="2,2,2,0" Height="40" VerticalAlignment="Top" Background="Gainsboro" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+                <Button Content="Copy DV Data" Name="copyDVBtn"  Style="{StaticResource NavButton}" Click="copyDVBtn_Click" />
+                <Button Content="Refresh Data" Name="refrehBtn"  Style="{StaticResource NavButton}" Click="refrehBtn_Click" />
+                <Label x:Name="sysStatLbl" Content="System Status" Width="450" VerticalAlignment="Center"  FontFamily="Cascadia Mono" Margin="350,0,0,0" Background="#FFE9CECE" FontSize="16" />
+            </StackPanel>
 
-
-            <Button x:Name="refrehBtn" Content="Refresh Data" Style="{StaticResource cmdButton}" HorizontalAlignment="Left" Margin="278,5,0,3" Click="refrehBtn_Click"/>
-            <Label x:Name="sysStatLbl" Content="System Status" Width="542" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Cascadia Mono" FontSize="14" Background="#FFE9CECE" FontWeight="Normal" Margin="565,0,0,0" Height="26" />
 
 
             <Grid x:Name="ModuleInfoGrid" Grid.Row="1" Visibility="Visible" Background="WhiteSmoke"  IsEnabled="False" Height="34" >
@@ -174,6 +177,96 @@
             </Grid>
         </Grid>
 
+        <Grid x:Name="dvcComboCreationGrid" Grid.Row="1" Visibility="Collapsed" Background="WhiteSmoke"  Height="auto" VerticalAlignment="Top" Margin="6,20,6,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="DV Combo Creation" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource Label}" />
+
+            <Label Content="Field (S1):" Grid.Column="1" Style="{StaticResource Label}" />
+            <TextBox x:Name="dvc_fieldTextBox" Style="{StaticResource TextBox}" Grid.Column="1" IsEnabled="False"/>
+            <Label Content="Name (S2):" Grid.Column="2" Style="{StaticResource Label}" />
+            <TextBox x:Name="dvc_nameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" IsEnabled="False"/>
+
+            <CheckBox x:Name="dvc_coplexCB" Content="Complex" Grid.Column="3" Style="{StaticResource CheckBx}" HorizontalAlignment="Left" Margin="25,2,0,0" VerticalAlignment="Top"  />
+            <CheckBox x:Name="dvc_simlpeWCCB" Content="Simple with Colon" Grid.Column="3" Style="{StaticResource CheckBx}" HorizontalAlignment="Left" Margin="26,22,0,0" VerticalAlignment="Top"  />
+            <CheckBox x:Name="dvc_simpleWNCCB" Content="Simple w/o Colon" Grid.Column="3" Style="{StaticResource CheckBx}" HorizontalAlignment="Left" Margin="25,42,0,10"  />
+
+            <Label Content="Combo Code (S1):" Grid.Column="1" Grid.Row="1" Style="{StaticResource Label}" />
+            <TextBox x:Name="dvc_comboCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="1"/>
+            <Label Content="Remarks (S2):" Grid.Column="2" Grid.Row="1" Style="{StaticResource Label}" />
+            <TextBox x:Name="dvc_remarrksTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="1"/>
+
+            <Label Content="Table Name :" Grid.Column="0" Grid.Row="2" Style="{StaticResource Label}" />
+            <TextBox x:Name="dvc_tableNameTextBox" Style="{StaticResource TextBox}" Grid.Column="0" Grid.Row="2"/>
+
+            <Label Content="Select Field:" Grid.Row="2" Grid.Column="1"  Style="{StaticResource Label}"/>
+            <TextBox x:Name="dvc_selectFieldTextBox" Style="{StaticResource TextBox}" Grid.Row="2" Grid.Column="1"/>
+
+
+            <Label Content="Where Clause:" Grid.Row="2" Grid.Column="2" Style="{StaticResource Label}"/>
+            <TextBox x:Name="dvc_whereClauseNameTextBox" Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBox}"/>
+
+            <Label Content="Order By:" Grid.Row="3" Grid.Column="0" Style="{StaticResource Label}" />
+            <TextBox x:Name="dvc_orderByTextBox" Grid.Row="3" Grid.Column="0" Style="{StaticResource TextBox}"/>
+
+            <Label Content="Append Field:" Grid.Row="3" Grid.Column="1" Style="{StaticResource Label}" />
+            <TextBox x:Name="dvc_appendFieldTextBox" Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBox}"/>
+
+            <Label Content="Append Name:" Grid.Row="3" Grid.Column="2" Style="{StaticResource Label}" />
+            <TextBox x:Name="dvc_appendNameTextBox" Grid.Row="3" Grid.Column="2" Style="{StaticResource TextBox}"/>
+
+            <Button x:Name="dvc_addBtn" Content="Add" Grid.Column="3" Grid.Row="2" Style="{StaticResource cmdButton}" Height="Auto"  Margin="2,2,2,2" Click="dvc_addBtn_Click"   />
+            <Button x:Name="dvc_backBtn" Content="Back" Grid.Column="3" Grid.Row="3" Style="{StaticResource cmdButton}" Height="Auto" Click="dvc_backBtn_Click" Margin="2,2,2,2"   />
+
+        </Grid>
+        <Grid x:Name="dvCopyGrid" Grid.Row="1" Visibility="Visible" Background="WhiteSmoke"  Height="auto" VerticalAlignment="Top" Margin="6,20,6,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="284*" />
+                <ColumnDefinition Width="284*" />
+                <ColumnDefinition Width="432*" />
+                <ColumnDefinition Width="135*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="DV Copy Screen" HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource Label}" Height="29" Width="114" />
+            <Label Content="Copy From" Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource Label}" Height="28" Width="82" />
+
+            <Label Content="Screen Code (S1):" Grid.Column="1" Grid.Row="1" Style="{StaticResource Label}" Height="28" Margin="3,0,0,0" Width="125" />
+            <TextBox x:Name="dvcp_screenCoedTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="1" />
+            <Label Content="Name (S2):" Grid.Column="2" Grid.Row="1" Style="{StaticResource Label}" Height="28" Margin="3,0,0,0" Width="83" />
+            <TextBox x:Name="dvcp_nameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="1" IsEnabled="False" Width="263" HorizontalAlignment="Left" Margin="166,0,0,0"/>
+
+            <Label Content="Copy To" Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource Label}" Height="29" Width="63" />
+
+            <Label Content="Screen Code (S1):" Grid.Column="1" Grid.Row="2" Style="{StaticResource Label}" Height="29" Margin="3,0,0,0" Width="125" />
+            <TextBox x:Name="dvcp_tscreenCoedTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="2" />
+            <Label Content="Name (S2):" Grid.Column="2" Grid.Row="2" Style="{StaticResource Label}"  />
+            <TextBox x:Name="dvcp_tnameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" Margin="166,0,0,0" Width="263" />
+
+            <!--<CheckBox x:Name="dvc_masterCB" Content="Simple with Colon" Grid.Column="3" Style="{StaticResource CheckBx}" HorizontalAlignment="Left" Margin="26,22,0,0" VerticalAlignment="Top"  />
+            <CheckBox x:Name="dvc_detailCB" Content="Simple w/o Colon" Grid.Column="3" Style="{StaticResource CheckBx}" HorizontalAlignment="Left" Margin="25,42,0,10"  />-->
+
+            <Button x:Name="dvcp_searchBtn" Content="Search" Grid.Column="1" Grid.Row="3" Style="{StaticResource cmdButton}"   Margin="171,2,0,2" HorizontalAlignment="Left" Width="110"  />
+            <Button x:Name="dvcp_copyBtn" Content="Add" Grid.Column="2" Grid.Row="3" Style="{StaticResource cmdButton}" Margin="0,2,0,2" HorizontalAlignment="Right" Width="110"  />
+            <Button x:Name="dvcp_backBtn" Content="Back" Grid.Column="3" Grid.Row="3" Style="{StaticResource cmdButton}" HorizontalAlignment="Center" Margin="0,2,0,2" Width="110" Click="dvcp_backBtn_Click"   />
+
+        </Grid>
         <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Stretch" Visibility="Collapsed" Grid.ColumnSpan="2" Width="auto" MaxWidth="1400" Margin="6,0,6,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="74"/>
@@ -296,6 +389,7 @@
 
             <Grid x:Name="screenButtonsGrid" Grid.Row="2"  Visibility="Visible" Background="WhiteSmoke" Margin="3,0,0,0" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -308,18 +402,19 @@
                     <RowDefinition Height="28"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="BUTTONS" FontFamily="Copperplate Gothic Bold" HorizontalAlignment="Center" />
-                <CheckBox x:Name="btns_addCB" Content="Add" Grid.Column="1" Style="{StaticResource CheckBx}"  />
-                <CheckBox x:Name="btns_editCB" Content="Edit" Grid.Column="2" Style="{StaticResource CheckBx}"  />
-                <CheckBox x:Name="btns_deleteCB" Content="Delete" Grid.Column="3" Style="{StaticResource CheckBx}"  />
-                <CheckBox x:Name="btns_postCB" Content="Post" Grid.Column="4" Style="{StaticResource CheckBx}"  />
-                <CheckBox x:Name="btns_previewCB" Content="Preview" Grid.Column="5" Style="{StaticResource CheckBx}"  />
+                <CheckBox x:Name="btns_selAllCB" Content="->" Style="{StaticResource CheckBx}" Margin="0,0,0,3" VerticalAlignment="Bottom" Background="#FFDDEDFF" BorderBrush="#FF3C4ACB" Checked="btns_selAllCB_Checked" Unchecked="btns_selAllCB_Unchecked" />
+                <Label Content="BUTTONS" FontFamily="Copperplate Gothic Bold" Grid.Column="1" HorizontalAlignment="Center"/>
+                <CheckBox x:Name="btns_addCB" Content="Add" Grid.Column="2" Style="{StaticResource CheckBx}"  />
+                <CheckBox x:Name="btns_editCB" Content="Edit" Grid.Column="3" Style="{StaticResource CheckBx}"  />
+                <CheckBox x:Name="btns_deleteCB" Content="Delete" Grid.Column="4" Style="{StaticResource CheckBx}"  />
+                <CheckBox x:Name="btns_postCB" Content="Post" Grid.Column="5" Style="{StaticResource CheckBx}"  />
+                <CheckBox x:Name="btns_previewCB" Content="Preview" Grid.Column="6" Style="{StaticResource CheckBx}"  />
 
-                <Label Content="STATUS" FontFamily="Copperplate Gothic Bold" Grid.Row="1" HorizontalAlignment="Center" />
-                <CheckBox x:Name="sts_postedCB" Content="Posted" Grid.Row="1" Grid.Column="1" Style="{StaticResource CheckBx}"  />
-                <CheckBox x:Name="sts_unpostedCB" Content="UnPosted" Grid.Row="1" Grid.Column="2" Style="{StaticResource CheckBx}"  />
-                <!--<Label Content="Name :" Grid.Column="3" Grid.Row="1" Style="{StaticResource Label}" />-->
-                <TextBox x:Name="mains32TextBox" Style="{StaticResource TextBox}" Grid.Column="3"  Grid.Row="1" HorizontalAlignment="Center"/>
+                <CheckBox x:Name="sts_selAllCB" Content="->" Grid.Row="1" Style="{StaticResource CheckBx}" Background="#FFDDEDFF" BorderBrush="#FF3C4ACB" Checked="sts_selAllCB_Checked"  />
+                <Label Content="STATUS" FontFamily="Copperplate Gothic Bold"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                <CheckBox x:Name="sts_postedCB" Content="Posted" Grid.Row="1" Grid.Column="2" Style="{StaticResource CheckBx}"  />
+                <CheckBox x:Name="sts_unpostedCB" Content="UnPosted" Grid.Row="1" Grid.Column="3" Style="{StaticResource CheckBx}"  />
+                <TextBox x:Name="mains32TextBox" Style="{StaticResource TextBox}" Grid.Column="4"  Grid.Row="1" HorizontalAlignment="Center"/>
 
 
             </Grid>
@@ -385,12 +480,12 @@
                 <TextBox x:Name="dv_nameTextBox" Style="{StaticResource TextBox}" Grid.Column="1"                 
                      Text="{Binding s2, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
-                <Label Content="List Item :" Grid.Column="3" Style="{StaticResource Label}" />
-                <TextBox x:Name="dv_listItemTextBox" Style="{StaticResource TextBox}" Grid.Column="3"                 
+                <Label Content="List Item :" Grid.Column="3" Grid.Row="3"  Style="{StaticResource Label}" />
+                <TextBox x:Name="dv_listItemTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="3"        
                      Text="{Binding s13, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
-                <Label Content="Validation :" Grid.Column="0" Grid.Row="1"  Style="{StaticResource Label}" />
-                <TextBox x:Name="dv_validationTextBox" Style="{StaticResource TextBox}" Grid.Column="0" Grid.Row="1"
+                <Label Content="Validation :" Grid.Column="2" Grid.Row="3"  Style="{StaticResource Label}" />
+                <TextBox x:Name="dv_validationTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="3" 
                      Text="{Binding s14, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
                 <Label Content="Tab Code :" Grid.Column="1" Grid.Row="1" Style="{StaticResource Label}" />
@@ -401,17 +496,23 @@
                 <TextBox x:Name="dv_tableNameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="1"                
                      Text="{Binding s32, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
-                <Label Content="Bootstrap:" Grid.Column="3" Grid.Row="1" Style="{StaticResource Label}" />
-                <TextBox x:Name="dv_botstrapTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="1"                
+                <Label Content="Bootstrap:" Grid.Column="0" Grid.Row="2" Style="{StaticResource Label}" />
+                <TextBox x:Name="dv_botstrapTextBox" Style="{StaticResource TextBox}" Grid.Column="0" Grid.Row="2"              
                      Text="{Binding s35, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
                 <Label Content="Data Type:" Grid.Column="2" Style="{StaticResource Label}" />
                 <TextBox x:Name="dv_dataTypeTextBox" Style="{StaticResource TextBox}" Grid.Column="2"                 
-                    Text="{Binding s3, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                    Text="{Binding s3, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" >
+                    <TextBox.Background>
+                        <ImageBrush/>
+                    </TextBox.Background>
+                </TextBox>
 
-                <Label Content="Combo Box:" Grid.Column="0" Grid.Row="2" Style="{StaticResource Label}" />
-                <TextBox x:Name="dv_comboBoxTextBox" Style="{StaticResource TextBox}" Grid.Column="0" Grid.Row="2"                 
-                    Text="{Binding s4, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                <Label Content="Combo Box:" Grid.Column="3" Grid.Row="0" Style="{StaticResource Label}" />
+                <TextBox x:Name="dv_comboBoxTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="0"                 
+                    Text="{Binding s4, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3,3,38,3" />
+
+                <Button x:Name="dv_comboBoxCreateBtn" Content="NEW" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0" Width="30" Height="25" Click="dv_comboBoxCreateBtn_Click"  />
 
                 <Label Content="Dep Case:" Grid.Column="1" Grid.Row="2" Style="{StaticResource Label}" />
                 <TextBox x:Name="dv_depCaseTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="2"                 
@@ -433,8 +534,8 @@
                 <TextBox x:Name="dv_rigixTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="3"                 
                     Text="{Binding s10, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
-                <Label Content="ID:" Grid.Column="13" Grid.Row="3" Style="{StaticResource Label}" />
-                <TextBox x:Name="dv_idTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="3"                 
+                <Label Content="ID:" Grid.Column="0" Grid.Row="1" Style="{StaticResource Label}" />
+                <TextBox x:Name="dv_idTextBox" Style="{StaticResource TextBox}" Grid.Column="0" Grid.Row="1"          
                     Text="{Binding n100, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="False" />
 
 

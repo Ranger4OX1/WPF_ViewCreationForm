@@ -60,7 +60,7 @@ namespace WpfApp1
             //string sql = @"Data Source = localhost;
             //                Initial Catalog = LocalMaster;
             //                Integrated Security = true ";
-            dal.setDatabase("LocalMaster", "localhost", "", "", true);
+            //dal.setDatabase("LocalMaster", "localhost", "", "", true);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -103,21 +103,19 @@ namespace WpfApp1
         {
             modtreeViewSource.View.MoveCurrentToLast();
         }
-
         private void PreviousCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             modtreeViewSource.View.MoveCurrentToPrevious();
         }
-
         private void NextCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             modtreeViewSource.View.MoveCurrentToNext();
         }
-
         private void FirstCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             modtreeViewSource.View.MoveCurrentToFirst();
         }
+
 
         private void CloudDBCommand(object sender, ExecutedRoutedEventArgs e)
         {
@@ -125,15 +123,19 @@ namespace WpfApp1
         }
         private void localDBCommand(object sender, ExecutedRoutedEventArgs e)
         {
-            sysStatLbl.Content = dal.setDatabase("LocalMaster", "localhost", "", "", true);
+
+            //string sql = @"Data Source = 172.16.1.10;
+            //                Initial Catalog = PearlErpMaster;
+            //                UID = sa; Pwd = Pearl@2016;";
+            sysStatLbl.Content = dal.setDatabase("PearlErpMaster", "172.16.1.10", "sa", "Pearl@2016", true);
         }
+
 
         private void RefreshCommandCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             PopulateModTreGrid();
             sysStatLbl.Content = "Data Refreshed";
-        }
-        
+        }        
         private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             Collapse();
@@ -142,15 +144,13 @@ namespace WpfApp1
             creationModtreeGrid.Visibility = Visibility.Collapsed;
             existingModtreeGrid.Visibility = visible;
             modtreeDataGrid.Visibility = visible;           
-        }
-        
+        }        
         private void CancelCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             Collapse();
             ResetControls();
             sysStatLbl.Content = "System Ready";
         }
-
         private void SelectModuleCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             Collapse();
@@ -189,7 +189,6 @@ namespace WpfApp1
             create_prevLvlTextBox.Text = string.Empty;
             create_displayOrderTextBox.Text = string.Empty;
         }
-
         private void Collapse()//// Collapse Evrything HAHAH!!
         {
 
@@ -210,13 +209,11 @@ namespace WpfApp1
             secLvl2DataGrid.Visibility = Visibility.Collapsed;
             moduleDataGrid.Visibility = Visibility.Collapsed;
         }
-
         private void LoadScreenForm(string state)
         {
             Window1 window = new Window1(selectedModule, selectedSecLvl1, selectedSecLvl2 ,state);
             window.Show();
         }
-
         private void StkPnlNavButtons_IsEnabled(bool flag)
         {
             if (flag)
@@ -243,7 +240,9 @@ namespace WpfApp1
             
             selectedModule = dal.GetRecord(create_moduleCodeTextBox.Text);
 
-            if (selectedModule.n100 == 0 )
+            MessageBox.Show( selectedModule.n100.ToString() );
+
+            if (Convert.ToInt32(selectedModule.n100) == 0 )
             {
                 sysStatLbl.Content = "No mod Found";
             }
@@ -282,7 +281,6 @@ namespace WpfApp1
 
             sec_addButton.IsEnabled = true;
         }
-
         private void selectButton_Click(object sender, RoutedEventArgs e)
         {
             StkPnlNavButtons_IsEnabled(false);
@@ -322,6 +320,7 @@ namespace WpfApp1
                 MessageBox.Show("Please dont leave any fields empty", "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         
         private void addSecLvl1Button_Click(object sender, RoutedEventArgs e)
         {
@@ -368,7 +367,6 @@ namespace WpfApp1
                 MessageBox.Show("Please fill the Section Name and Code first", "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void addSecLvl2Button_Click(object sender, RoutedEventArgs e)
         { 
 
@@ -412,6 +410,7 @@ namespace WpfApp1
                 MessageBox.Show("Please fill the Section Name and Code first", "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         private void createSectionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -526,12 +525,12 @@ namespace WpfApp1
             sysStatLbl.Content = "Section  Selected";
 
             PopulatesecLvl2ViewSource();
+            selSecCntrl_ssL2Btn.IsEnabled = true;
             moduleDataGrid.Visibility = Visibility.Collapsed ;
             secLvl2DataGrid.Visibility = visible;
             scrnCntlBtnGrid.IsEnabled = true;
             selSecCntrl_addSecL2Btn.IsEnabled = true;
         }
-
         private void selSecCntrl_ssL2Btn_Click(object sender, RoutedEventArgs e)
         {
             selectedSecLvl2.s1 = sec_l2secCodeTextBox.Text;
@@ -541,6 +540,18 @@ namespace WpfApp1
             selectedSecLvl2.s40 = selectedSecLvl1.s1.ToString().Substring(0, 4);
 
             sysStatLbl.Content = "Sub-Section Selected";
+        }
+        private void selSecCntrl_addSecL1Btn_Click(object sender, RoutedEventArgs e)
+        {
+            selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = false;
+            moduleDataGrid.Visibility = Visibility.Collapsed;
+            newSectionLvl1Grid.Visibility = visible;
+        }
+        private void selSecCntrl_addSecL2Btn_Click(object sender, RoutedEventArgs e)
+        {
+            selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = false;
+            secLvl2DataGrid.Visibility = Visibility.Collapsed;
+            newSectionLvl2Grid.Visibility = visible;
         }
 
         private void screenNav_AddBtn_Click(object sender, RoutedEventArgs e)
@@ -558,19 +569,6 @@ namespace WpfApp1
             LoadScreenForm("C");
         }
 
-        private void selSecCntrl_addSecL1Btn_Click(object sender, RoutedEventArgs e)
-        {
-            selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = false;
-            moduleDataGrid.Visibility = Visibility.Collapsed;
-            newSectionLvl1Grid.Visibility = visible;
-        }
-
-        private void selSecCntrl_addSecL2Btn_Click(object sender, RoutedEventArgs e)
-        {
-            selctSecL1Grid.IsEnabled = selctSecL2Grid.IsEnabled = selSecCntlBtnGrid.IsEnabled = false;
-            secLvl2DataGrid.Visibility = Visibility.Collapsed;
-            newSectionLvl2Grid.Visibility = visible;
-        }
 
         ///// ednds heree
     }

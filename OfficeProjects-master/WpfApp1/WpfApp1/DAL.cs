@@ -75,7 +75,7 @@ namespace WpfApp1
                     sqlCnxStringBuilder.Password = password;
 
                 // set the integrated security status
-                sqlCnxStringBuilder.IntegratedSecurity = integratedSecuity;
+                //sqlCnxStringBuilder.IntegratedSecurity = integratedSecuity;
 
                 // now flip the properties that were changed
                 DBContext.Database.Connection.ConnectionString
@@ -102,13 +102,13 @@ namespace WpfApp1
             {
                 using (var ctx = new DBEntities())
                 {
-                    var mods = ctx.modtrees
-                                    .Where(s => s.s1 == sVal).First();
+                    var mods = ctx.modtrees.Where(s => s.s1 == sVal).First();
                     return mods;
                 }
             }
             catch (Exception)
             {
+                MessageBox.Show("cathch");
                 modtree mod = new modtree();
                 return mod;
             }
@@ -177,6 +177,11 @@ namespace WpfApp1
                 return mod;
             }
         }
+        public dvcombo GetDVCombo(int id)
+        {
+            return DBContext.dvcomboes.Find(id);
+        }
+
 
         //public void InsertSectionLvl1(modtree module, string secName, string secCode)
         //{
@@ -233,7 +238,7 @@ namespace WpfApp1
         //        MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
         //        throw;
         //    }
-            
+
         //}
 
         public List<modtree> GetAll()
@@ -337,14 +342,16 @@ namespace WpfApp1
         ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
-            string connString = DBContext.Database.Connection.ConnectionString;
-            //string sql = @"Data Source = localhost;
-            //                Initial Catalog = LocalMaster;
-            //                Integrated Security = true ";
+            //string connString = DBContext.Database.Connection.ConnectionString;
+            //MessageBox.Show(connString);
+            string sql = @"Data Source = localhost;
+                            Initial Catalog = LocalMaster;
+                            Integrated Security = true ";
             //string sql = @"Data Source = 172.16.1.10;
             //                Initial Catalog = PearlErpMaster;
             //                UID = sa; Pwd = Pearl@2016;";
-            conn = new SqlConnection(connString);
+            //conn = new SqlConnection(connString);
+            conn = new SqlConnection(sql);
 
             try
             {
@@ -400,6 +407,7 @@ namespace WpfApp1
                 conn = GetConnection();
                 da = new SqlDataAdapter(sql, conn);
                 dt = new DataTable();
+                da.Fill(dt);
             }
             catch (SqlException ex)
             {
@@ -407,7 +415,6 @@ namespace WpfApp1
                 //throw;
             }            
 
-            da.Fill(dt);
             conn.Close();
             return dt;
         }
@@ -496,7 +503,47 @@ namespace WpfApp1
                 MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
             }
-        } 
+        }
+        public void AddDVCombo(dvcombo dvcData)
+        {
+            //s100,s107,s1,s31
+            try
+            {
+                if (dvcData != null)
+                {
+                    //DBContext.dvcomboes.Add(dvcData);
+                    //DBContext.SaveChanges();
+                    DataTable temp = Exec("SELECT MAX(n100) FROM dvcombo");
+                    DataRow row = temp.Rows[0];
+                    string x = row[0].ToString();
+
+                    string sql = "insert into dvcombo (n100,s1,s2,s3) values("+ x +",'"+ dvcData.s1 +"','" + dvcData.s2 +"','" + dvcData.s3 +"')";
+                    SqlDataAdapter da = new SqlDataAdapter();
+
+                    try
+                    {
+                        conn = GetConnection();
+                        da.InsertCommand = new SqlCommand(sql, conn);
+                        da.InsertCommand.ExecuteNonQuery();
+                        MessageBox.Show("inserted");
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Data NUll", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
+        }
         public void AddModTreeTran(modtreetran mttData)
         {
             try
@@ -537,6 +584,7 @@ namespace WpfApp1
                 throw;
             }
         }
+
 
        
     }

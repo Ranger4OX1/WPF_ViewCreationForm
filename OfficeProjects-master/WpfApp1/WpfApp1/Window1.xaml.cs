@@ -23,7 +23,7 @@ namespace WpfApp1
     public partial class Window1 : Window
     {
         private const Visibility visible = Visibility.Visible;
-        DBEntities context = new DBEntities();
+
         private DAL dal = new DAL();
         private Rules rules = new Rules();
         private dv field = new dv();
@@ -31,12 +31,15 @@ namespace WpfApp1
         CollectionViewSource modtreeViewSource;
         CollectionViewSource DVViewSource;
 
+        DBEntities context = new DBEntities();
+
         private modtree selectedModule = new modtree();
         private modtree selectedSecLvl1 = new modtree();
         private modtree selectedSecLvl2 = new modtree();
         private modtree selectedScreen = new modtree();
         private modtree tab = new modtree();
 
+        // Constructor
         public Window1(modtree mod, modtree secL1, modtree secL2, string state)
         {
             InitializeComponent();
@@ -101,6 +104,10 @@ namespace WpfApp1
 
         }
 
+        /// <summary>
+        /// Changes the color of the passed btn default makes all btn blue
+        /// </summary>
+        /// <param name="vt"></param>
         private void SetVTBtn(string vt)
         {
             switch (vt)
@@ -143,6 +150,10 @@ namespace WpfApp1
             }
         }
 
+        /// <summary>
+        /// Get the buttons for the screen from the modtree
+        /// </summary>
+        /// <param name="code"></param>
         private void SetStsBtnGrid(string code)
         {
             bool[] btns = new bool[10];
@@ -156,25 +167,49 @@ namespace WpfApp1
             if (btns[6]) { sts_postedCB.IsChecked = true; }
             if (btns[5]) { sts_unpostedCB.IsChecked = true; }
         }
-        
+
+        /// <summary>
+        /// Gets the state of all the check boxes
+        /// </summary>
+        /// <returns>bool []</returns>
         private bool[] GetStsBtnGrid()
         {
             bool[] btns = new bool[10];
 
             for (int i = 0; i < 10; i++) { btns[i] = false; }
 
-            if ((bool)btns_addCB.IsChecked) { btns[0] = true; }
-            if ((bool)btns_editCB.IsChecked) { btns[1] = true; }
-            if ((bool)btns_deleteCB.IsChecked ) { btns[2] = true; }
-            if ((bool)btns_postCB.IsChecked ) { btns[3] = true; }
-            if ((bool)btns_previewCB.IsChecked ) { btns[4] = true; }
-            if ((bool)sts_unpostedCB.IsChecked ) { btns[5] = true; }
-            if ((bool)sts_postedCB.IsChecked ) { btns[6] = true; }
-            
+            if ((bool)btns_selAllCB.IsChecked)
+            {
+                btns[0] = btns[1] = btns[2] = btns[3] = btns[4] = true;
+            }
+            else
+            {
+                if ((bool)btns_addCB.IsChecked) { btns[0] = true; }
+                if ((bool)btns_editCB.IsChecked) { btns[1] = true; }
+                if ((bool)btns_deleteCB.IsChecked) { btns[2] = true; }
+                if ((bool)btns_postCB.IsChecked) { btns[3] = true; }
+                if ((bool)btns_previewCB.IsChecked) { btns[4] = true; }
+            }
+
+            if ((bool)btns_selAllCB.IsChecked)
+            {
+                btns[5] = btns[6] = true;
+            }
+            else
+            {
+                if ((bool)sts_unpostedCB.IsChecked) { btns[5] = true; }
+                if ((bool)sts_postedCB.IsChecked) { btns[6] = true; }
+            }           
 
             return btns;
         }
 
+        /// <summary>
+        /// Gets the modtree entry for the Button, Status or Tab passed
+        /// </summary>
+        /// <param name="pram"></param>
+        /// <param name="scrn"></param>
+        /// <returns>Modtree Object</returns>
         private modtree GetBtnStsTabModtree(string pram, modtree scrn)
         {
             modtree result = new modtree();
@@ -361,6 +396,11 @@ namespace WpfApp1
             return result;
         }
 
+        /// <summary>
+        /// Inserts all the checked Btns, Tabs, Stss
+        /// </summary>
+        /// <param name="scrn"></param>
+        /// <returns>Num of records inserted</returns>
         private string InsertBtns(modtree scrn)
         {
             int count = 2;
@@ -514,6 +554,7 @@ namespace WpfApp1
 
         }
 
+
         private void refrehBtn_Click(object sender, RoutedEventArgs e)
         {
             if (screenSelectionGrid.Visibility == Visibility.Visible)
@@ -544,9 +585,7 @@ namespace WpfApp1
             //selectedScreen.s40 = selScr_prevLvlTextBox.Text;
         }
 
-        private void mdtreScreen_saveBtn_Click(object sender, RoutedEventArgs e)
-        {
-        }
+        
 
         private void field_AddBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -643,6 +682,11 @@ namespace WpfApp1
 
         }
 
+
+        private void mdtreScreen_saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
         private void mdtreScreen_AddNewBtn_Click(object sender, RoutedEventArgs e)
         {
             bool addScrnFlag = false;
@@ -733,6 +777,13 @@ namespace WpfApp1
             }            
         }
 
+        private void mdtreScreen_nextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            tabsGrid.IsEnabled = dvGrid.IsEnabled = DVgrid.IsEnabled = true;
+        }
+
+
+
         private void vt_3000_Click(object sender, RoutedEventArgs e)
         {
             SetVTBtn("");
@@ -817,23 +868,23 @@ namespace WpfApp1
             field_AddBtn.IsEnabled = field_FinishBtn.IsEnabled = field_updateBtn.IsEnabled = true;
         }
 
+
+
         private string tab31;
+        private int tempTabBtn = 0;
+        private bool btn1ClickFlag = false;
+        private bool btn2ClickFlag = false;
         private void tab_Master_Click(object sender, RoutedEventArgs e)
         {
             field.s107 = "M";
             sysStatLbl.Content = "Master tab Selected";
         }
-
         private void tab_Detail_Click(object sender, RoutedEventArgs e)
         {
             field.s107 = "D";
             sysStatLbl.Content = "Detail tab Selected";
             tab31 = selectedScreen.s1.ToString() + "08";
         }
-
-        private int tempTabBtn = 0;
-        private bool btn1ClickFlag = false;
-        private bool btn2ClickFlag = false;
         private void tab_NTab1_Click(object sender, RoutedEventArgs e)
         {
             if (btn1ClickFlag == false)
@@ -868,7 +919,6 @@ namespace WpfApp1
                 tab31 = selectedScreen.s1.ToString() + "10";
             }
         }
-
         private void tab_saveBtn_Click(object sender, RoutedEventArgs e)
         {
             //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s32, s35, s39, s40, n1
@@ -895,10 +945,77 @@ namespace WpfApp1
             sysStatLbl.Content = "New Tab added";
         }
 
-        private void mdtreScreen_nextBtn_Click(object sender, RoutedEventArgs e)
+
+        private void copyDVBtn_Click(object sender, RoutedEventArgs e)
         {
-            tabsGrid.IsEnabled = dvGrid.IsEnabled = DVgrid.IsEnabled = true;
+
         }
 
+
+        private void btns_selAllCB_Checked(object sender, RoutedEventArgs e)
+        {
+            btns_deleteCB.IsChecked = btns_addCB.IsChecked = btns_editCB.IsChecked = btns_postCB.IsChecked = btns_previewCB.IsChecked = true;
+        }
+
+        private void sts_selAllCB_Checked(object sender, RoutedEventArgs e)
+        {
+            sts_postedCB.IsChecked = sts_unpostedCB.IsChecked = true;
+        }
+
+        private void btns_selAllCB_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dv_comboBoxCreateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            dvcComboCreationGrid.Visibility = visible;
+            screenCreationGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void dvc_backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            dvcComboCreationGrid.Visibility = Visibility.Collapsed;
+            screenCreationGrid.Visibility = visible;
+        }
+
+        private void dvc_addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            dvcombo entry = new dvcombo();
+            string s2Text="";
+
+            //no condition if multiple selctd
+            if (dvc_simlpeWCCB.IsChecked == false && dvc_simpleWNCCB.IsChecked == false && dvc_coplexCB.IsChecked == false)
+            {
+                sysStatLbl.Content = "Pls select a type first";
+            }
+            else
+            {
+                if (dvc_simlpeWCCB.IsChecked == true)
+                {
+                    s2Text = dvc_tableNameTextBox.Text + "," + dvc_selectFieldTextBox.Text + "," + dvc_whereClauseNameTextBox.Text + "," + dvc_orderByTextBox.Text + ";" + dvc_appendFieldTextBox.Text + "," + dvc_appendNameTextBox.Text;
+                }
+                else if (dvc_simpleWNCCB.IsChecked == true)
+                {
+                    s2Text = dvc_tableNameTextBox.Text + "," + dvc_selectFieldTextBox.Text + "," + dvc_whereClauseNameTextBox.Text + "," + dvc_orderByTextBox.Text;
+                }
+                else if (dvc_coplexCB.IsChecked == true)
+                {
+                    //
+                }
+
+                entry.s1 = dvc_comboCodeTextBox.Text;
+                entry.s2 = s2Text;
+                entry.s3 = dvc_remarrksTextBox.Text;
+
+                dal.AddDVCombo(entry); 
+            }
+        }
+
+        private void dvcp_backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            dvCopyGrid.Visibility = Visibility.Collapsed;
+            screenCreationGrid.Visibility = visible;
+        }
     }
 }
