@@ -117,6 +117,23 @@ namespace WpfApp1
         {
             return DBContext.dvs.Find(id);
         }
+        public dv GetDV(string sVal)
+        {
+            try
+            {
+                using (var ctx = new DBEntities())
+                {
+                    var mods = ctx.dvs.Where(s => s.s1 == sVal).First();
+                    return mods;
+                }
+            }
+            catch (Exception)//here and extension
+            {
+                MessageBox.Show("catch dv");
+                throw new Exception();
+                return null;
+            }
+        }
         public dv GetDVRecord(dv dvRec)
         {
             try

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 //New
 
 using System.Data.Entity;
+using System.Data;
 
 namespace WpfApp1
 {
@@ -30,6 +31,7 @@ namespace WpfApp1
 
         CollectionViewSource modtreeViewSource;
         CollectionViewSource DVViewSource;
+        CollectionViewSource dvcpViewSource;
 
         DBEntities context = new DBEntities();
 
@@ -46,6 +48,7 @@ namespace WpfApp1
 
             modtreeViewSource = ((CollectionViewSource)(FindResource("modtreeViewSource")));
             DVViewSource = ((CollectionViewSource)(FindResource("screenDVViewSource")));
+            dvcpViewSource = ((CollectionViewSource)(FindResource("dvcpViewSource")));
             DataContext = this;
 
             context.dvs.Load();
@@ -512,6 +515,13 @@ namespace WpfApp1
             }
         }
 
+        private void PopulateDVCPGrid(DataTable dSet)
+        {
+            dvcpViewSource.Source = dSet;
+            dvcpViewSource.View.Refresh();
+            
+        }
+
         //////
         /// SECTION BUTTON CLICK COMMANDS
         private void sel_ScreenButton_Click(object sender, RoutedEventArgs e)
@@ -585,7 +595,12 @@ namespace WpfApp1
             //selectedScreen.s40 = selScr_prevLvlTextBox.Text;
         }
 
-        
+        private void copyDVBtn_Click(object sender, RoutedEventArgs e)
+        {
+            screenCreationGrid.Visibility = Visibility.Collapsed;
+            dvcpDataGrid.Visibility = visible;
+            dvcpDataGrid.Visibility = visible;
+        }
 
         private void field_AddBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -868,8 +883,6 @@ namespace WpfApp1
             field_AddBtn.IsEnabled = field_FinishBtn.IsEnabled = field_updateBtn.IsEnabled = true;
         }
 
-
-
         private string tab31;
         private int tempTabBtn = 0;
         private bool btn1ClickFlag = false;
@@ -946,10 +959,6 @@ namespace WpfApp1
         }
 
 
-        private void copyDVBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
 
         private void btns_selAllCB_Checked(object sender, RoutedEventArgs e)
@@ -967,12 +976,14 @@ namespace WpfApp1
 
         }
 
+        //DV Grid Btns
         private void dv_comboBoxCreateBtn_Click(object sender, RoutedEventArgs e)
         {
             dvcComboCreationGrid.Visibility = visible;
             screenCreationGrid.Visibility = Visibility.Collapsed;
         }
 
+        //DVC Grid Btns
         private void dvc_backBtn_Click(object sender, RoutedEventArgs e)
         {
             dvcComboCreationGrid.Visibility = Visibility.Collapsed;
@@ -1012,10 +1023,64 @@ namespace WpfApp1
             }
         }
 
+        //DVCP Grid Btns
         private void dvcp_backBtn_Click(object sender, RoutedEventArgs e)
         {
             dvCopyGrid.Visibility = Visibility.Collapsed;
             screenCreationGrid.Visibility = visible;
+        }
+
+        private void dvcp_searchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable copyFields = new DataTable();
+            modtree searchScrn = dal.GetRecord(dvcp_screenCodeTextBox.Text);
+            MessageBox.Show(searchScrn.s1);
+            if(searchScrn.s102 == "RPT")
+            {
+                copyFields = dal.Exec("select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s107='" + searchScrn.s1 + "'");
+            }
+            else
+            {
+                if (searchScrn.s5 == "3000" || searchScrn.s5 == "3050")
+                {
+                    if (dvcp_allCB.IsChecked == true)
+                    {
+                        copyFields = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + searchScrn.s102 + "'");
+                    }
+                    else if (dvcp_masterCB.IsChecked == true)
+                    {
+                        copyFields = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + searchScrn.s102 + "' AND s107 = '" + "M" + "'");
+                    }
+                    else if (dvcp_detailCB.IsChecked == true)
+                    {
+                        copyFields = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + searchScrn.s102 + "' AND s107 = '" + "D" + "'");
+                    }
+                    else
+                    {
+                        sysStatLbl.Content = "Pls Select an option";
+                    }
+                            
+                }
+                else
+                {
+                    MessageBox.Show("exec");
+                    copyFields = dal.Exec("select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s100='" + searchScrn.s102 + "'");
+                }
+            }
+            PopulateDVCPGrid(copyFields);
+        }
+
+        private void dvcp_detailCB_Checked(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void dvcp_masterCB_Checked(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void dvcp_allCB_Checked(object sender, RoutedEventArgs e)
+        {
+            dvcp_allCB.IsChecked = dvcp_masterCB.IsChecked = dvcp_detailCB.IsChecked = true;
         }
     }
 }
