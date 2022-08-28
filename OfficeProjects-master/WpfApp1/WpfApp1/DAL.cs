@@ -85,7 +85,7 @@ namespace WpfApp1
             }
             catch (Exception ex)
             {
-                // set log item if required
+                MessageBox.Show("DAL Error\n Failed to DB Connection");
                 result = "Failed to connecte to " + initialCatalog;
             }
             return result;
@@ -129,8 +129,7 @@ namespace WpfApp1
             }
             catch (Exception)//here and extension
             {
-                MessageBox.Show("catch dv");
-                throw new Exception();
+                MessageBox.Show("DAL Error\n Failed to get Record");
                 return null;
             }
         }
@@ -602,7 +601,49 @@ namespace WpfApp1
             }
         }
 
+        public void InsertDT(DataTable dt)
+        {
+            try
+            {
+                //n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35
+                if (dt == null)
+                {
+                    MessageBox.Show("DAL Error\n Empty DataTablez");
+                }
+                else
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var temp = new dv()
+                        {
+                            s100 = row[1].ToString(),
+                            s101 = row[2].ToString(),
+                            s107 = row[3].ToString(),
+                            s1 = row[4].ToString(),
+                            s2 = row[5].ToString(),
+                            s3 = row[6].ToString(),
+                            s4 = row[7].ToString(),
+                            s6 = row[8].ToString(),
+                            s7 = row[9].ToString(),
+                            s8 = row[10].ToString(),
+                            s9 = row[11].ToString(),
+                            s10 = row[12].ToString(),
+                            s13 = row[13].ToString(),
+                            s14 = row[14].ToString(),
+                            s31 = row[15].ToString(),
+                            s32 = row[16].ToString(),
+                            s35 = row[17].ToString()
+                        };
+                        AddDV(temp);
+                    }
 
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("DAL Error\n Failed to insert DT Records");
+            }
+        }
        
     }
 

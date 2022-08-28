@@ -262,7 +262,7 @@
             <TextBox x:Name="dvcp_tnameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" Margin="166,0,0,0" Width="263" />
 
             <Button x:Name="dvcp_searchBtn" Content="Search" Grid.Column="1" Grid.Row="3" Style="{StaticResource cmdButton}"   Margin="171,2,0,2" HorizontalAlignment="Left" Width="110" Click="dvcp_searchBtn_Click"  />
-            <Button x:Name="dvcp_copyBtn" Content="Add" Grid.Column="2" Grid.Row="3" Style="{StaticResource cmdButton}" Margin="0,2,0,2" HorizontalAlignment="Right" Width="110"  />
+            <Button x:Name="dvcp_copyBtn" Content="Copy" Grid.Column="2" Grid.Row="3" Style="{StaticResource cmdButton}" Margin="0,2,0,2" HorizontalAlignment="Right" Width="110" Click="dvcp_copyBtn_Click"  />
             <Button x:Name="dvcp_backBtn" Content="Back" Grid.Column="3" Grid.Row="3" Style="{StaticResource cmdButton}" HorizontalAlignment="Center" Margin="0,2,0,2" Width="110" Click="dvcp_backBtn_Click"   />
 
             <CheckBox x:Name="dvcp_allCB" Content="All" Grid.Column="1" Grid.Row="4"  Style="{StaticResource CheckBx}" Checked="dvcp_allCB_Checked"/>

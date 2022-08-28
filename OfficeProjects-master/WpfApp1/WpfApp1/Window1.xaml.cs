@@ -35,6 +35,11 @@ namespace WpfApp1
 
         DBEntities context = new DBEntities();
 
+        DataTable dvcpDT = new DataTable();
+        private modtree dvcpFScrn = new modtree();
+        private modtree dvcpTScrn = new modtree();
+
+
         private modtree selectedModule = new modtree();
         private modtree selectedSecLvl1 = new modtree();
         private modtree selectedSecLvl2 = new modtree();
@@ -462,6 +467,96 @@ namespace WpfApp1
             }
 
             return count + " records inserted";
+        }
+        /// <summary>
+        /// Copies fields from one screen to another
+        /// </summary>
+        /// <param name="fromTable"></param>
+        /// <param name="frmScrn"></param>
+        /// <param name="toScrn"></param>
+        /// <returns>DataTable</returns>
+        private void CopyDV()
+        {
+            if (dvcpFScrn.s100 == "SCR" || dvcpFScrn.s100 == "RPT")
+            {
+                if (dvcpFScrn.s100 == "SCR")
+                {
+                    foreach (DataRow row in dvcpDT.Rows)
+                    {
+                        var temp = new dv()
+                        {
+                            s100 = row[1].ToString(),
+                            s101 = row[2].ToString(),
+                            s107 = row[3].ToString(),
+                            s1 = row[4].ToString(),
+                            s2 = row[5].ToString(),
+                            s3 = row[6].ToString(),
+                            s4 = row[7].ToString(),
+                            s6 = row[8].ToString(),
+                            s7 = row[9].ToString(),
+                            s8 = row[10].ToString(),
+                            s9 = row[11].ToString(),
+                            s10 = row[12].ToString(),
+                            s13 = row[13].ToString(),
+                            s14 = row[14].ToString(),
+                            s31 = row[15].ToString(),
+                            s32 = row[16].ToString(),
+                            s35 = row[17].ToString()
+                        };
+
+                        if (temp.s107 == "M")
+                        {
+                            row[3] = dvcpTScrn.s102;
+                        }
+                        else if (temp.s107 == "D")
+                        {
+                            row[3] = dvcpTScrn.s102;
+                            row[16] = dvcpTScrn.s1.ToString() + "08";
+                        }
+                    }
+                }
+                else if (dvcpFScrn.s100 == "RPT")
+                {
+                    foreach (DataRow row in dvcpDT.Rows)
+                    {
+                        var temp = new dv()
+                        {
+                            s100 = row[1].ToString(),
+                            s101 = row[2].ToString(),
+                            s107 = row[3].ToString(),
+                            s1 = row[4].ToString(),
+                            s2 = row[5].ToString(),
+                            s3 = row[6].ToString(),
+                            s4 = row[7].ToString(),
+                            s6 = row[8].ToString(),
+                            s7 = row[9].ToString(),
+                            s8 = row[10].ToString(),
+                            s9 = row[11].ToString(),
+                            s10 = row[12].ToString(),
+                            s13 = row[13].ToString(),
+                            s14 = row[14].ToString(),
+                            s31 = row[15].ToString(),
+                            s32 = row[16].ToString(),
+                            s35 = row[17].ToString()
+                        };
+                        if (temp.s2 == "Format")
+                        {
+                            row[3] = dvcpTScrn.s1;
+                        }                        
+                    }
+                }
+
+                dal.InsertDT(dvcpDT);
+                sysStatLbl.Content = "Feilds Succfully Copied!";
+            }
+            else if (dvcpFScrn.s100 != dvcpTScrn.s100)
+            {
+                MessageBox.Show("Unhandeled Case \nWindow1.CopyDV \n FromScreen.s100 != ToScreen.s100");
+            }
+            else
+            {
+                MessageBox.Show("Unhandeled Case \nWindow1.CopyDV \n S100!= RPT or SCR");
+            }
         }
 
         //////
@@ -959,8 +1054,6 @@ namespace WpfApp1
         }
 
 
-
-
         private void btns_selAllCB_Checked(object sender, RoutedEventArgs e)
         {
             btns_deleteCB.IsChecked = btns_addCB.IsChecked = btns_editCB.IsChecked = btns_postCB.IsChecked = btns_previewCB.IsChecked = true;
@@ -1032,42 +1125,48 @@ namespace WpfApp1
 
         private void dvcp_searchBtn_Click(object sender, RoutedEventArgs e)
         {
-            DataTable copyFields = new DataTable();
-            modtree searchScrn = dal.GetRecord(dvcp_screenCodeTextBox.Text);
-            MessageBox.Show(searchScrn.s1);
-            if(searchScrn.s102 == "RPT")
+            dvcpFScrn = dal.GetRecord(dvcp_screenCodeTextBox.Text);
+            dvcp_nameTextBox.Text = dvcpFScrn.s2;
+
+            if(dvcpFScrn.s102 == "RPT")
             {
-                copyFields = dal.Exec("select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s107='" + searchScrn.s1 + "'");
+                dvcpDT = dal.Exec("select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s107='" + dvcpFScrn.s1 + "'");
             }
             else
             {
-                if (searchScrn.s5 == "3000" || searchScrn.s5 == "3050")
+                if (dvcpFScrn.s5 == "3000" || dvcpFScrn.s5 == "3050")
                 {
                     if (dvcp_allCB.IsChecked == true)
                     {
-                        copyFields = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + searchScrn.s102 + "'");
+                        dvcpDT = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + dvcpFScrn.s102 + "'");
                     }
                     else if (dvcp_masterCB.IsChecked == true)
                     {
-                        copyFields = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + searchScrn.s102 + "' AND s107 = '" + "M" + "'");
+                        dvcpDT = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + dvcpFScrn.s102 + "' AND s107 = '" + "M" + "'");
                     }
                     else if (dvcp_detailCB.IsChecked == true)
                     {
-                        copyFields = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + searchScrn.s102 + "' AND s107 = '" + "D" + "'");
+                        dvcpDT = dal.Exec("SELECT n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 FROM dv WHERE s100 = '" + dvcpFScrn.s102 + "' AND s107 = '" + "D" + "'");
                     }
                     else
                     {
                         sysStatLbl.Content = "Pls Select an option";
-                    }
-                            
+                    }                            
                 }
                 else
                 {
                     MessageBox.Show("exec");
-                    copyFields = dal.Exec("select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s100='" + searchScrn.s102 + "'");
+                    dvcpDT = dal.Exec("select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s100='" + dvcpFScrn.s102 + "'");
                 }
             }
-            PopulateDVCPGrid(copyFields);
+            if (dvcpDT != null)
+            {
+                PopulateDVCPGrid(dvcpDT);
+            }
+            else
+            {
+                sysStatLbl.Content = "Failed to find DV records";
+            }
         }
 
         private void dvcp_detailCB_Checked(object sender, RoutedEventArgs e)
@@ -1082,5 +1181,27 @@ namespace WpfApp1
         {
             dvcp_allCB.IsChecked = dvcp_masterCB.IsChecked = dvcp_detailCB.IsChecked = true;
         }
+
+        private void dvcp_copyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(dvcp_tscreenCodeTextBox.Text))
+            {
+                dvcpTScrn = dal.GetRecord(dvcp_tscreenCodeTextBox.Text);
+                if (dvcpTScrn.n100.ToString() != null)
+                {
+                    dvcp_tnameTextBox.Text = dvcpTScrn.s2;
+                    CopyDV();
+                }
+                else
+                {
+                    sysStatLbl.Content = "Screen not found";
+                }
+            }
+            else
+            {
+                sysStatLbl.Content = "Pls Enter a screen code to copy to";
+            }
+        }
     }
 }
+
