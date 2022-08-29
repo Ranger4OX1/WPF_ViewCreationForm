@@ -539,7 +539,7 @@ namespace WpfApp1
                             s32 = row[16].ToString(),
                             s35 = row[17].ToString()
                         };
-                        if (temp.s2 == "Format")
+                        if (temp.s2 != "Format")
                         {
                             row[3] = dvcpTScrn.s1;
                         }                        
@@ -558,6 +558,7 @@ namespace WpfApp1
                 MessageBox.Show("Unhandeled Case \nWindow1.CopyDV \n S100!= RPT or SCR");
             }
         }
+
 
         //////
         ///GRID DATA GET METHODS
@@ -579,7 +580,6 @@ namespace WpfApp1
             //context.SaveChanges();
             modtreeViewSource.View.Refresh();
         }
-
         private void PopulateDVGrid()
         {
             string code, sql;
@@ -609,7 +609,6 @@ namespace WpfApp1
                 modtreeViewSource.View.Refresh();
             }
         }
-
         private void PopulateDVCPGrid(DataTable dSet)
         {
             dvcpViewSource.Source = dSet;
@@ -689,13 +688,13 @@ namespace WpfApp1
             //selectedScreen.s39 = selScr_treeLvlTextBox.Text;
             //selectedScreen.s40 = selScr_prevLvlTextBox.Text;
         }
-
         private void copyDVBtn_Click(object sender, RoutedEventArgs e)
         {
             screenCreationGrid.Visibility = Visibility.Collapsed;
-            dvcpDataGrid.Visibility = visible;
+            dvCopyGrid.Visibility = visible;
             dvcpDataGrid.Visibility = visible;
         }
+
 
         private void field_AddBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -758,12 +757,10 @@ namespace WpfApp1
             dv_depCaseTextBox.Text = dv_normalisationTextBox.Text = dv_whrLeftTextBox.Text = dv_whrRightTextBox.Text = dv_rigixTextBox.Text = dv_listItemTextBox.Text = dv_validationTextBox.Text = dv_tabCdTextBox.Text =
             dv_tableNameTextBox.Text = dv_botstrapTextBox.Text = String.Empty;           
         }
-
         private void field_FinishBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
         private void field_updateBtn_Click(object sender, RoutedEventArgs e)
         {
             dv temp = new dv()
@@ -796,7 +793,6 @@ namespace WpfApp1
         private void mdtreScreen_saveBtn_Click(object sender, RoutedEventArgs e)
         {
         }
-
         private void mdtreScreen_AddNewBtn_Click(object sender, RoutedEventArgs e)
         {
             bool addScrnFlag = false;
@@ -886,7 +882,6 @@ namespace WpfApp1
                 sysStatLbl.Content = "Screen code already exists";
             }            
         }
-
         private void mdtreScreen_nextBtn_Click(object sender, RoutedEventArgs e)
         {
             tabsGrid.IsEnabled = dvGrid.IsEnabled = DVgrid.IsEnabled = true;
@@ -1058,12 +1053,10 @@ namespace WpfApp1
         {
             btns_deleteCB.IsChecked = btns_addCB.IsChecked = btns_editCB.IsChecked = btns_postCB.IsChecked = btns_previewCB.IsChecked = true;
         }
-
         private void sts_selAllCB_Checked(object sender, RoutedEventArgs e)
         {
             sts_postedCB.IsChecked = sts_unpostedCB.IsChecked = true;
         }
-
         private void btns_selAllCB_Unchecked(object sender, RoutedEventArgs e)
         {
 
@@ -1082,7 +1075,6 @@ namespace WpfApp1
             dvcComboCreationGrid.Visibility = Visibility.Collapsed;
             screenCreationGrid.Visibility = visible;
         }
-
         private void dvc_addBtn_Click(object sender, RoutedEventArgs e)
         {
             dvcombo entry = new dvcombo();
@@ -1120,15 +1112,15 @@ namespace WpfApp1
         private void dvcp_backBtn_Click(object sender, RoutedEventArgs e)
         {
             dvCopyGrid.Visibility = Visibility.Collapsed;
+            dvcpDataGrid.Visibility = Visibility.Collapsed;
             screenCreationGrid.Visibility = visible;
         }
-
         private void dvcp_searchBtn_Click(object sender, RoutedEventArgs e)
         {
             dvcpFScrn = dal.GetRecord(dvcp_screenCodeTextBox.Text);
             dvcp_nameTextBox.Text = dvcpFScrn.s2;
 
-            if(dvcpFScrn.s102 == "RPT")
+            if(dvcpFScrn.s102 == "RPT" || dvcpFScrn.s100 == "RPT")
             {
                 dvcpDT = dal.Exec("select n100,s100,s101,s107,s1,s2,s3,s4,s6,s7,s8,s9,s10,s13,s14,s31,s32,s35 from dv where s107='" + dvcpFScrn.s1 + "'");
             }
@@ -1168,20 +1160,16 @@ namespace WpfApp1
                 sysStatLbl.Content = "Failed to find DV records";
             }
         }
-
         private void dvcp_detailCB_Checked(object sender, RoutedEventArgs e)
         {
         }
-
         private void dvcp_masterCB_Checked(object sender, RoutedEventArgs e)
         {
         }
-
         private void dvcp_allCB_Checked(object sender, RoutedEventArgs e)
         {
             dvcp_allCB.IsChecked = dvcp_masterCB.IsChecked = dvcp_detailCB.IsChecked = true;
         }
-
         private void dvcp_copyBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(dvcp_tscreenCodeTextBox.Text))

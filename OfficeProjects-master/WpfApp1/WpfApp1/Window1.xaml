@@ -231,7 +231,7 @@
             <Button x:Name="dvc_backBtn" Content="Back" Grid.Column="3" Grid.Row="3" Style="{StaticResource cmdButton}" Height="Auto" Click="dvc_backBtn_Click" Margin="2,2,2,2"   />
 
         </Grid>
-        <Grid x:Name="dvCopyGrid" Grid.Row="1" Visibility="Visible" Background="WhiteSmoke"  Height="auto" VerticalAlignment="Top" Margin="6,20,6,0" >
+        <Grid x:Name="dvCopyGrid" Grid.Row="1" Visibility="Collapsed" Background="WhiteSmoke"  Height="auto" VerticalAlignment="Top" Margin="6,20,6,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="284*" />
                 <ColumnDefinition Width="284*" />
@@ -269,12 +269,7 @@
             <CheckBox x:Name="dvcp_masterCB" Content="Master" Grid.Column="2" Grid.Row="4" Style="{StaticResource CheckBx}" Checked="dvcp_masterCB_Checked"  />
             <CheckBox x:Name="dvcp_detailCB" Content="Detail" Grid.Column="2" Grid.Row="4"  Style="{StaticResource CheckBx}" HorizontalAlignment="Stretch" Margin="88,0,262,0" Width="Auto" Checked="dvcp_detailCB_Checked" />
         </Grid>
-        <DataGrid x:Name="dvcpDataGrid" Grid.Row="1" Visibility="Visible" Margin="6,185,6,0" ItemsSource="{Binding Source={StaticResource dvcpViewSource}}"/>
-
-
-
-
-
+        <DataGrid x:Name="dvcpDataGrid" Grid.Row="1" Visibility="Collapsed" Margin="6,185,6,0" ItemsSource="{Binding Source={StaticResource dvcpViewSource}}"/>
         <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Stretch" Visibility="Collapsed" Grid.ColumnSpan="2" Width="auto" MaxWidth="1400" Margin="6,0,6,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="74"/>

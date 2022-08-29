@@ -534,10 +534,7 @@ namespace WpfApp1
         private void selSecCntrl_ssL2Btn_Click(object sender, RoutedEventArgs e)
         {
             selectedSecLvl2.s1 = sec_l2secCodeTextBox.Text;
-            selectedSecLvl2.s2 = sec_l2secNameTextBox.Text;
-            selectedSecLvl2.s101 = selectedModule.s101;
-            selectedSecLvl2.s105 = selectedModule.s105;
-            selectedSecLvl2.s40 = selectedSecLvl1.s1.ToString().Substring(0, 4);
+            selectedSecLvl2 = dal.GetRecord(sec_l2secCodeTextBox.Text);
 
             sysStatLbl.Content = "Sub-Section Selected";
         }

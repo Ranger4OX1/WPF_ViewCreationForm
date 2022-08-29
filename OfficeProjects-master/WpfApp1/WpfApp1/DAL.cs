@@ -85,7 +85,7 @@ namespace WpfApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("DAL Error\n Failed to DB Connection");
+                MessageBox.Show("DAL Error\n Failed to DB Connection\n" + ex);
                 result = "Failed to connecte to " + initialCatalog;
             }
             return result;
@@ -360,12 +360,12 @@ namespace WpfApp1
         {
             //string connString = DBContext.Database.Connection.ConnectionString;
             //MessageBox.Show(connString);
-            string sql = @"Data Source = localhost;
-                            Initial Catalog = LocalMaster;
-                            Integrated Security = true ";
-            //string sql = @"Data Source = 172.16.1.10;
-            //                Initial Catalog = PearlErpMaster;
-            //                UID = sa; Pwd = Pearl@2016;";
+            //string sql = @"Data Source = localhost;
+            //                Initial Catalog = LocalMaster;
+            //                Integrated Security = true ";
+            string sql = @"Data Source = 172.16.1.10;
+                            Initial Catalog = PearlErpMaster;
+                            UID = sa; Pwd = Pearl@2016;";
             //conn = new SqlConnection(connString);
             conn = new SqlConnection(sql);
 
