@@ -360,12 +360,12 @@ namespace WpfApp1
         {
             //string connString = DBContext.Database.Connection.ConnectionString;
             //MessageBox.Show(connString);
-            //string sql = @"Data Source = localhost;
-            //                Initial Catalog = LocalMaster;
-            //                Integrated Security = true ";
-            string sql = @"Data Source = 172.16.1.10;
-                            Initial Catalog = PearlErpMaster;
-                            UID = sa; Pwd = Pearl@2016;";
+            string sql = @"Data Source = localhost;
+                            Initial Catalog = LocalMaster;
+                            Integrated Security = true ";
+            //string sql = @"Data Source = 172.16.1.10;
+            //                Initial Catalog = PearlErpMaster;
+            //                UID = sa; Pwd = Pearl@2016;";
             //conn = new SqlConnection(connString);
             conn = new SqlConnection(sql);
 
@@ -531,8 +531,9 @@ namespace WpfApp1
                     //DBContext.SaveChanges();
                     DataTable temp = Exec("SELECT MAX(n100) FROM dvcombo");
                     DataRow row = temp.Rows[0];
-                    string x = row[0].ToString();
-
+                    string x = (row[0]).ToString();
+                    int s = Convert.ToInt32(x) + 1;
+                    x = s.ToString();
                     string sql = "insert into dvcombo (n100,s1,s2,s3) values("+ x +",'"+ dvcData.s1 +"','" + dvcData.s2 +"','" + dvcData.s3 +"')";
                     SqlDataAdapter da = new SqlDataAdapter();
 

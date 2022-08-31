@@ -703,7 +703,7 @@ namespace WpfApp1
             bool addScrnFlag = false;
 
             field.s100 = selectedScreen.s102.ToString();
-            field.s101 = selectedScreen.s101.ToString();
+            field.s101 = dv_statusComboBox.Text;
 
             field.s1 = dv_fieldTextBox.Text.ToString();
             field.s2 = dv_nameTextBox.Text.ToString();
@@ -751,6 +751,14 @@ namespace WpfApp1
                 dal.AddDV(field);
                 sysStatLbl.Content = "Field Succesfully Added";
             }
+            if (field.s101 == "S")
+            {
+                dv temp = dal.GetDV(Convert.ToInt32(field.n100));
+                string iQuery = "INSERT INTO dvctrl ( n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 ) " + " VALUES(" + temp.n100.ToString() + ",'" + temp.s100 + "','" + temp.s101 + "','" + temp.s107 + "','" + temp.s1 + "','" + temp.s2 + "','" + temp.s3 + "','" + temp.s4 + "','" + temp.s6 + "','" + temp.s7 + "','" + temp.s8 + "','" + temp.s9 + "','" + temp.s10 + "','" + temp.s13 + "','" + temp.s14 + "','" + temp.s31 + "','" + temp.s32 + "','" + temp.s35 + "')";
+                Clipboard.SetText(iQuery);
+                MessageBox.Show(iQuery,"String Copied To Clipboard");
+            }
+
             //if (selectedScreen.s5 == "RPT") { PopulateDVGrid(); } else { PopulateDVGrid("rpt"); }
             PopulateDVGrid();
             dv_nameTextBox.Text = dv_fieldTextBox.Text = dv_dataTypeTextBox.Text = dv_comboBoxTextBox.Text = 
@@ -875,6 +883,14 @@ namespace WpfApp1
                 {
                     dal.AddModtree(selectedScreen);
                     sysStatLbl.Content = "Screen Succesfully Added";
+                }
+                if (selectedScreen.s101 == "S")
+                {
+                    modtree temp = dal.Get(Convert.ToInt32(selectedScreen.n100));
+                    temp.n1 = 0;
+                    string iQuery ="INSERT INTO modtreectrl (n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1 ) " + " VALUES("+ temp.n100.ToString() + ",'" + temp.s100 + "','" + temp.s101 + "','" + temp.s102 + "','" + temp.s105 + "','" + temp.s1 + "','" + temp.s2 + "','" + temp.s3 + "','" + temp.s4 + "','" + temp.s5 + "','" + temp.s7 + "','" + temp.s8 + "','" + temp.s14 + "','" + temp.s32 + "','" + temp.s35 + "','" + temp.s39 + "','" + temp.s40 + "'," + temp.n1.ToString() + ")";
+                    Clipboard.SetText(iQuery);
+                    MessageBox.Show(iQuery, "String Copied To Clipboard");
                 }
             }
             else
