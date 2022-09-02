@@ -231,12 +231,12 @@
             <Button x:Name="dvc_backBtn" Content="Back" Grid.Column="3" Grid.Row="3" Style="{StaticResource cmdButton}" Height="Auto" Click="dvc_backBtn_Click" Margin="2,2,2,2"   />
 
         </Grid>
-        <Grid x:Name="dvCopyGrid" Grid.Row="1" Visibility="Collapsed" Background="WhiteSmoke"  Height="auto" VerticalAlignment="Top" Margin="6,20,6,0" >
+        <Grid x:Name="dvCopyGrid" Grid.Row="1" Visibility="Visible" Background="WhiteSmoke"  Height="auto" VerticalAlignment="Top" Margin="6,20,6,0" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="284*" />
-                <ColumnDefinition Width="284*" />
-                <ColumnDefinition Width="432*" />
-                <ColumnDefinition Width="135*" />
+                <ColumnDefinition Width="112*" />
+                <ColumnDefinition Width="287*" />
+                <ColumnDefinition Width="299*" />
+                <ColumnDefinition Width="290*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -247,31 +247,40 @@
             </Grid.RowDefinitions>
 
             <Label Content="DV Copy Screen" HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource Label}" Height="29" Width="114" />
+
             <Label Content="Copy From" Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource Label}" Height="28" Width="82" />
-
             <Label Content="Screen Code (S1):" Grid.Column="1" Grid.Row="1" Style="{StaticResource Label}" Height="28" Margin="3,0,0,0" Width="125" />
-            <TextBox x:Name="dvcp_screenCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="1" />
+            <TextBox x:Name="dvcp_screenCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Height="24" Margin="124,0,0,0" Width="150"  />
             <Label Content="Name (S2):" Grid.Column="2" Grid.Row="1" Style="{StaticResource Label}" Height="28" Margin="3,0,0,0" Width="83" />
-            <TextBox x:Name="dvcp_nameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="1" IsEnabled="False" Width="263" HorizontalAlignment="Left" Margin="166,0,0,0"/>
+            <TextBox x:Name="dvcp_nameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="1" IsEnabled="False" HorizontalAlignment="Right" Height="24" Width="200"/>
+            <Label Content="Code(S102):" Grid.Column="3" Grid.Row="1" Style="{StaticResource Label}" Height="28" Margin="3,0,0,0"  />
+            <TextBox x:Name="dvcp_CodeTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="1" IsEnabled="False" />
 
-            <Label Content="Copy To" Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource Label}" Height="29" Width="63" />
-
+            <Label Content="Copy To" Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource Label}" Height="29" Width="64" Grid.RowSpan="2" />
             <Label Content="Screen Code (S1):" Grid.Column="1" Grid.Row="2" Style="{StaticResource Label}" Height="29" Margin="3,0,0,0" Width="125" />
-            <TextBox x:Name="dvcp_tscreenCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="2" />
-            <Label Content="Name (S2):" Grid.Column="2" Grid.Row="2" Style="{StaticResource Label}"  />
-            <TextBox x:Name="dvcp_tnameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" Margin="166,0,0,0" Width="263" />
+            <TextBox x:Name="dvcp_tscreenCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Height="23" Margin="124,0,0,0" Width="150"  />
+            <Label Content="Name (S2):" Grid.Column="2" Grid.Row="2" Style="{StaticResource Label}" Height="29" Margin="3,0,0,0" Width="83"  />
+            <TextBox x:Name="dvcp_tnameTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="2" IsEnabled="False" HorizontalAlignment="Right" Height="23" Width="200" />
+            <Label Content="Code(S102):" Grid.Column="3" Grid.Row="2" Style="{StaticResource Label}" Height="28" Margin="3,0,0,0"  />
+            <TextBox x:Name="dvcp_tCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="2" />
 
-            <Button x:Name="dvcp_searchBtn" Content="Search" Grid.Column="1" Grid.Row="3" Style="{StaticResource cmdButton}"   Margin="171,2,0,2" HorizontalAlignment="Left" Width="110" Click="dvcp_searchBtn_Click"  />
-            <Button x:Name="dvcp_copyBtn" Content="Copy" Grid.Column="2" Grid.Row="3" Style="{StaticResource cmdButton}" Margin="0,2,0,2" HorizontalAlignment="Right" Width="110" Click="dvcp_copyBtn_Click"  />
-            <Button x:Name="dvcp_backBtn" Content="Back" Grid.Column="3" Grid.Row="3" Style="{StaticResource cmdButton}" HorizontalAlignment="Center" Margin="0,2,0,2" Width="110" Click="dvcp_backBtn_Click"   />
+            <Label Content="Master Tbl:" Grid.Column="2" Grid.Row="3" Style="{StaticResource Label}" Height="28" Margin="3,0,0,0"  />
+            <TextBox x:Name="dvcp_tmasterCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="2" Grid.Row="3" />
+            <Label Content="Detail Tbl:" Grid.Column="3" Grid.Row="3" Style="{StaticResource Label}" Height="28" Margin="3,0,0,0"  />
+            <TextBox x:Name="dvcp_tdetailCodeTextBox" Style="{StaticResource TextBox}" Grid.Column="3" Grid.Row="3" />
+            <Button x:Name="dvcp_searchBtn" Content="Search" Grid.Column="1" Grid.Row="3" Style="{StaticResource cmdButton}"   HorizontalAlignment="Center" Width="110" Click="dvcp_searchBtn_Click" Margin="0,2,0,2"   />
+            <Button x:Name="dvcp_copyBtn" Content="Copy" Grid.Column="3" Grid.Row="4" Style="{StaticResource cmdButton}" HorizontalAlignment="Center" Click="dvcp_copyBtn_Click" Margin="2,2,0,2" Width="70" />
+            <Button x:Name="dvcp_backBtn" Content="Back" Grid.Column="3" Grid.Row="4" Style="{StaticResource cmdButton}" HorizontalAlignment="Right"  Click="dvcp_backBtn_Click"  Width="70" Margin="102,2,0,2" />
 
-            <CheckBox x:Name="dvcp_allCB" Content="All" Grid.Column="1" Grid.Row="4"  Style="{StaticResource CheckBx}" Checked="dvcp_allCB_Checked"/>
-            <CheckBox x:Name="dvcp_masterCB" Content="Master" Grid.Column="2" Grid.Row="4" Style="{StaticResource CheckBx}" Checked="dvcp_masterCB_Checked"  />
-            <CheckBox x:Name="dvcp_detailCB" Content="Detail" Grid.Column="2" Grid.Row="4"  Style="{StaticResource CheckBx}" HorizontalAlignment="Stretch" Margin="88,0,262,0" Width="Auto" Checked="dvcp_detailCB_Checked" />
+            <CheckBox x:Name="dvcp_allCB" Content="All" Grid.Column="1" Grid.Row="4"  Style="{StaticResource CheckBx}" Checked="dvcp_allCB_Checked" Height="18" Width="48"/>
+            <CheckBox x:Name="dvcp_masterCB" Content="Master" Grid.Column="2" Grid.Row="4" Style="{StaticResource CheckBx}" Checked="dvcp_masterCB_Checked" Height="18" Width="76"  />
+            <CheckBox x:Name="dvcp_detailCB" Content="Detail" Grid.Column="2" Grid.Row="4"  Style="{StaticResource CheckBx}" HorizontalAlignment="Stretch" Margin="30,0,131,0" Width="Auto" Checked="dvcp_detailCB_Checked" Height="18" />
         </Grid>
+
         <DataGrid x:Name="dvcpDataGrid" Grid.Row="1" Visibility="Collapsed" Margin="6,185,6,0" ItemsSource="{Binding Source={StaticResource dvcpViewSource}}"/>
-        
-        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Stretch" Visibility="Visible" Grid.ColumnSpan="2" Width="auto" MaxWidth="1400" Margin="6,0,6,0" >
+
+        <Grid x:Name="screenCreationGrid" Grid.Row="1" Height="auto" HorizontalAlignment="Stretch" Visibility="Collapsed"
+              Grid.ColumnSpan="2" Width="auto" MaxWidth="1400" Margin="6,0,6,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="74"/>
                 <RowDefinition Height="34" />
@@ -506,7 +515,7 @@
                     <ComboBoxItem Content="I"/>
                     <ComboBoxItem Content="S"/>
                 </ComboBox>
-                
+
                 <Label Content="Bootstrap:" Grid.Column="0" Grid.Row="2" Style="{StaticResource Label}" />
                 <TextBox x:Name="dv_botstrapTextBox" Style="{StaticResource TextBox}" Grid.Column="0" Grid.Row="2"              
                      Text="{Binding s35, Mode=TwoWay,  NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
@@ -580,6 +589,7 @@
 
             <DataGrid x:Name="DVgrid"  Grid.Row="5" Height="auto" SelectionUnit="FullRow" SelectionMode="Single" IsSynchronizedWithCurrentItem="True" Visibility="Visible" ItemsSource="{Binding Source={StaticResource screenDVViewSource}}" IsEnabled="False" />
         </Grid>
+
         <Grid x:Name="screenSelectionGrid" Grid.Row="1" Visibility="Collapsed" Margin="6,0,6,0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="190"/>

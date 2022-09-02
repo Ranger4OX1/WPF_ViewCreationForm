@@ -24,6 +24,9 @@ using System.Configuration;
 /// </AUTHOR>                                   ///
 namespace WpfApp1
 {
+    /// <summary>
+    /// Database Communication Layer
+    /// </summary>
     internal class DAL
     {
         private DBEntities DBContext = null;
@@ -198,6 +201,27 @@ namespace WpfApp1
             return DBContext.dvcomboes.Find(id);
         }
 
+        ///Get Insert Query <summary>
+        /// Get Insert Query
+        /// </summary>
+        /// <returns></returns>
+        public string GetCtrl(decimal n100, string tbl)
+        {
+            string iQuery="";
+
+            if (tbl == "dv")
+            {
+                dv temp = GetDV(Convert.ToInt32(n100));
+                iQuery = "INSERT INTO dvctrl (s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 ) " + " VALUES('" + temp.s100 + "','" + temp.s101 + "','" + temp.s107 + "','" + temp.s1 + "','" + temp.s2 + "','" + temp.s3 + "','" + temp.s4 + "','" + temp.s6 + "','" + temp.s7 + "','" + temp.s8 + "','" + temp.s9 + "','" + temp.s10 + "','" + temp.s13 + "','" + temp.s14 + "','" + temp.s31 + "','" + temp.s32 + "','" + temp.s35 + "')";
+            }else
+            {
+                modtree temp = Get(Convert.ToInt32(n100));
+                temp.n1 = 0;
+                iQuery = "INSERT INTO modtreectrl (s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1 ) " + " VALUES('" + temp.s100 + "','" + temp.s101 + "','" + temp.s102 + "','" + temp.s105 + "','" + temp.s1 + "','" + temp.s2 + "','" + temp.s3 + "','" + temp.s4 + "','" + temp.s5 + "','" + temp.s7 + "','" + temp.s8 + "','" + temp.s14 + "','" + temp.s32 + "','" + temp.s35 + "','" + temp.s39 + "','" + temp.s40 + "'," + temp.n1.ToString() + ")";
+            }
+            return iQuery;
+        }
+
 
         //public void InsertSectionLvl1(modtree module, string secName, string secCode)
         //{
@@ -360,12 +384,12 @@ namespace WpfApp1
         {
             //string connString = DBContext.Database.Connection.ConnectionString;
             //MessageBox.Show(connString);
-            string sql = @"Data Source = localhost;
-                            Initial Catalog = LocalMaster;
-                            Integrated Security = true ";
-            //string sql = @"Data Source = 172.16.1.10;
-            //                Initial Catalog = PearlErpMaster;
-            //                UID = sa; Pwd = Pearl@2016;";
+            //string sql = @"Data Source = localhost;
+            //                Initial Catalog = LocalMaster;
+            //                Integrated Security = true ";
+            string sql = @"Data Source = 172.16.1.10;
+                            Initial Catalog = PearlErpMaster;
+                            UID = sa; Pwd = Pearl@2016;";
             //conn = new SqlConnection(connString);
             conn = new SqlConnection(sql);
 

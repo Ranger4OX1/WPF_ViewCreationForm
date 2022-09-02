@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+//using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+//using System.Windows.Documents;
+//using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-//New
+//using System.Windows.Media.Imaging;
+//using System.Windows.Shapes;
 
+//New
 using System.Data.Entity;
 using System.Data;
 
@@ -290,6 +290,7 @@ namespace WpfApp1
                         result.s7 = scrn.s7;
                         result.s14 = "1";
                         result.s8 = "glyphicon-trash";
+                        result.s22 = "U";
                         result.s39 = temp;
                         result.s40 = scrn.s1;
                     }
@@ -504,14 +505,16 @@ namespace WpfApp1
                             s35 = row[17].ToString()
                         };
 
+
                         if (temp.s107 == "M")
                         {
-                            row[3] = dvcpTScrn.s102;
+                            row[1] = dvcpTScrn.s102;
                         }
-                        else if (temp.s107 == "D")
+                        else if (temp.s107 == "D")//point 12
                         {
-                            row[3] = dvcpTScrn.s102;
-                            row[16] = dvcpTScrn.s1.ToString() + "08";
+                            row[1] = dvcpTScrn.s102;
+                            row[15] = dvcpTScrn.s1.ToString() + "08";
+                            row[16] = dvcpTScrn.s32; 
                         }
                     }
                 }
@@ -735,6 +738,13 @@ namespace WpfApp1
                         sysStatLbl.Content = "Pls Select a tab";
                     }
                     break;
+                case "3400":
+                    {
+                        field.s32 = dv_tableNameTextBox.Text.ToString();
+                        field.s35 = dv_botstrapTextBox.Text.ToString();
+                        addScrnFlag = true;
+                    }
+                    break;
                 case "RPT":
                     field.s107 = selectedScreen.s1;
 
@@ -752,11 +762,9 @@ namespace WpfApp1
                 sysStatLbl.Content = "Field Succesfully Added";
             }
             if (field.s101 == "S")
-            {
-                dv temp = dal.GetDV(Convert.ToInt32(field.n100));
-                string iQuery = "INSERT INTO dvctrl ( n100, s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 ) " + " VALUES(" + temp.n100.ToString() + ",'" + temp.s100 + "','" + temp.s101 + "','" + temp.s107 + "','" + temp.s1 + "','" + temp.s2 + "','" + temp.s3 + "','" + temp.s4 + "','" + temp.s6 + "','" + temp.s7 + "','" + temp.s8 + "','" + temp.s9 + "','" + temp.s10 + "','" + temp.s13 + "','" + temp.s14 + "','" + temp.s31 + "','" + temp.s32 + "','" + temp.s35 + "')";
-                Clipboard.SetText(iQuery);
-                MessageBox.Show(iQuery,"String Copied To Clipboard");
+            {              
+                MessageBox.Show(dal.GetCtrl(field.n100, "dv") , "Ctrl Insert Query (Press Ctrl + C to copy)", MessageBoxButton.OK, MessageBoxImage.Information);
+
             }
 
             //if (selectedScreen.s5 == "RPT") { PopulateDVGrid(); } else { PopulateDVGrid("rpt"); }
@@ -885,12 +893,9 @@ namespace WpfApp1
                     sysStatLbl.Content = "Screen Succesfully Added";
                 }
                 if (selectedScreen.s101 == "S")
-                {
-                    modtree temp = dal.Get(Convert.ToInt32(selectedScreen.n100));
-                    temp.n1 = 0;
-                    string iQuery ="INSERT INTO modtreectrl (n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1 ) " + " VALUES("+ temp.n100.ToString() + ",'" + temp.s100 + "','" + temp.s101 + "','" + temp.s102 + "','" + temp.s105 + "','" + temp.s1 + "','" + temp.s2 + "','" + temp.s3 + "','" + temp.s4 + "','" + temp.s5 + "','" + temp.s7 + "','" + temp.s8 + "','" + temp.s14 + "','" + temp.s32 + "','" + temp.s35 + "','" + temp.s39 + "','" + temp.s40 + "'," + temp.n1.ToString() + ")";
-                    Clipboard.SetText(iQuery);
-                    MessageBox.Show(iQuery, "String Copied To Clipboard");
+                {                                     
+                    Clipboard.SetText(dal.GetCtrl(selectedScreen.n100, "modtree"));
+                    MessageBox.Show(dal.GetCtrl(selectedScreen.n100, "modtree"), "Ctrl Insert Query (Press Ctrl + C to copy)", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else
@@ -996,6 +1001,7 @@ namespace WpfApp1
         private void tab_Master_Click(object sender, RoutedEventArgs e)
         {
             field.s107 = "M";
+            field.s31 = "";
             sysStatLbl.Content = "Master tab Selected";
         }
         private void tab_Detail_Click(object sender, RoutedEventArgs e)
@@ -1135,6 +1141,7 @@ namespace WpfApp1
         {
             dvcpFScrn = dal.GetRecord(dvcp_screenCodeTextBox.Text);
             dvcp_nameTextBox.Text = dvcpFScrn.s2;
+            dvcp_CodeTextBox.Text = dvcpFScrn.s102;
 
             if(dvcpFScrn.s102 == "RPT" || dvcpFScrn.s100 == "RPT")
             {
@@ -1194,6 +1201,8 @@ namespace WpfApp1
                 if (dvcpTScrn.n100.ToString() != null)
                 {
                     dvcp_tnameTextBox.Text = dvcpTScrn.s2;
+                    dvcp_tCodeTextBox.Text = dvcpTScrn.s102;
+                    dvcp_tmasterCodeTextBox.Text = dvcpTScrn.s32;
                     CopyDV();
                 }
                 else

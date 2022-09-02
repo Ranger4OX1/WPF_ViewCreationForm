@@ -17,7 +17,10 @@ using System.Data;
 /// </AUTHOR>                                   ///
 namespace WpfApp1
 {
-    
+    /// <summary>
+    /// Bussiness Layer 
+    /// Data Validation Rules 
+    /// </summary>
     internal class Rules
     {
         DAL dal = new DAL();
