@@ -94,12 +94,95 @@ namespace WpfApp1
             return result;
         }
 
-        //support methods
-        private modtree DeSpace(modtree x)
+
+        // x.s106.Trim();
+        // if (string.IsNullOrEmpty(x.s105)) { } else { x.s105.Trim(); }
+        // if (string.IsNullOrEmpty(x.s105)) { } else { x.s105 = x.s105.Trim(); }
+
+    //Trim
+    private modtree DeSpace(modtree x)
         {
-            
+            //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1
+            if (string.IsNullOrEmpty(x.s100)) { } else { x.s100 = x.s100.Trim(); }
+            if (string.IsNullOrEmpty(x.s101)) { } else { x.s101 = x.s101.Trim(); }
+            if (string.IsNullOrEmpty(x.s102)) { } else { x.s102 = x.s102.Trim(); }
+            if (string.IsNullOrEmpty(x.s105)) { } else { x.s105 = x.s105.Trim(); }
+            if (string.IsNullOrEmpty(x.s1)) { } else { x.s1 = x.s1.Trim(); }
+            if (string.IsNullOrEmpty(x.s2)) { } else { x.s2 = x.s2.Trim(); }
+            if (string.IsNullOrEmpty(x.s3)) { } else { x.s3 = x.s3.Trim(); }
+            if (string.IsNullOrEmpty(x.s4)) { } else { x.s4 = x.s4.Trim(); }
+            if (string.IsNullOrEmpty(x.s5)) { } else { x.s5 = x.s5.Trim(); }
+            if (string.IsNullOrEmpty(x.s6)) { } else { x.s6 = x.s6.Trim(); }
+            if (string.IsNullOrEmpty(x.s7)) { } else { x.s7 = x.s7.Trim(); }
+            if (string.IsNullOrEmpty(x.s8)) { } else { x.s8 = x.s8.Trim(); }
+            if (string.IsNullOrEmpty(x.s9)) { } else { x.s9 = x.s9.Trim(); }
+            if (string.IsNullOrEmpty(x.s10)) { } else { x.s10 = x.s10.Trim(); }
+            if (string.IsNullOrEmpty(x.s11)) { } else { x.s11 = x.s11.Trim(); }
+            if (string.IsNullOrEmpty(x.s12)) { } else { x.s12 = x.s12.Trim(); }
+            if (string.IsNullOrEmpty(x.s13)) { } else { x.s13 = x.s13.Trim(); }
+            if (string.IsNullOrEmpty(x.s14)) { } else { x.s14 = x.s14.Trim(); }
+            if (string.IsNullOrEmpty(x.s15)) { } else { x.s15 = x.s15.Trim(); }
+            if (string.IsNullOrEmpty(x.s30)) { } else { x.s30 = x.s30.Trim(); }
+            if (string.IsNullOrEmpty(x.s31)) { } else { x.s31 = x.s31.Trim(); }
+            if (string.IsNullOrEmpty(x.s32)) { } else { x.s32 = x.s32.Trim(); }
+            if (string.IsNullOrEmpty(x.s33)) { } else { x.s33 = x.s33.Trim(); }
+            if (string.IsNullOrEmpty(x.s34)) { } else { x.s34 = x.s34.Trim(); }
+            if (string.IsNullOrEmpty(x.s35)) { } else { x.s35 = x.s35.Trim(); }
+            if (string.IsNullOrEmpty(x.s36)) { } else { x.s36 = x.s36.Trim(); }
+            if (string.IsNullOrEmpty(x.s37)) { } else { x.s37 = x.s37.Trim(); }
+            if (string.IsNullOrEmpty(x.s38)) { } else { x.s38 = x.s38.Trim(); }
+            if (string.IsNullOrEmpty(x.s39)) { } else { x.s39 = x.s39.Trim(); }
+            if (string.IsNullOrEmpty(x.s40)) { } else { x.s40 = x.s40.Trim(); }
             return x;
         }
+        private dv DeSpace(dv x)
+        {
+            //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s8, s32, s35, s39, s40, n1
+            if (string.IsNullOrEmpty(x.s100)) { } else { x.s100 = x.s100.Trim(); }
+            if (string.IsNullOrEmpty(x.s101)) { } else { x.s101 = x.s101.Trim(); }
+            if (string.IsNullOrEmpty(x.s102)) { } else { x.s102 = x.s102.Trim(); }
+            if (string.IsNullOrEmpty(x.s105)) { } else { x.s105 = x.s105.Trim(); }
+            if (string.IsNullOrEmpty(x.s1)) { } else { x.s1 = x.s1.Trim(); }
+            if (string.IsNullOrEmpty(x.s2)) { } else { x.s2 = x.s2.Trim(); }
+            if (string.IsNullOrEmpty(x.s3)) { } else { x.s3 = x.s3.Trim(); }
+            if (string.IsNullOrEmpty(x.s4)) { } else { x.s4 = x.s4.Trim(); }
+            if (string.IsNullOrEmpty(x.s5)) { } else { x.s5 = x.s5.Trim(); }
+            if (string.IsNullOrEmpty(x.s6)) { } else { x.s6 = x.s6.Trim(); }
+            if (string.IsNullOrEmpty(x.s7)) { } else { x.s7 = x.s7.Trim(); }
+            if (string.IsNullOrEmpty(x.s8)) { } else { x.s8 = x.s8.Trim(); }
+            if (string.IsNullOrEmpty(x.s9)) { } else { x.s9 = x.s9.Trim(); }
+            if (string.IsNullOrEmpty(x.s10)) { } else { x.s10 = x.s10.Trim(); }
+            if (string.IsNullOrEmpty(x.s11)) { } else { x.s11 = x.s11.Trim(); }
+            if (string.IsNullOrEmpty(x.s12)) { } else { x.s12 = x.s12.Trim(); }
+            if (string.IsNullOrEmpty(x.s13)) { } else { x.s13 = x.s13.Trim(); }
+            if (string.IsNullOrEmpty(x.s14)) { } else { x.s14 = x.s14.Trim(); }
+            if (string.IsNullOrEmpty(x.s15)) { } else { x.s15 = x.s15.Trim(); }
+            if (string.IsNullOrEmpty(x.s30)) { } else { x.s30 = x.s30.Trim(); }
+            if (string.IsNullOrEmpty(x.s31)) { } else { x.s31 = x.s31.Trim(); }
+            if (string.IsNullOrEmpty(x.s32)) { } else { x.s32 = x.s32.Trim(); }
+            if (string.IsNullOrEmpty(x.s33)) { } else { x.s33 = x.s33.Trim(); }
+            if (string.IsNullOrEmpty(x.s34)) { } else { x.s34 = x.s34.Trim(); }
+            if (string.IsNullOrEmpty(x.s35)) { } else { x.s35 = x.s35.Trim(); }
+            if (string.IsNullOrEmpty(x.s36)) { } else { x.s36 = x.s36.Trim(); }
+            if (string.IsNullOrEmpty(x.s37)) { } else { x.s37 = x.s37.Trim(); }
+            if (string.IsNullOrEmpty(x.s38)) { } else { x.s38 = x.s38.Trim(); }
+            if (string.IsNullOrEmpty(x.s39)) { } else { x.s39 = x.s39.Trim(); }
+            if (string.IsNullOrEmpty(x.s40)) { } else { x.s40 = x.s40.Trim(); }
+            return x;
+        }
+        private dvcombo DeSpace(dvcombo x)
+        {
+            //n100,s1,s2,s3
+            if (string.IsNullOrEmpty(x.s1)) { } else { x.s1 = x.s1.Trim(); }
+            if (string.IsNullOrEmpty(x.s2)) { } else { x.s2 = x.s2.Trim(); }
+            if (string.IsNullOrEmpty(x.s3)) { } else { x.s3 = x.s3.Trim(); }
+
+            x.s1.Trim();
+            x.s2.Trim();
+            x.s3.Trim();
+            return x;
+        }
+
 
         ///Get Methods get Record from DB Using EF (LINQ)
         public modtree Get(int id)
@@ -391,12 +474,12 @@ namespace WpfApp1
         {
             //string connString = DBContext.Database.Connection.ConnectionString;
             //MessageBox.Show(connString);
-            //string sql = @"Data Source = localhost;
-            //                Initial Catalog = LocalMaster;
-            //                Integrated Security = true ";
-            string sql = @"Data Source = 172.16.1.10;
-                            Initial Catalog = PearlErpMaster;
-                            UID = sa; Pwd = Pearl@2016;";
+            string sql = @"Data Source = localhost;
+                            Initial Catalog = LocalMaster;
+                            Integrated Security = true ";
+            //string sql = @"Data Source = 172.16.1.10;
+            //                Initial Catalog = PearlErpMaster;
+            //                UID = sa; Pwd = Pearl@2016;";
             //conn = new SqlConnection(connString);
             conn = new SqlConnection(sql);
 
@@ -486,7 +569,7 @@ namespace WpfApp1
             {
                 if (modtre != null)
                 {
-
+                    modtre = DeSpace(modtre);
 
                     DBContext.modtrees.Add(modtre);                    
                     DBContext.SaveChanges();
@@ -523,6 +606,8 @@ namespace WpfApp1
             {
                 if (dvData != null)
                 {
+                    dvData = DeSpace(dvData);
+
                     DBContext.dvs.Add(dvData);
                     DBContext.SaveChanges();
 
@@ -552,11 +637,13 @@ namespace WpfApp1
         }
         public void AddDVCombo(dvcombo dvcData)
         {
-            //s100,s107,s1,s31
+            //n100,s1,s2,s3
             try
             {
                 if (dvcData != null)
                 {
+                    dvcData = DeSpace(dvcData);
+
                     //DBContext.dvcomboes.Add(dvcData);
                     //DBContext.SaveChanges();
                     DataTable temp = Exec("SELECT MAX(n100) FROM dvcombo");
