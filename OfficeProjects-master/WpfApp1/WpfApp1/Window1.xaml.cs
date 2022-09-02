@@ -107,6 +107,12 @@ namespace WpfApp1
             
         }
 
+        private string DeSpace(string str)
+        {
+            str.Trim();
+            return str;
+        }
+
         private void ResetControlls()
         {
 

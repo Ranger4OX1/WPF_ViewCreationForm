@@ -94,6 +94,13 @@ namespace WpfApp1
             return result;
         }
 
+        //support methods
+        private modtree DeSpace(modtree x)
+        {
+            
+            return x;
+        }
+
         ///Get Methods get Record from DB Using EF (LINQ)
         public modtree Get(int id)
         {
@@ -428,10 +435,6 @@ namespace WpfApp1
             return true;
         }
 
-        public void CloseConn()
-        {
-            conn.Close();
-        }
         
         /// <summary>
         /// Executes the passed query
@@ -448,6 +451,7 @@ namespace WpfApp1
                 da = new SqlDataAdapter(sql, conn);
                 dt = new DataTable();
                 da.Fill(dt);
+                conn.Dispose();
             }
             catch (SqlException ex)
             {
@@ -482,6 +486,8 @@ namespace WpfApp1
             {
                 if (modtre != null)
                 {
+
+
                     DBContext.modtrees.Add(modtre);                    
                     DBContext.SaveChanges();
 

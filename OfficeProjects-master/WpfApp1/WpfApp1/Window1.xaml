@@ -231,7 +231,7 @@
             <Button x:Name="dvc_backBtn" Content="Back" Grid.Column="3" Grid.Row="3" Style="{StaticResource cmdButton}" Height="Auto" Click="dvc_backBtn_Click" Margin="2,2,2,2"   />
 
         </Grid>
-        <Grid x:Name="dvCopyGrid" Grid.Row="1" Visibility="Visible" Background="WhiteSmoke"  Height="auto" VerticalAlignment="Top" Margin="6,20,6,0" >
+        <Grid x:Name="dvCopyGrid" Grid.Row="1" Visibility="Collapsed" Background="WhiteSmoke"  Height="auto" VerticalAlignment="Top" Margin="6,20,6,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="112*" />
                 <ColumnDefinition Width="287*" />
