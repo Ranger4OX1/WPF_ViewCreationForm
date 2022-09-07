@@ -1,0 +1,3 @@
+C:\Users\Ehtisham\Desktop\WPF-OfficeProject\ExecuteExpressSync\ExecuteExpressSync\obj\Debug\ExecuteExpressSync.csproj.AssemblyReference.cache
+C:\Users\Ehtisham\Desktop\WPF-OfficeProject\ExecuteExpressSync\ExecuteExpressSync\obj\Debug\ExecuteExpressSync.csproj.SuggestedBindingRedirects.cache
+C:\Users\Ehtisham\Desktop\WPF-OfficeProject\ExecuteExpressSync\ExecuteExpressSync\obj\Debug\ExecuteExpressSync.csproj.CoreCompileInputs.cache

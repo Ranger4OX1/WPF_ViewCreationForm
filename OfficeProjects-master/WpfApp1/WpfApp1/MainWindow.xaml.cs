@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 // NEW
 using System.Data;
 using System.Data.Entity;
-
+//using ExtensionMethods;
 /// <AUTHOR>                                    ///
 /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
 /// FOR ::-:Pearl-Solutions:-::                 ///
@@ -39,7 +39,8 @@ namespace WpfApp1
         CollectionViewSource modtreeViewSource;
         CollectionViewSource modViewSource;
         CollectionViewSource secL2ViewSource;
-
+        
+        
         private DAL dal = new DAL();
         private Rules rules = new Rules();
 
@@ -119,7 +120,7 @@ namespace WpfApp1
 
         private void CloudDBCommand(object sender, ExecutedRoutedEventArgs e)
         {
-            sysStatLbl.Content =  dal.setDatabase("LocalMaster", "localhost", "", "", true);
+            sysStatLbl.Content =  dal.setDatabase("LocalMaster", "localhost", "", "", false);
         }
         private void localDBCommand(object sender, ExecutedRoutedEventArgs e)
         {
@@ -237,10 +238,10 @@ namespace WpfApp1
         /// SECTION BUTTON CLICK COMMANDS
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            sysStatLbl.Content = "Loading....";
             selectedModule = dal.GetRecord(create_moduleCodeTextBox.Text);
 
-            MessageBox.Show( selectedModule.n100.ToString() );
+            //MessageBox.Show( selectedModule.n100.ToString() );
 
             if (Convert.ToInt32(selectedModule.n100) == 0 )
             {

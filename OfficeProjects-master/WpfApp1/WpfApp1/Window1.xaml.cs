@@ -15,6 +15,7 @@ using System.Windows.Media;
 //New
 using System.Data.Entity;
 using System.Data;
+//
 
 namespace WpfApp1
 {
@@ -28,7 +29,7 @@ namespace WpfApp1
         private DAL dal = new DAL();
         private Rules rules = new Rules();
         private dv field = new dv();
-
+        
         CollectionViewSource modtreeViewSource;
         CollectionViewSource DVViewSource;
         CollectionViewSource dvcpViewSource;
@@ -1109,30 +1110,46 @@ namespace WpfApp1
             string s2Text="";
 
             //no condition if multiple selctd
-            if (dvc_simlpeWCCB.IsChecked == false && dvc_simpleWNCCB.IsChecked == false && dvc_coplexCB.IsChecked == false)
+
+            if (string.IsNullOrEmpty(dvc_comboCodeTextBox.Text))
             {
-                sysStatLbl.Content = "Pls select a type first";
+                sysStatLbl.Content = "Pls Enter a Combo Code";
+
             }
             else
             {
-                if (dvc_simlpeWCCB.IsChecked == true)
+                if (dal.SearchDVC(dvc_comboCodeTextBox.Text) == 0)//searches for that s1 in the 
                 {
-                    s2Text = dvc_tableNameTextBox.Text + "," + dvc_selectFieldTextBox.Text + "," + dvc_whereClauseNameTextBox.Text + "," + dvc_orderByTextBox.Text + ";" + dvc_appendFieldTextBox.Text + "," + dvc_appendNameTextBox.Text;
-                }
-                else if (dvc_simpleWNCCB.IsChecked == true)
-                {
-                    s2Text = dvc_tableNameTextBox.Text + "," + dvc_selectFieldTextBox.Text + "," + dvc_whereClauseNameTextBox.Text + "," + dvc_orderByTextBox.Text;
-                }
-                else if (dvc_coplexCB.IsChecked == true)
-                {
-                    //
-                }
+                    if (dvc_simlpeWCCB.IsChecked == false && dvc_simpleWNCCB.IsChecked == false && dvc_coplexCB.IsChecked == false)
+                    {
+                        sysStatLbl.Content = "Pls select a type first";
+                    }
+                    else
+                    {
+                        if (dvc_simlpeWCCB.IsChecked == true)
+                        {
+                            s2Text = dvc_tableNameTextBox.Text + "," + dvc_selectFieldTextBox.Text + "," + dvc_whereClauseNameTextBox.Text + "," + dvc_orderByTextBox.Text + ";" + dvc_appendFieldTextBox.Text + "," + dvc_appendNameTextBox.Text;
+                        }
+                        else if (dvc_simpleWNCCB.IsChecked == true)
+                        {
+                            s2Text = dvc_tableNameTextBox.Text + "," + dvc_selectFieldTextBox.Text + "," + dvc_whereClauseNameTextBox.Text + "," + dvc_orderByTextBox.Text;
+                        }
+                        else if (dvc_coplexCB.IsChecked == true)
+                        {
+                            //
+                        }
 
-                entry.s1 = dvc_comboCodeTextBox.Text;
-                entry.s2 = s2Text;
-                entry.s3 = dvc_remarrksTextBox.Text;
+                        entry.s1 = dvc_comboCodeTextBox.Text;
+                        entry.s2 = s2Text;
+                        entry.s3 = dvc_remarrksTextBox.Text;
 
-                dal.AddDVCombo(entry); 
+                        dal.AddDVCombo(entry);
+                    }
+                }
+                else
+                {
+                    sysStatLbl.Content = "--! Combo Code Already Exists !--";
+                }
             }
         }
 

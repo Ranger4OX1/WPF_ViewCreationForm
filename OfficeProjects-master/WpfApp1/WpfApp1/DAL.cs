@@ -10,6 +10,7 @@ using System.Data;
 
 //using Microsoft.Data.SqlClient;
 // For ConnString
+using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.Configuration;
 
@@ -30,6 +31,7 @@ namespace WpfApp1
     internal class DAL
     {
         private DBEntities DBContext = null;
+
         SqlConnection conn = new SqlConnection();
 
         public DAL()
@@ -47,8 +49,8 @@ namespace WpfApp1
         /// <param name="password"></param>
         /// <param name="integratedSecuity"></param>
         /// <param name="configConnectionStringName"></param>
-        public string setDatabase(string initialCatalog = "",string dataSource = "",string userId = "",string password = "",bool integratedSecuity = true)
-           //string configConnectionStringName = "")/* this would be used if the*  connectionString name varied from *  the base EF class name */
+        public string setDatabase(string initialCatalog = "", string dataSource = "", string userId = "", string password = "", bool integratedSecuity = true)
+        //string configConnectionStringName = "")/* this would be used if the*  connectionString name varied from *  the base EF class name */
         {
             string result;
             try
@@ -62,7 +64,7 @@ namespace WpfApp1
 
                 // add a reference to System.Configuration
                 //var entityCnxStringBuilder = new SqlConnectionStringBuilder(DBContext.Database.Connection.ConnectionString);
-                    //(System.Configuration.ConfigurationManager.ConnectionStrings[configNameEf].ConnectionString);
+                //(System.Configuration.ConfigurationManager.ConnectionStrings[configNameEf].ConnectionString);
 
                 // init the sqlbuilder with the full EF connectionstring cargo
                 var sqlCnxStringBuilder = new SqlConnectionStringBuilder();
@@ -78,7 +80,7 @@ namespace WpfApp1
                     sqlCnxStringBuilder.Password = password;
 
                 // set the integrated security status
-                //sqlCnxStringBuilder.IntegratedSecurity = integratedSecuity;
+                sqlCnxStringBuilder.IntegratedSecurity = integratedSecuity;
 
                 // now flip the properties that were changed
                 DBContext.Database.Connection.ConnectionString
@@ -98,41 +100,41 @@ namespace WpfApp1
         // x.s106.Trim();
         // if (string.IsNullOrEmpty(x.s105)) { } else { x.s105.Trim(); }
         // if (string.IsNullOrEmpty(x.s105)) { } else { x.s105 = x.s105.Trim(); }
-
-    //Trim
-    private modtree DeSpace(modtree x)
+        
+        //Trim
+        private modtree DeSpace(modtree x)
         {
             //n100, s100, s101, s102, s105, s1, s2, s3, s4, s5, s7, s8, s14, s32, s35, s39, s40, n1
             if (string.IsNullOrEmpty(x.s100)) { } else { x.s100 = x.s100.Trim(); }
             if (string.IsNullOrEmpty(x.s101)) { } else { x.s101 = x.s101.Trim(); }
             if (string.IsNullOrEmpty(x.s102)) { } else { x.s102 = x.s102.Trim(); }
             if (string.IsNullOrEmpty(x.s105)) { } else { x.s105 = x.s105.Trim(); }
-            if (string.IsNullOrEmpty(x.s1)) { } else { x.s1 = x.s1.Trim(); }
-            if (string.IsNullOrEmpty(x.s2)) { } else { x.s2 = x.s2.Trim(); }
-            if (string.IsNullOrEmpty(x.s3)) { } else { x.s3 = x.s3.Trim(); }
-            if (string.IsNullOrEmpty(x.s4)) { } else { x.s4 = x.s4.Trim(); }
-            if (string.IsNullOrEmpty(x.s5)) { } else { x.s5 = x.s5.Trim(); }
-            if (string.IsNullOrEmpty(x.s6)) { } else { x.s6 = x.s6.Trim(); }
-            if (string.IsNullOrEmpty(x.s7)) { } else { x.s7 = x.s7.Trim(); }
-            if (string.IsNullOrEmpty(x.s8)) { } else { x.s8 = x.s8.Trim(); }
-            if (string.IsNullOrEmpty(x.s9)) { } else { x.s9 = x.s9.Trim(); }
-            if (string.IsNullOrEmpty(x.s10)) { } else { x.s10 = x.s10.Trim(); }
-            if (string.IsNullOrEmpty(x.s11)) { } else { x.s11 = x.s11.Trim(); }
-            if (string.IsNullOrEmpty(x.s12)) { } else { x.s12 = x.s12.Trim(); }
-            if (string.IsNullOrEmpty(x.s13)) { } else { x.s13 = x.s13.Trim(); }
-            if (string.IsNullOrEmpty(x.s14)) { } else { x.s14 = x.s14.Trim(); }
-            if (string.IsNullOrEmpty(x.s15)) { } else { x.s15 = x.s15.Trim(); }
-            if (string.IsNullOrEmpty(x.s30)) { } else { x.s30 = x.s30.Trim(); }
-            if (string.IsNullOrEmpty(x.s31)) { } else { x.s31 = x.s31.Trim(); }
-            if (string.IsNullOrEmpty(x.s32)) { } else { x.s32 = x.s32.Trim(); }
-            if (string.IsNullOrEmpty(x.s33)) { } else { x.s33 = x.s33.Trim(); }
-            if (string.IsNullOrEmpty(x.s34)) { } else { x.s34 = x.s34.Trim(); }
-            if (string.IsNullOrEmpty(x.s35)) { } else { x.s35 = x.s35.Trim(); }
-            if (string.IsNullOrEmpty(x.s36)) { } else { x.s36 = x.s36.Trim(); }
-            if (string.IsNullOrEmpty(x.s37)) { } else { x.s37 = x.s37.Trim(); }
-            if (string.IsNullOrEmpty(x.s38)) { } else { x.s38 = x.s38.Trim(); }
-            if (string.IsNullOrEmpty(x.s39)) { } else { x.s39 = x.s39.Trim(); }
-            if (string.IsNullOrEmpty(x.s40)) { } else { x.s40 = x.s40.Trim(); }
+            if (string.IsNullOrEmpty(x.s1))   { } else { x.s1 = x.s1.Trim(); }
+            if (string.IsNullOrEmpty(x.s2))   { } else { x.s2 = x.s2.Trim(); }
+            if (string.IsNullOrEmpty(x.s3))   { } else { x.s3 = x.s3.Trim(); }
+            if (string.IsNullOrEmpty(x.s4))   { } else { x.s4 = x.s4.Trim(); }
+            if (string.IsNullOrEmpty(x.s5))   { } else { x.s5 = x.s5.Trim(); }
+            if (string.IsNullOrEmpty(x.s6))   { } else { x.s6 = x.s6.Trim(); }
+            if (string.IsNullOrEmpty(x.s7))   { } else { x.s7 = x.s7.Trim(); }
+            if (string.IsNullOrEmpty(x.s8))   { } else { x.s8 = x.s8.Trim(); }
+            if (string.IsNullOrEmpty(x.s9))   { } else { x.s9 = x.s9.Trim(); }
+            if (string.IsNullOrEmpty(x.s10))  { } else { x.s10 = x.s10.Trim(); }
+            if (string.IsNullOrEmpty(x.s11))  { } else { x.s11 = x.s11.Trim(); }
+            if (string.IsNullOrEmpty(x.s12))  { } else { x.s12 = x.s12.Trim(); }
+            if (string.IsNullOrEmpty(x.s13))  { } else { x.s13 = x.s13.Trim(); }
+            if (string.IsNullOrEmpty(x.s14))  { } else { x.s14 = x.s14.Trim(); }
+            if (string.IsNullOrEmpty(x.s15))  { } else { x.s15 = x.s15.Trim(); }
+            if (string.IsNullOrEmpty(x.s30))  { } else { x.s30 = x.s30.Trim(); }
+            if (string.IsNullOrEmpty(x.s31))  { } else { x.s31 = x.s31.Trim(); }
+            if (string.IsNullOrEmpty(x.s32))  { } else { x.s32 = x.s32.Trim(); }
+            if (string.IsNullOrEmpty(x.s33))  { } else { x.s33 = x.s33.Trim(); }
+            if (string.IsNullOrEmpty(x.s34))  { } else { x.s34 = x.s34.Trim(); }
+            if (string.IsNullOrEmpty(x.s35))  { } else { x.s35 = x.s35.Trim(); }
+            if (string.IsNullOrEmpty(x.s36))  { } else { x.s36 = x.s36.Trim(); }
+            if (string.IsNullOrEmpty(x.s37))  { } else { x.s37 = x.s37.Trim(); }
+            if (string.IsNullOrEmpty(x.s38))  { } else { x.s38 = x.s38.Trim(); }
+            if (string.IsNullOrEmpty(x.s39))  { } else { x.s39 = x.s39.Trim(); }
+            if (string.IsNullOrEmpty(x.s40))  { } else { x.s40 = x.s40.Trim(); }
             return x;
         }
         private dv DeSpace(dv x)
@@ -199,9 +201,9 @@ namespace WpfApp1
                     return mods;
                 }
             }
-            catch (Exception)
+            catch (EntityException ex)
             {
-                MessageBox.Show("cathch");
+                MessageBox.Show("Connection error\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 modtree mod = new modtree();
                 return mod;
             }
@@ -269,6 +271,15 @@ namespace WpfApp1
                 return mods;
             }
         }
+        public int SearchDVC(string sVal)
+        {
+            using (var ctx = new DBEntities())
+            {
+                var combos = ctx.dvcomboes
+                                .Where(s => s.s1 == sVal).Count();
+                return combos;
+            }
+        }
         public dvtran GetDVTRecord(string sVal)
         {
             try
@@ -297,13 +308,14 @@ namespace WpfApp1
         /// <returns></returns>
         public string GetCtrl(decimal n100, string tbl)
         {
-            string iQuery="";
+            string iQuery = "";
 
             if (tbl == "dv")
             {
                 dv temp = GetDV(Convert.ToInt32(n100));
                 iQuery = "INSERT INTO dvctrl (s100, s101, s107, s1, s2, s3, s4, s6, s7, s8, s9, s10, s13, s14, s31, s32, s35 ) " + " VALUES('" + temp.s100 + "','" + temp.s101 + "','" + temp.s107 + "','" + temp.s1 + "','" + temp.s2 + "','" + temp.s3 + "','" + temp.s4 + "','" + temp.s6 + "','" + temp.s7 + "','" + temp.s8 + "','" + temp.s9 + "','" + temp.s10 + "','" + temp.s13 + "','" + temp.s14 + "','" + temp.s31 + "','" + temp.s32 + "','" + temp.s35 + "')";
-            }else
+            }
+            else
             {
                 modtree temp = Get(Convert.ToInt32(n100));
                 temp.n1 = 0;
@@ -472,17 +484,16 @@ namespace WpfApp1
         ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
-            //string connString = DBContext.Database.Connection.ConnectionString;
+            string connString = DBContext.Database.Connection.ConnectionString;
             //MessageBox.Show(connString);
-            string sql = @"Data Source = localhost;
-                            Initial Catalog = LocalMaster;
-                            Integrated Security = true ";
+            //string sql = @"Data Source = localhost;
+            //                Initial Catalog = LocalMaster;
+            //                //Integrated Security = true ";
             //string sql = @"Data Source = 172.16.1.10;
             //                Initial Catalog = PearlErpMaster;
             //                UID = sa; Pwd = Pearl@2016;";
-            //conn = new SqlConnection(connString);
-            conn = new SqlConnection(sql);
-
+            conn = new SqlConnection(connString);
+            //conn = new SqlConnection(sql);
             try
             {
                 conn.Open();
@@ -491,7 +502,7 @@ namespace WpfApp1
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Connection error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Connection error\n" + ex.Message, "Eror", MessageBoxButton.OK, MessageBoxImage.Error);
                 //throw;
             }
             return conn;
@@ -518,13 +529,13 @@ namespace WpfApp1
             return true;
         }
 
-        
+
         /// <summary>
         /// Executes the passed query
         /// </summary>
         /// <param name="sql"></param>
         /// <returns>Return System.Data.DataTable</returns>
-        public  DataTable Exec(string sql)
+        public DataTable Exec(string sql)
         {
             SqlDataAdapter da = null;
             DataTable dt = null;
@@ -538,9 +549,9 @@ namespace WpfApp1
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 //throw;
-            }            
+            }
 
             conn.Close();
             return dt;
@@ -553,14 +564,14 @@ namespace WpfApp1
             for (int i = 0; i < 10; i++)// from 0 to 9
             {
                 result[i] = false;//initialisation of element
-                temp = code + "0" + (i+1).ToString();//sets s1 
+                temp = code + "0" + (i + 1).ToString();//sets s1 
                 if (Search(temp) > 0)//searches for that s1 in the db
                 {
                     result[i] = true;// makes that element true if found
                 }
             }
             return result;
-         }
+        }
 
         ///Database Insertiion Methods
         public void AddModtree(modtree modtre)
@@ -571,7 +582,7 @@ namespace WpfApp1
                 {
                     modtre = DeSpace(modtre);
 
-                    DBContext.modtrees.Add(modtre);                    
+                    DBContext.modtrees.Add(modtre);
                     DBContext.SaveChanges();
 
                     modtree x = new modtree();
@@ -597,8 +608,8 @@ namespace WpfApp1
                 MessageBox.Show("Error\n" + ex.Message, "Info", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
             }
-            
-        } 
+
+        }
         public void AddDV(dv dvData)
         {
             //s100,s107,s1,s31
@@ -651,7 +662,7 @@ namespace WpfApp1
                     string x = (row[0]).ToString();
                     int s = Convert.ToInt32(x) + 1;
                     x = s.ToString();
-                    string sql = "insert into dvcombo (n100,s1,s2,s3) values("+ x +",'"+ dvcData.s1 +"','" + dvcData.s2 +"','" + dvcData.s3 +"')";
+                    string sql = "insert into dvcombo (n100,s1,s2,s3) values(" + x + ",'" + dvcData.s1 + "','" + dvcData.s2 + "','" + dvcData.s3 + "')";
                     SqlDataAdapter da = new SqlDataAdapter();
 
                     try
@@ -762,74 +773,79 @@ namespace WpfApp1
                 MessageBox.Show("DAL Error\n Failed to insert DT Records");
             }
         }
-       
+
     }
-
-    //public static class ConnectionTools
-    //{
-    //    private DBEntities DBContext = null;
-
-    //    // all params are optional
-    //    public static void ChangeDatabase(
-    //        this DbContext source,
-    //        string initialCatalog = "",
-    //        string dataSource = "",
-    //        string userId = "",
-    //        string password = "",
-    //        bool integratedSecuity = true,
-    //        string configConnectionStringName = "")
-    //    /* this would be used if the
-    //    *  connectionString name varied from 
-    //    *  the base EF class name */
-    //    {
-    //        try
-    //        {
-    //            // use the const name if it's not null, otherwise
-    //            // using the convention of connection string = EF contextname
-    //            // grab the type name and we're done
-    //            var configNameEf = string.IsNullOrEmpty(configConnectionStringName)
-    //                ? source.GetType().Name
-    //                : configConnectionStringName;
-
-    //            // add a reference to System.Configuration
-    //            var entityCnxStringBuilder = new EntityConnectionStringBuilder
-    //                (System.Configuration.ConfigurationManager
-    //                    .ConnectionStrings[configNameEf].ConnectionString);
-
-    //            // init the sqlbuilder with the full EF connectionstring cargo
-    //            var sqlCnxStringBuilder = new SqlConnectionStringBuilder
-    //                (entityCnxStringBuilder.ProviderConnectionString);
-
-    //            // only populate parameters with values if added
-    //            if (!string.IsNullOrEmpty(initialCatalog))
-    //                sqlCnxStringBuilder.InitialCatalog = initialCatalog;
-    //            if (!string.IsNullOrEmpty(dataSource))
-    //                sqlCnxStringBuilder.DataSource = dataSource;
-    //            if (!string.IsNullOrEmpty(userId))
-    //                sqlCnxStringBuilder.UserID = userId;
-    //            if (!string.IsNullOrEmpty(password))
-    //                sqlCnxStringBuilder.Password = password;
-
-    //            // set the integrated security status
-    //            sqlCnxStringBuilder.IntegratedSecurity = integratedSecuity;
-
-    //            // now flip the properties that were changed
-    //            source.Database.Connection.ConnectionString
-    //                = sqlCnxStringBuilder.ConnectionString;
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            // set log item if required
-    //        }
-    //    }
-    //}
-    /// <AUTHOR>                                    ///
-    /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
-    /// FOR ::-:Pearl-Solutions:-::                 ///
-    /// PROJECT DESCRIPTION::-:This is th first     ///
-    ///     draft of a View creation system to      ///
-    ///     ease the process of creation of modules ///
-    ///     and screens:-::                         ///
-    /// </AUTHOR>                                   ///
 }
+
+//namespace ExtensionMethods
+//{
+//    using WpfApp1;
+//    using System.Configuration;
+//    public static class ConnectionTools
+//    {
+        
+//        public sealed class EntityConnectionStringBuilder : System.Data.Common.DbConnectionStringBuilder { }
+//        // all params are optional
+//        public static void ChangeDatabase(
+//            this DBEntities source,
+//            string initialCatalog = "",
+//            string dataSource = "",
+//            string userId = "",
+//            string password = "",
+//            bool integratedSecuity = true,
+//            string configConnectionStringName = "")
+//        /* this would be used if the
+//        *  connectionString name varied from 
+//        *  the base EF class name */
+//        {
+//            try
+//            {
+//                // use the const name if it's not null, otherwise
+//                // using the convention of connection string = EF contextname
+//                // grab the type name and we're done
+//                var configNameEf = string.IsNullOrEmpty(configConnectionStringName)
+//                    ? source.GetType().Name
+//                    : configConnectionStringName;
+
+//                // add a reference to System.Configuration
+
+//                EntityConnectionStringBuilder entityCnxStringBuilder = new EntityConnectionStringBuilder();
+//                    //System.Configuration.ConfigurationManager.ConnectionStrings[configNameEf].ConnectionString);
+
+//                // init the sqlbuilder with the full EF connectionstring cargo
+//                var sqlCnxStringBuilder = new SqlConnectionStringBuilder(entityCnxStringBuilder.ProviderConnectionString);
+
+//                // only populate parameters with values if added
+//                if (!string.IsNullOrEmpty(initialCatalog))
+//                    sqlCnxStringBuilder.InitialCatalog = initialCatalog;
+//                if (!string.IsNullOrEmpty(dataSource))
+//                    sqlCnxStringBuilder.DataSource = dataSource;
+//                if (!string.IsNullOrEmpty(userId))
+//                    sqlCnxStringBuilder.UserID = userId;
+//                if (!string.IsNullOrEmpty(password))
+//                    sqlCnxStringBuilder.Password = password;
+
+//                // set the integrated security status
+//                sqlCnxStringBuilder.IntegratedSecurity = integratedSecuity;
+
+//                // now flip the properties that were changed
+//                source.Database.Connection.ConnectionString
+//                    = sqlCnxStringBuilder.ConnectionString;
+//            }
+//            catch (Exception ex)
+//            {
+//                // set log item if required
+//            }
+//        }
+//    }
+//}
+/// <AUTHOR>                                    ///
+/// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
+/// FOR ::-:Pearl-Solutions:-::                 ///
+/// PROJECT DESCRIPTION::-:This is th first     ///
+///     draft of a View creation system to      ///
+///     ease the process of creation of modules ///
+///     and screens:-::                         ///
+/// </AUTHOR>                                   ///
+
 
