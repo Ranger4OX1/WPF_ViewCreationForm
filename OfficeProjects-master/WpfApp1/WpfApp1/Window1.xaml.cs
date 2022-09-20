@@ -1,21 +1,30 @@
 ﻿using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
-//using System.Windows.Controls;
+using System.Windows.Controls;
 using System.Windows.Data;
-//using System.Windows.Documents;
-//using System.Windows.Input;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
-//using System.Windows.Media.Imaging;
-//using System.Windows.Shapes;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 //New
 using System.Data.Entity;
 using System.Data;
 //
+/// <AUTHOR>                                    ///
+/// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
+/// FOR ::-:Pearl-Solutions:-::                 ///
+/// PROJECT DESCRIPTION::-:This is th first     ///
+///     draft of a Data Entry System to help    ///
+///     and ease the process of                 ///
+///     creating/editing/updating of modules    ///
+///     and screens:-::                         ///
+/// </AUTHOR>                                   ///
 
 namespace WpfApp1
 {
@@ -516,6 +525,7 @@ namespace WpfApp1
                         if (temp.s107 == "M")
                         {
                             row[1] = dvcpTScrn.s102;
+                            row[16] = dvcpTScrn.s32;
                         }
                         else if (temp.s107 == "D")//point 12
                         {
@@ -727,42 +737,48 @@ namespace WpfApp1
             field.s13 = dv_listItemTextBox.Text.ToString();
             field.s14 = dv_validationTextBox.Text.ToString();
 
-            switch (selectedScreen.s5)
+            if (string.IsNullOrEmpty(field.s101))
             {
-                case "3000":
-                case "3050":
-                    if (!string.IsNullOrEmpty(field.s107))
-                    {
-                        if (tab31 != "") { field.s31 = tab31; } else { sysStatLbl.Content = "Pls select a tab"; }
-
-                        field.s32 = dv_tableNameTextBox.Text.ToString();
-                        field.s35 = dv_botstrapTextBox.Text.ToString();
-
-                        addScrnFlag = true;
-                    }
-                    else
-                    {
-                        sysStatLbl.Content = "Pls Select a tab";
-                    }
-                    break;
-                case "3400":
-                    {
-                        field.s32 = dv_tableNameTextBox.Text.ToString();
-                        field.s35 = dv_botstrapTextBox.Text.ToString();
-                        addScrnFlag = true;
-                    }
-                    break;
-                case "RPT":
-                    field.s107 = selectedScreen.s1;
-
-                    tab_Detail.IsEnabled = tab_Master.IsEnabled = tab_NTab1.IsEnabled = tab_NTab2.IsEnabled = true;
-
-                    addScrnFlag = true;
-                    break;
-                default:
-                    break;
+                sysStatLbl.Content = "Pls select a status";
             }
+            else
+            {
+                switch (selectedScreen.s5)
+                {
+                    case "3000":
+                    case "3050":
+                        if (!string.IsNullOrEmpty(field.s107))
+                        {
+                            if (tab31 != "") { field.s31 = tab31; } else { sysStatLbl.Content = "Pls select a tab"; }
 
+                            field.s32 = dv_tableNameTextBox.Text.ToString();
+                            field.s35 = dv_botstrapTextBox.Text.ToString();
+
+                            addScrnFlag = true;
+                        }
+                        else
+                        {
+                            sysStatLbl.Content = "Pls Select a tab";
+                        }
+                        break;
+                    case "3400":
+                        {
+                            field.s32 = dv_tableNameTextBox.Text.ToString();
+                            field.s35 = dv_botstrapTextBox.Text.ToString();
+                            addScrnFlag = true;
+                        }
+                        break;
+                    case "RPT":
+                        field.s107 = selectedScreen.s1;
+
+                        tab_Detail.IsEnabled = tab_Master.IsEnabled = tab_NTab1.IsEnabled = tab_NTab2.IsEnabled = true;
+
+                        addScrnFlag = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
             if (addScrnFlag)
             {
                 dal.AddDV(field);
@@ -837,7 +853,8 @@ namespace WpfApp1
             else
                 selectedScreen.s40 = screen_screenCodeTextBox.Text.Substring(0,6);
 
-            if ( rules.ScreenValidation(selectedScreen) )
+            if (rules.ScreenValidation(selectedScreen) == true 
+                && dal.IsUnique("modtree", "s102", String.Concat("'",screen_docTypeTextBox.Text.ToString(),"'") )==true )
             {
                 switch (selectedScreen.s5)
                 {
@@ -907,7 +924,7 @@ namespace WpfApp1
             }
             else
             {
-                sysStatLbl.Content = "Screen code already exists";
+                sysStatLbl.Content = "Screen code or DocType already exists";
             }            
         }
         private void mdtreScreen_nextBtn_Click(object sender, RoutedEventArgs e)

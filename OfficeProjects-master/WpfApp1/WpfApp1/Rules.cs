@@ -11,8 +11,9 @@ using System.Data;
 /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
 /// FOR ::-:Pearl-Solutions:-::                 ///
 /// PROJECT DESCRIPTION::-:This is th first     ///
-///     draft of a View creation system to      ///
-///     ease the process of creation of modules ///
+///     draft of a Data Entry System to help    ///
+///     and ease the process of                 ///
+///     creating/editing/updating of modules    ///
 ///     and screens:-::                         ///
 /// </AUTHOR>                                   ///
 namespace WpfApp1
@@ -84,7 +85,6 @@ namespace WpfApp1
             string s1 = "'"+ screen.s1.ToString() +"'";
             if ( dal.IsUnique("modtree", "s1", s1) )
             {
-                MessageBox.Show("true");
                 return true;
             }
             return false;
@@ -96,8 +96,9 @@ namespace WpfApp1
     /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
     /// FOR ::-:Pearl-Solutions:-::                 ///
     /// PROJECT DESCRIPTION::-:This is th first     ///
-    ///     draft of a View creation system to      ///
-    ///     ease the process of creation of modules ///
+    ///     draft of a Data Entry System to help    ///
+    ///     and ease the process of                 ///
+    ///     creating/editing/updating of modules    ///
     ///     and screens:-::                         ///
     /// </AUTHOR>                                   ///
 }

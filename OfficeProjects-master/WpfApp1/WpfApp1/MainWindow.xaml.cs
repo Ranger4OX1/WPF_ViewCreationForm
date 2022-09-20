@@ -17,14 +17,18 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.Entity;
 //using ExtensionMethods;
+
+
 /// <AUTHOR>                                    ///
 /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
 /// FOR ::-:Pearl-Solutions:-::                 ///
 /// PROJECT DESCRIPTION::-:This is th first     ///
-///     draft of a View creation system to      ///
-///     ease the process of creation of modules ///
+///     draft of a Data Entry System to help    ///
+///     and ease the process of                 ///
+///     creating/editing/updating of modules    ///
 ///     and screens:-::                         ///
 /// </AUTHOR>                                   ///
+
 
 namespace WpfApp1
 {
@@ -576,7 +580,8 @@ namespace WpfApp1
 /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
 /// FOR ::-:Pearl-Solutions:-::                 ///
 /// PROJECT DESCRIPTION::-:This is th first     ///
-///     draft of a View creation system to      ///
-///     ease the process of creation of modules ///
+///     draft of a Data Entry System to help    ///
+///     and ease the process of                 ///
+///     creating/editing/updating of modules    ///
 ///     and screens:-::                         ///
 /// </AUTHOR>                                   ///

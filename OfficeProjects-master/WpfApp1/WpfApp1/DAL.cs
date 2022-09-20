@@ -14,15 +14,16 @@ using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.Configuration;
 
-
 /// <AUTHOR>                                    ///
 /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
 /// FOR ::-:Pearl-Solutions:-::                 ///
 /// PROJECT DESCRIPTION::-:This is th first     ///
-///     draft of a View creation system to      ///
-///     ease the process of creation of modules ///
+///     draft of a Data Entry System to help    ///
+///     and ease the process of                 ///
+///     creating/editing/updating of modules    ///
 ///     and screens:-::                         ///
 /// </AUTHOR>                                   ///
+
 namespace WpfApp1
 {
     /// <summary>
@@ -197,7 +198,9 @@ namespace WpfApp1
             {
                 using (var ctx = new DBEntities())
                 {
+                    //DBContext.Database.Connection.Open();
                     var mods = ctx.modtrees.Where(s => s.s1 == sVal).First();
+                    //DBContext.Database.Connection.Close();  
                     return mods;
                 }
             }
@@ -206,7 +209,8 @@ namespace WpfApp1
                 MessageBox.Show("Connection error\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 modtree mod = new modtree();
                 return mod;
-            }
+            }           
+
         }
         public dv GetDV(int id)
         {
@@ -484,7 +488,7 @@ namespace WpfApp1
         ///  SQL-QUERIES
         public SqlConnection GetConnection()
         {
-            string connString = DBContext.Database.Connection.ConnectionString;
+            //string connString = DBContext.Database.Connection.ConnectionString;
             //MessageBox.Show(connString);
             //string sql = @"Data Source = localhost;
             //                Initial Catalog = LocalMaster;
@@ -492,8 +496,11 @@ namespace WpfApp1
             //string sql = @"Data Source = 172.16.1.10;
             //                Initial Catalog = PearlErpMaster;
             //                UID = sa; Pwd = Pearl@2016;";
-            conn = new SqlConnection(connString);
-            //conn = new SqlConnection(sql);
+            string sql = @"Data Source = pearlerp.com\PEARLSQL;
+                            Initial Catalog = PearlErpMaster;
+                            UID = clouderp; Pwd = erp@(CLOUD)$2021^&;";
+            //conn = new SqlConnection(connString);
+            conn = new SqlConnection(sql);
             try
             {
                 conn.Open();
@@ -509,7 +516,7 @@ namespace WpfApp1
         }
 
         /// <summary>
-        /// "select * from " + tableName + " where " + column1 + " = " + where1
+        /// "SELECT * FROM " + tableName + " WHERE " + column1 + " = " + where1
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="column1"></param>
@@ -580,6 +587,8 @@ namespace WpfApp1
             {
                 if (modtre != null)
                 {
+                    DBContext.Database.Connection.Open();
+
                     modtre = DeSpace(modtre);
 
                     DBContext.modtrees.Add(modtre);
@@ -597,6 +606,7 @@ namespace WpfApp1
 
                     DBContext.modtreetrans.Add(mtt);
                     DBContext.SaveChanges();
+                    DBContext.Database.Connection.Close();
                 }
                 else
                 {
@@ -621,6 +631,7 @@ namespace WpfApp1
 
                     DBContext.dvs.Add(dvData);
                     DBContext.SaveChanges();
+
 
                     dv x = new dv();
                     dvtran dvt = new dvtran();
@@ -783,7 +794,7 @@ namespace WpfApp1
 //    using System.Configuration;
 //    public static class ConnectionTools
 //    {
-        
+
 //        public sealed class EntityConnectionStringBuilder : System.Data.Common.DbConnectionStringBuilder { }
 //        // all params are optional
 //        public static void ChangeDatabase(
@@ -839,12 +850,14 @@ namespace WpfApp1
 //        }
 //    }
 //}
+
 /// <AUTHOR>                                    ///
 /// PROJECT ATHOR::-:Ehtisham M.A.:-::          ///
 /// FOR ::-:Pearl-Solutions:-::                 ///
 /// PROJECT DESCRIPTION::-:This is th first     ///
-///     draft of a View creation system to      ///
-///     ease the process of creation of modules ///
+///     draft of a Data Entry System to help    ///
+///     and ease the process of                 ///
+///     creating/editing/updating of modules    ///
 ///     and screens:-::                         ///
 /// </AUTHOR>                                   ///
 
